@@ -11,21 +11,19 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>app</module>
         <module>core</module>
-        <module>util</module>
-        <module>all-jar</module>
         <module>infra</module>
-    </modules>
+    <module>app</module>
+  </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mainClass>com.exist.ecc.app.PersonManagementApp</mainClass>
         <hibernateVersion>4.3.11.Final</hibernateVersion>
         <postgresVersion>42.2.2</postgresVersion>
         <commons-langVersion>3.7</commons-langVersion>
+        <servletsVersion>4.0.1</servletsVersion>
     </properties>
 
     <dependencyManagement>
@@ -65,13 +63,20 @@
                 <artifactId>orika-core</artifactId>
                 <version>1.5.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servletsVersion}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
+                <!-- <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <executions>
@@ -91,6 +96,23 @@
                         <descriptorRefs>
                             <descriptorRef>jar-with-dependencies</descriptorRef>
                         </descriptorRefs>
+                    </configuration>
+                </plugin> -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.3.11.v20160721</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                            </manifest>
+                        </archive>
                     </configuration>
                 </plugin>
             </plugins>
