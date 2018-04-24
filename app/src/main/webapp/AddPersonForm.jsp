@@ -13,6 +13,12 @@
 		<hr/>
 
 		<form action = "AddPerson" method = "GET">
+			<h4>ID</h4>
+			PERSON ID                                    <br/>
+		    <input type = "text" name = "id" readonly>   <br/>
+
+			<hr/>
+
 			<h4>NAME</h4>
 			First Name                                   <br/>
 			<input type = "text" name = "firstName">     <br/>
