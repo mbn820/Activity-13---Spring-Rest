@@ -1,0 +1,42 @@
+<!DOCTYPE web-app PUBLIC
+"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <servlet>
+        <servlet-name>AddPerson</servlet-name>
+        <servlet-class>com.exist.ecc.app.AddPersonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddPerson</servlet-name>
+        <url-pattern>/AddPerson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewAllPersons</servlet-name>
+        <servlet-class>com.exist.ecc.app.ViewAllPersonsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAllPersons</servlet-name>
+        <url-pattern>/ViewAllPersons</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FindPerson</servlet-name>
+        <servlet-class>com.exist.ecc.app.FindPersonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FindPerson</servlet-name>
+        <url-pattern>/FindPerson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeletePerson</servlet-name>
+        <servlet-class>com.exist.ecc.app.DeletePersonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePerson</servlet-name>
+        <url-pattern>/DeletePerson</url-pattern>
+    </servlet-mapping>
+
+</web-app>
