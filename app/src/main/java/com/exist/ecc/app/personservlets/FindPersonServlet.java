@@ -1,6 +1,7 @@
 package com.exist.ecc.app.personservlets;
 
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,28 +32,13 @@ public class FindPersonServlet extends HttpServlet {
 
 		String lastName = request.getParameter("lastName");
 
-		out.println("<html>");
-		out.println("<body>");
+		List<PersonDto> persons = new PersonService().getPersonsByLastName(lastName);
 
-		out.println("<h3>Find Person</h3>");
-		out.println("<hr/>");
+		request.setAttribute( "personList", persons );
 
-		out.println("Enter person last name: <br/>");
-		out.println("<form action = 'FindPerson' method = 'GET'>");
-		out.println("<input type = 'text' name = 'lastName'/> <br/>");
-		out.println("<input type = 'submit' value = 'Find'/> <br/>");
-		out.println("</form>");
-		out.println("<hr/>");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/FindPersonForm.jsp");
 
-		if(lastName != null) {
-			out.println("<h3>Results</h3><br/>");
-			List<PersonDto> persons = new PersonService().getPersonsByLastName(lastName);
-			new HtmlUtil().printPersonsTable(persons, out);
-		}
-
-		out.println("</html>");
-		out.println("</body>");
-
+		rd.forward( request, response );
 	}
 
 }

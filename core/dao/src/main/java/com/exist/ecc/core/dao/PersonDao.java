@@ -24,7 +24,7 @@ public class PersonDao implements PersonDaoInterface {
 	public List<Person> getPersonsByLastName(String lastName) {
 		return (List<Person>) new HibernateUtil().transact(session ->
 			session.createCriteria(Person.class)
-			       .add( Restrictions.like("name.lastName", lastName + "%") )
+			       .add( Restrictions.ilike("name.lastName", lastName + "%") )
 				   .addOrder( Order.asc("name.lastName") )
 				   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				   .list()

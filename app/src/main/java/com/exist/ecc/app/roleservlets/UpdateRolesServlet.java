@@ -1,4 +1,4 @@
-package com.exist.ecc.app.personservlets;
+package com.exist.ecc.app.roleservlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.RequestDispatcher;
@@ -7,19 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.app.HtmlUtil;
-import com.exist.ecc.core.service.PersonDto;
-import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.*;
+import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.model.*;
 import java.sql.Date;
 import java.util.*;
 
-public class DeletePersonServlet extends HttpServlet {
+public class UpdateRolesServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
 		} catch ( Exception e ) {
-
+			response.getWriter().println( e.toString() );
 		}
 	}
 
@@ -30,35 +29,15 @@ public class DeletePersonServlet extends HttpServlet {
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
-		String[] ids = request.getParameterValues("idToBeDeleted");
-
-		if(ids != null) {
-			for(String id : ids) {
-				try {
-					new PersonService().deletePerson( Integer.parseInt(id) );
-				} catch(Exception e) {
-					response.sendRedirect("/DeletePerson");
-				}
-			}
-		}
+		out.println( "Test" );
 
 		List<PersonDto> allPersons = new PersonService().getAllPerson("id");
 
 		request.setAttribute( "personList", allPersons );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/DeletePersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewAllPersonForm.jsp");
 
 		rd.forward( request, response );
-
-		// List<PersonDto> persons = new PersonService().getAllPerson("id");
-		//
-		// out.println("<html>");
-		// out.println("<body>");
-		// out.println("<h3>Delete Persons</h3>");
-		// out.println("<hr/>");
-		// new HtmlUtil().printPersonsTableWithDeleteColumn(persons, out, "DeletePerson");
-		// out.println("</body>");
-		// out.println("</html>");
 
 	}
 

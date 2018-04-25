@@ -5,8 +5,12 @@ import com.exist.ecc.core.model.Role;
 import java.util.List;
 
 public class RoleService {
-	public Integer addRole(Role role) {
-		return new RoleDao().addRole(role);
+	public Integer addRole(Role role) throws Exception {
+		if ( roleAlreadyExists(role) ) {
+			throw new Exception();
+		} else {
+			return new RoleDao().addRole(role);
+		}
 	}
 
 	public Role getRole(int id) {
@@ -22,7 +26,7 @@ public class RoleService {
 	}
 
 	public void deleteRole(int id) throws Exception {
-		if( !getRole(id).getPersons().isEmpty() ) {
+		if( roleIsAssignedToAPerson(id) ) {
 			throw new Exception();
 		} else {
 			new RoleDao().deleteRole(id);
@@ -33,13 +37,7 @@ public class RoleService {
 		return getAllRoles().contains(role);
 	}
 
-	public void viewRoles() {
-		System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-		getAllRoles().forEach(role -> System.out.printf("%-5s %-10s %s\n", role.getId(), role.getRoleName(), role.getPersons()));
+	public boolean roleIsAssignedToAPerson(int id) {
+		return !( getRole(id).getPersons().isEmpty() );
 	}
-
-	// public void viewRoles() {
-	// 	System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-	// 	getAllRoles().forEach(role -> System.out.printf("%-5s %-10s\n", role.getId(), role.getRoleName()));
-	// }
 }

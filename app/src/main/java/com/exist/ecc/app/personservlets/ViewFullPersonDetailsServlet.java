@@ -1,7 +1,6 @@
 package com.exist.ecc.app.personservlets;
 
 import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,13 +11,13 @@ import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import java.util.List;
 
-public class ViewAllPersonsServlet extends HttpServlet {
+public class ViewFullPersonDetailsServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
 		} catch (Exception e) {
-			response.getWriter().println(e.toString());
+
 		}
 	}
 
@@ -33,20 +32,25 @@ public class ViewAllPersonsServlet extends HttpServlet {
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
-		String orderBy = request.getParameter("orderBy");
+		String idParam = request.getParameter( "roleId" );
 
-		if(orderBy == null) {
-			orderBy = "id";
-		}
+		PersonDto person = new PersonService().getPerson( Integer.parseInt(idParam) );
 
-		List<PersonDto> allPersons = new PersonService().getAllPerson(orderBy);
+		out.println("<html>");
+		out.println("<body>");
 
-		request.setAttribute("personList", allPersons);
-		request.setAttribute( "orderBy", orderBy.toUpperCase() );
+		out.println("<h3>Full Person Details</h3>");
+		out.println("<hr/>");
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewAllPersonForm.jsp");
+		new HtmlUtil().printPersonsTable(person, out);
 
-		rd.forward( request, response );
+		out.println("<hr/>");
+
+		out.println("<h4>Contacts</h4>");
+		new HtmlUtil().printPersonContacts(person, out);
+
+		out.println("</html>");
+		out.println("</body>");
 	}
 
 }

@@ -54,8 +54,17 @@ public class AddPersonServlet extends HttpServlet {
 
 		String[] roleIds = request.getParameterValues("roles");
 
+		String contactPhone = request.getParameter("contacts_phone");
+		Contact phone = new Contact("phone", contactPhone);
+		String contactLandline = request.getParameter("contacts_landline");
+		Contact landline = new Contact("landline", contactLandline);
+		String contactEmail = request.getParameter("contacts_email");
+		Contact email = new Contact("email", contactEmail);
+		Set<Contact> contacts = new HashSet<Contact>( Arrays.asList(phone, landline, email) );
+
+
 		PersonDto person = new PersonDto(name, address, birthDate, dateHired,
-										 currentlyEmployed, gwa, new HashSet<Role>(), new HashSet<Contact>());
+										 currentlyEmployed, gwa, new HashSet<Role>(), contacts);
 
 		for(String roleId : roleIds) {
 			int id = Integer.parseInt(roleId);

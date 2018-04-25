@@ -39,6 +39,15 @@
         <url-pattern>/DeletePerson</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ViewFullPersonDetails</servlet-name>
+        <servlet-class>com.exist.ecc.app.personservlets.ViewFullPersonDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewFullPersonDetails</servlet-name>
+        <url-pattern>/ViewFullPersonDetails</url-pattern>
+    </servlet-mapping>
+
     <!-- ROLE -->
 
     <servlet>
@@ -67,5 +76,24 @@
         <servlet-name>DeleteRoles</servlet-name>
         <url-pattern>/DeleteRoles</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateRoles</servlet-name>
+        <servlet-class>com.exist.ecc.app.roleservlets.UpdateRolesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateRoles</servlet-name>
+        <url-pattern>/UpdateRoles</url-pattern>
+    </servlet-mapping>
+
+    <!-- Test -->
+    <!-- <servlet>
+        <servlet-name>ViewAllPersonForm</servlet-name>
+        <jsp-file>webapp/ViewAllPersonForm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAllPersonForm</servlet-name>
+        <url-pattern>/ViewAllPersonForm</url-pattern>
+    </servlet-mapping> -->
 
 </web-app>

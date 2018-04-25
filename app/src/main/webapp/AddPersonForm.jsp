@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.exist.ecc.core.model.Role" %>
 <%@ page import="com.exist.ecc.core.service.RoleService" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 	<head>
