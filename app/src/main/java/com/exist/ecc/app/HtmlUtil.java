@@ -2,7 +2,9 @@ package com.exist.ecc.app;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Arrays;
 import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.model.Role;
 
 public class HtmlUtil {
 
@@ -71,7 +73,7 @@ public class HtmlUtil {
 		out.println("<th>Delete</th>");
 		out.println("</tr>");
 
-		out.printf("<form action = '%s' method = 'GET'>", action);
+		out.printf("<form action = '%s' method = 'GET'>\n", action);
 		for(PersonDto person : persons) {
 			out.println("<tr>");
 			out.printf( "<td>%s</td>\n", person.getId() );
@@ -93,5 +95,61 @@ public class HtmlUtil {
 		out.println("</table>");
 		out.println("<input type = 'submit' value = 'DELETE'>");
 		out.printf("</form>");
+	}
+
+	public void printRolesTable(List<Role> roles, PrintWriter out) {
+		if ( roles.isEmpty() ) {
+			out.println( "<h3>No record found</h3>" );
+			return;
+		}
+
+		out.println( "<table border = '1'>" );
+		out.println( "<tr>" );
+		out.println( "<th>ID</th>" );
+		out.println( "<th>Role</th>" );
+		out.println( "<th>Person</th>" );
+		out.println( "</tr>");
+
+		for (Role role : roles) {
+			out.println( "<tr>" );
+			out.printf( "<td>%s</td>\n", role.getId() );
+			out.printf( "<td>%s</td>\n", role.getRoleName() );
+			out.printf( "<td>%s</td>\n", role.getPersons() );
+			out.println( "</tr>");
+		}
+		out.println( "</table>" );
+	}
+
+	public void printRolesTableWithDeleteColumn(List<Role> roles, PrintWriter out, String action) {
+		if ( roles.isEmpty() ) {
+			out.println( "<h3>No record found</h3>" );
+			return;
+		}
+
+		out.println( "<table border = '1'>" );
+		out.println( "<tr>" );
+		out.println( "<th>ID</th>" );
+		out.println( "<th>Role</th>" );
+		out.println( "<th>Person</th>" );
+		out.println( "<th>Delete</th>" );
+		out.println( "</tr>");
+
+		out.printf("<form action = '%s' method = 'GET'>\n", action);
+		for (Role role : roles) {
+			out.println( "<tr>" );
+			out.printf( "<td>%s</td>\n", role.getId() );
+			out.printf( "<td>%s</td>\n", role.getRoleName() );
+			out.printf( "<td>%s</td>\n", role.getPersons() );
+			out.printf( "<td><input type = 'checkbox' value = '%s' name = 'idToBeDeleted'></td>\n", role.getId());
+			out.println( "</tr>");
+		}
+		out.println( "</table>" );
+		out.println("<input type = 'submit' value = 'DELETE'>");
+		out.printf("</form>");
+
+	}
+
+	public void printRolesTable(Role role, PrintWriter out) {
+		printRolesTable( Arrays.asList(role), out );
 	}
 }

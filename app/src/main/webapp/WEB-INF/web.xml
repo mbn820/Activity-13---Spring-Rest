@@ -5,7 +5,7 @@
 <web-app>
     <servlet>
         <servlet-name>AddPerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.AddPersonServlet</servlet-class>
+        <servlet-class>com.exist.ecc.app.personservlets.AddPersonServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddPerson</servlet-name>
@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>ViewAllPersons</servlet-name>
-        <servlet-class>com.exist.ecc.app.ViewAllPersonsServlet</servlet-class>
+        <servlet-class>com.exist.ecc.app.personservlets.ViewAllPersonsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewAllPersons</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>FindPerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.FindPersonServlet</servlet-class>
+        <servlet-class>com.exist.ecc.app.personservlets.FindPersonServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FindPerson</servlet-name>
@@ -32,11 +32,40 @@
 
     <servlet>
         <servlet-name>DeletePerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.DeletePersonServlet</servlet-class>
+        <servlet-class>com.exist.ecc.app.personservlets.DeletePersonServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeletePerson</servlet-name>
         <url-pattern>/DeletePerson</url-pattern>
+    </servlet-mapping>
+
+    <!-- ROLE -->
+
+    <servlet>
+        <servlet-name>ViewRoles</servlet-name>
+        <servlet-class>com.exist.ecc.app.roleservlets.ViewRolesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewRoles</servlet-name>
+        <url-pattern>/ViewRoles</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddRoles</servlet-name>
+        <servlet-class>com.exist.ecc.app.roleservlets.AddRolesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddRoles</servlet-name>
+        <url-pattern>/AddRoles</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteRoles</servlet-name>
+        <servlet-class>com.exist.ecc.app.roleservlets.DeleteRolesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteRoles</servlet-name>
+        <url-pattern>/DeleteRoles</url-pattern>
     </servlet-mapping>
 
 </web-app>

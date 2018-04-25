@@ -1,4 +1,4 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.personservlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +9,7 @@ import java.io.IOException;
 import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.app.HtmlTemplate;
 import com.exist.ecc.core.model.*;
 import java.sql.Date;
 import java.util.*;
@@ -28,7 +29,6 @@ public class AddPersonServlet extends HttpServlet {
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("addservlet");
 
 		String firstName = request.getParameter("firstName");
 		String middleName = request.getParameter("middleName");
@@ -62,12 +62,11 @@ public class AddPersonServlet extends HttpServlet {
 			person.addRole( new RoleService().getRole(id) );
 		}
 
-		out.println("Person created! : " + person);
-
 		new PersonService().addPerson(person);
 
-		out.println("Added to the database");
-		out.println( Arrays.toString(roleIds) );
+		new HtmlTemplate().setTitle("Add Person")
+		                  .setBody("<h4>Person has been added!</h4>")
+						  .print(out);
 
 	}
 }

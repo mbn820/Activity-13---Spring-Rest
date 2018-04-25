@@ -1,4 +1,4 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.personservlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
+import com.exist.ecc.app.HtmlUtil;
 import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import java.util.List;

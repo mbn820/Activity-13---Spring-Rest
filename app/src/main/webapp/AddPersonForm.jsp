@@ -1,8 +1,8 @@
-<html>
-	<%@ page import="java.util.List" %>
-	<%@ page import="com.exist.ecc.core.model.Role" %>
-	<%@ page import="com.exist.ecc.core.service.RoleService" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.exist.ecc.core.model.Role" %>
+<%@ page import="com.exist.ecc.core.service.RoleService" %>
 
+<html>
 	<head>
 		<title>Add Person</title>
 	</head>
@@ -91,6 +91,7 @@
 			<input type = "text" name = "contacts_landline"> <br/>
 			Email Address <br/>
 			<input type = "text" name = "contacts_email"> <br/>
+
 
 			<!-- BUTTON -->
 			<hr/>
