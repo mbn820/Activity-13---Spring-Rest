@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.app.HtmlUtil;
 import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.model.*;
@@ -19,7 +18,7 @@ public class DeletePersonServlet extends HttpServlet {
 		try {
 			processRequest(request, response);
 		} catch ( Exception e ) {
-
+			response.getWriter().println(e.toString());
 		}
 	}
 
@@ -28,8 +27,6 @@ public class DeletePersonServlet extends HttpServlet {
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-
 		String[] ids = request.getParameterValues("idToBeDeleted");
 
 		if(ids != null) {
@@ -46,20 +43,9 @@ public class DeletePersonServlet extends HttpServlet {
 
 		request.setAttribute( "personList", allPersons );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/DeletePersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/DeletePersonForm.jsp");
 
 		rd.forward( request, response );
-
-		// List<PersonDto> persons = new PersonService().getAllPerson("id");
-		//
-		// out.println("<html>");
-		// out.println("<body>");
-		// out.println("<h3>Delete Persons</h3>");
-		// out.println("<hr/>");
-		// new HtmlUtil().printPersonsTableWithDeleteColumn(persons, out, "DeletePerson");
-		// out.println("</body>");
-		// out.println("</html>");
-
 	}
 
 }

@@ -1,12 +1,12 @@
 package com.exist.ecc.app.roleservlets;
 
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.app.HtmlUtil;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.model.*;
 import java.sql.Date;
@@ -38,19 +38,15 @@ public class DeleteRolesServlet extends HttpServlet {
 					response.sendRedirect("/DeleteRoles");
 				}
 			}
-
 		}
 
 		List<Role> roles = new RoleService().getAllRoles();
 
-		out.println("<html>");
-		out.println("<body>");
-		out.println( "<h3>Delete Roles</h3>" );
-		out.println( "<hr/>" );
-		new HtmlUtil().printRolesTableWithDeleteColumn(roles, out, "DeleteRoles");
-		out.println("</body>");
-		out.println("</html>");
+		request.setAttribute( "existingRoles", roles );
 
+		RequestDispatcher rd = getServletContext().getRequestDispatcher( "/role/DeleteRoleForm.jsp" );
+
+		rd.forward( request, response );
 	}
 
 }

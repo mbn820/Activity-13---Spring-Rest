@@ -70,7 +70,7 @@ public class Role {
 		if (!this.getClass().equals(obj.getClass())) return false;
 
 		Role otherRole = (Role)obj;
-		if( this.roleName.equals(otherRole.getRoleName()) ) {
+		if( this.roleName.toLowerCase().equals(otherRole.getRoleName().toLowerCase()) ) {
 			return true;
 		}
 		return false;

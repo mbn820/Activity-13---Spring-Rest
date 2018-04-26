@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.app.HtmlUtil;
 import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import java.util.List;
@@ -31,8 +30,6 @@ public class ViewAllPersonsServlet extends HttpServlet {
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-
 		String orderBy = request.getParameter("orderBy");
 
 		if(orderBy == null) {
@@ -41,10 +38,10 @@ public class ViewAllPersonsServlet extends HttpServlet {
 
 		List<PersonDto> allPersons = new PersonService().getAllPerson(orderBy);
 
-		request.setAttribute("personList", allPersons);
+		request.setAttribute( "personList", allPersons );
 		request.setAttribute( "orderBy", orderBy.toUpperCase() );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewAllPersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/ViewAllPersonForm.jsp");
 
 		rd.forward( request, response );
 	}

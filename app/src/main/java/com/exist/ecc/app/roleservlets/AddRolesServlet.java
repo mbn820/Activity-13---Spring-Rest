@@ -1,6 +1,7 @@
 package com.exist.ecc.app.roleservlets;
 
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,36 +26,24 @@ public class AddRolesServlet extends HttpServlet {
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-
 		String roleInput = request.getParameter("role");
-
-		out.println("<html>");
-		out.println("<body>");
-		out.println( "<h3>Add new Roles</h3>" );
-		out.println( "<hr/>" );
-
-		out.println( "<form action = 'AddRoles' method = 'GET'>");
-		out.println( "Enter new Role <br/>" );
-		out.println( "<input type = 'text' name = 'role'> <br/>");
-		out.println( "<input type = 'submit' value = 'Add'> <br/>");
-		out.println( "</form>" );
-		out.println( "<hr/>" );
 
 		if (roleInput != null) {
 			try {
 				Role role = new Role( roleInput );
 				new RoleService().addRole( role );
-				out.printf( "Role : %s has been added to the database!\n", role.getRoleName() );
-			} catch ( Exception e ) {
-				out.printf("Error: Role Already Exists!\n" );
+			} catch (Exception e) {
+				request.setAttribute( "roleExistsException", e );
 			}
-
 		}
 
-		out.println("</body>");
-		out.println("</html>");
+		List<Role> existingRoles = new RoleService().getAllRoles();
 
+		request.setAttribute( "existingRoles", existingRoles );
+
+		RequestDispatcher rd = getServletContext().getRequestDispatcher( "/role/AddRoleForm.jsp" );
+
+		rd.forward( request, response );
 	}
 
 }

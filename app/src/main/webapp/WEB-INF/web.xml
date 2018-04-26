@@ -2,7 +2,8 @@
 "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
 "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app
+    >
     <servlet>
         <servlet-name>AddPerson</servlet-name>
         <servlet-class>com.exist.ecc.app.personservlets.AddPersonServlet</servlet-class>
@@ -37,6 +38,15 @@
     <servlet-mapping>
         <servlet-name>DeletePerson</servlet-name>
         <url-pattern>/DeletePerson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdatePerson</servlet-name>
+        <servlet-class>com.exist.ecc.app.personservlets.UpdatePersonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdatePerson</servlet-name>
+        <url-pattern>/UpdatePerson</url-pattern>
     </servlet-mapping>
 
     <servlet>

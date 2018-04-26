@@ -23,22 +23,33 @@ public class UpdateRolesServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idToBeUpdated = Integer.parseInt( request.getParameter("idToBeUpdated") );
+		String newRoleName = request.getParameter( "newRoleName" );
 
+		Role updatedRole = new RoleService().getRole( idToBeUpdated );
+		updatedRole.setId( idToBeUpdated );
+		updatedRole.setRoleName( newRoleName );
+
+		new RoleService().updateRole( updatedRole );
+
+		response.sendRedirect("/UpdateRoles");
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		String roleId = request.getParameter("roleId");
 
-		out.println( "Test" );
+		if (roleId != null) {
+			Role roleToBeUpdated = new RoleService().getRole( Integer.parseInt(roleId) );
+			request.setAttribute( "roleToBeUpdated", roleToBeUpdated );
+		}
 
-		List<PersonDto> allPersons = new PersonService().getAllPerson("id");
+		List<Role> existingRoles = new RoleService().getAllRoles();
+		request.setAttribute( "existingRoles", existingRoles );
 
-		request.setAttribute( "personList", allPersons );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewAllPersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/role/UpdateRoleForm.jsp");
 
 		rd.forward( request, response );
-
 	}
 
 }
