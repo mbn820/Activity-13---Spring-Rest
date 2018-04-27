@@ -13,17 +13,28 @@
 
 		<hr/>
 
-		<h4>NAME</h4>
-		First Name <br/>
-		<input type = "text" name = "firstName" value = "${person.name.firstName}"> <br/>
-		Middle Name <br/>
-		<input type = "text" name = "middleName" value = "${person.name.middleName}"> <br/>
-		Last Name <br/>
-		<input type = "text" name = "lastName" value = "${person.name.lastName}"> <br/>
-		Suffix <br/>
-		<input type = "text" name = "suffix" value = "${person.name.suffix}"> <br/>
-		Title <br/>
-		<input type = "text" name = "title" value = "${person.name.title}"> <br/>
+		<!-- <div style = "text-align:center">
+			<h4>NAME</h4>
+			First Name <br/>
+			<input type = "text" name = "firstName" value = "${person.name.firstName}" placeholder = "First Name"> <br/>
+			Middle Name <br/>
+			<input type = "text" name = "middleName" value = "${person.name.middleName}"> <br/>
+			Last Name <br/>
+			<input type = "text" name = "lastName" value = "${person.name.lastName}"> <br/>
+			Suffix <br/>
+			<input type = "text" name = "suffix" value = "${person.name.suffix}"> <br/>
+			Title <br/>
+			<input type = "text" name = "title" value = "${person.name.title}"> <br/>
+		</div> -->
+
+		<div style = "text-align:center">
+			<h4>NAME</h4>
+			<input type = "text" name = "firstName" value = "${person.name.firstName}" placeholder = "First Name"> <br/>
+			<input type = "text" name = "middleName" value = "${person.name.middleName}" placeholder = "Middle Name"> <br/>
+			<input type = "text" name = "lastName" value = "${person.name.lastName}" placeholder = "Last Name"> <br/>
+			<input type = "text" name = "suffix" value = "${person.name.suffix}" placeholder = "Suffix"> <br/>
+			<input type = "text" name = "title" value = "${person.name.title}" placeholder = "Title"> <br/>
+		</div>
 
 		<hr/>
 

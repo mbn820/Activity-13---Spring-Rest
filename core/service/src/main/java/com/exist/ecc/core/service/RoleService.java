@@ -6,9 +6,13 @@ import com.exist.ecc.core.model.dto.RoleDto;
 import java.util.List;
 
 public class RoleService {
-	public Integer addRole(RoleDto roleDto) {
-		Role roleToBeAdded = new MapperUtil().mapToRole(roleDto);
-		return new RoleDao().addRole(roleToBeAdded);
+	public Integer addRole(RoleDto roleDto) throws Exception {
+		if ( roleAlreadyExists(roleDto) ) {
+			throw new Exception();
+		} else {
+			Role roleToBeAdded = new MapperUtil().mapToRole(roleDto);
+			return new RoleDao().addRole(roleToBeAdded);
+		}
 	}
 
 	public RoleDto getRole(int id) {

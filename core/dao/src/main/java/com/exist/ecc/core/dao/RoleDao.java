@@ -21,6 +21,7 @@ public class RoleDao implements RoleDaoInterface {
 		 	session.createCriteria(Role.class)
 				   .addOrder( Order.asc("id") )
 				   .setCacheable(true)
+				   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				   .list()
 		);
 	}
