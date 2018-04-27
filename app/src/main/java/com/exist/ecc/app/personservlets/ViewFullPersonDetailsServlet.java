@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.service.PersonService;
 import java.util.List;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class ViewFullPersonDetailsServlet extends HttpServlet {
 
 		PersonDto person = new PersonService().getPerson( Integer.parseInt(idParam) );
 
-		request.setAttribute( "person", Arrays.asList(person) );
+		request.setAttribute( "person", person );
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/ViewFullPersonDetailsForm.jsp");
 

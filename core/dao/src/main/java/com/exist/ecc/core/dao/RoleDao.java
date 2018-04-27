@@ -1,8 +1,10 @@
 package com.exist.ecc.core.dao;
 
 import com.exist.ecc.core.model.Role;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Order;
 import java.util.List;
-import org.hibernate.Query;
 
 public class RoleDao implements RoleDaoInterface {
 
@@ -15,13 +17,13 @@ public class RoleDao implements RoleDaoInterface {
 	}
 
 	public List<Role> getAllRoles() {
-		return (List<Role>) new HibernateUtil().transact(session -> {
-			Query query = session.createQuery("FROM Role");
-			query.setCacheable(true);
-			return query.list();
-		 });
+		return (List<Role>) new HibernateUtil().transact(session ->
+		 	session.createCriteria(Role.class)
+				   .addOrder( Order.asc("id") )
+				   .setCacheable(true)
+				   .list()
+		);
 	}
-
 
 	public void updateRole(Role role) {
 		new HibernateUtil().transact( session -> { session.update(role); return null; } );
@@ -33,7 +35,7 @@ public class RoleDao implements RoleDaoInterface {
 
 	public void deleteAllRoles() {
 		List<Role> allRoles = getAllRoles();
-		allRoles.forEach(role -> deleteRole(role.getId()));
+		allRoles.forEach( role -> deleteRole(role.getId()) );
 	}
 
 }

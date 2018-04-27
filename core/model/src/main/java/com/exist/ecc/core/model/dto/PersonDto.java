@@ -1,4 +1,4 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.model.dto;
 
 import java.util.*;
 import com.exist.ecc.core.model.*;
@@ -6,18 +6,18 @@ import com.exist.ecc.core.model.*;
 public class PersonDto {
 
     private int id;
-    private Name name;
-    private Address address;
+    private NameDto name;
+    private AddressDto address;
     private Date birthDate;
     private Date dateHired;
     private boolean currentlyEmployed;
     private double gwa;
-    private Set<Role> roles;
-    private Set<Contact> contacts;
+    private Set<RoleDto> roles;
+    private Set<ContactDto> contacts;
 
     public PersonDto() {}
-    public PersonDto(Name name, Address address, Date birthDate, Date dateHired,
-                     boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
+    public PersonDto(NameDto name, AddressDto address, Date birthDate, Date dateHired,
+                     boolean currentlyEmployed, double gwa, Set<RoleDto> roles, Set<ContactDto> contacts) {
 
         this.name = name;
         this.address = address;
@@ -34,11 +34,11 @@ public class PersonDto {
         return id;
     }
 
-    public Name getName() {
+    public NameDto getName() {
         return name;
     }
 
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
@@ -58,11 +58,11 @@ public class PersonDto {
         return gwa;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDto> getRoles() {
         return roles;
     }
 
-    public Set<Contact> getContacts() {
+    public Set<ContactDto> getContacts() {
         return contacts;
     }
 
@@ -71,11 +71,11 @@ public class PersonDto {
         this.id = id;
     }
 
-    public void setName(Name name) {
+    public void setName(NameDto name) {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressDto address) {
         this.address = address;
     }
 
@@ -95,28 +95,28 @@ public class PersonDto {
         this.gwa = gwa;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDto> roles) {
         this.roles = roles;
     }
 
-    public void setContacts(Set<Contact> contacts) {
+    public void setContacts(Set<ContactDto> contacts) {
         this.contacts = contacts;
     }
 
-	public void addRole(Role role) {
+	public void addRole(RoleDto role) {
         if(roles == null) {
-            roles = new HashSet<Role>();
+            roles = new HashSet<RoleDto>();
         }
         roles.add(role);
-        role.addPerson( new MapperUtil().mapToPerson(this) );
+        role.addPerson( this );
     }
 
-    public void removeRole(Role role) {
+    public void removeRole(RoleDto role) {
         roles.remove(role);
-        role.removePerson( new MapperUtil().mapToPerson(this) );
+        role.removePerson( this );
     }
 
-    public void addContact(Contact contact) {
+    public void addContact(ContactDto contact) {
         contacts.add(contact);
     }
 

@@ -1,6 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.exist.ecc.core.model.Role" %>
-<%@ page import="com.exist.ecc.core.service.RoleService" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 
@@ -11,34 +8,34 @@
 
 	<body>
 		<h4>ID</h4>
-		PERSON ID                                    <br/>
-		<input type = "text" name = "id" readonly value = "${person.id}">   <br/>
+		PERSON ID <br/>
+		<input type = "text" name = "id" readonly value = "${person.id}"> <br/>
 
 		<hr/>
 
 		<h4>NAME</h4>
-		First Name                                   <br/>
-		<input type = "text" name = "firstName" value = "${person.name.firstName}">     <br/>
-		Middle Name                                  <br/>
-		<input type = "text" name = "middleName" value = "${person.name.middleName}">    <br/>
-		Last Name                                    <br/>
-		<input type = "text" name = "lastName" value = "${person.name.lastName}">      <br/>
-		Suffix                                       <br/>
-		<input type = "text" name = "suffix" value = "${person.name.suffix}">        <br/>
-		Title                                        <br/>
-		<input type = "text" name = "title" value = "${person.name.title}">         <br/>
+		First Name <br/>
+		<input type = "text" name = "firstName" value = "${person.name.firstName}"> <br/>
+		Middle Name <br/>
+		<input type = "text" name = "middleName" value = "${person.name.middleName}"> <br/>
+		Last Name <br/>
+		<input type = "text" name = "lastName" value = "${person.name.lastName}"> <br/>
+		Suffix <br/>
+		<input type = "text" name = "suffix" value = "${person.name.suffix}"> <br/>
+		Title <br/>
+		<input type = "text" name = "title" value = "${person.name.title}"> <br/>
 
 		<hr/>
 
 		<h4>ADDRESS</h4>
-		Street Number                                <br/>
-		<input type = "text" name = "streetNumber" value = "${person.address.streetNumber}">  <br/>
-		Barangay                                     <br/>
-		<input type = "text" name = "barangay" value = "${person.address.barangay}">      <br/>
-		Municipality                                 <br/>
-		<input type = "text" name = "municipality" value = "${person.address.municipality}">  <br/>
-		Zipcode                                      <br/>
-		<input type = "text" name = "zipcode" value = "${person.address.zipcode}">       <br/>
+		Street Number <br/>
+		<input type = "text" name = "streetNumber" value = "${person.address.streetNumber}"> <br/>
+		Barangay <br/>
+		<input type = "text" name = "barangay" value = "${person.address.barangay}"> <br/>
+		Municipality <br/>
+		<input type = "text" name = "municipality" value = "${person.address.municipality}"> <br/>
+		Zipcode <br/>
+		<input type = "text" name = "zipcode" value = "${person.address.zipcode}"> <br/>
 
 		<hr/>
 
@@ -89,12 +86,22 @@
 
 		<h4>CONTACTS</h4>
 		Cellphone Number <br/>
-		<input type = "text" name = "contacts_phone" value = "${person.contacts}"> <br/>
+		<c:forEach items = "${person.contacts}" var = "contact">
+			<c:if test = "${contact.type == 'phone'}">
+				<c:set var = "phone" value = "${contact.detail}"/>
+			</c:if>
+			<c:if test = "${contact.type == 'landline'}">
+				<c:set var = "landline" value = "${contact.detail}"/>
+			</c:if>
+			<c:if test = "${contact.type == 'email'}">
+				<c:set var = "email" value = "${contact.detail}"/>
+			</c:if>
+		</c:forEach>
+		<input type = "text" name = "contacts_phone" value = "${phone}"> <br/>
 		Landline <br/>
-		<input type = "text" name = "contacts_landline"> <br/>
+		<input type = "text" name = "contacts_landline" value = "${landline}"> <br/>
 		Email Address <br/>
-		<input type = "text" name = "contacts_email"> <br/>
-		<hr/>
+		<input type = "text" name = "contacts_email" value = "${email}"> <br/>
 
 		<!-- <form action = "/StoreContacts" method = "GET">
 			<h4>CONTACTS</h4>
@@ -104,9 +111,15 @@
 				<option value = "email">Email</option>
 			</select>
 			<input type = "text" name = "detail">
-			<input type = "submit" value = "ADD">
+				<div class="new-contacts">
+			<input type = "submit" value = "ADD." id="save-button">
 		</form> -->
 
 	</body>
 
+	<!-- <script>
+		$(#save-button).click(function(){
+			$(#new-contacts).addEmle("<input type="")
+		})
+	</script> -->
 </html>

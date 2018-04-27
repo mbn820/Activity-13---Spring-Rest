@@ -17,7 +17,7 @@
 					<input type = "submit" value = "DELETE">
 				</th>
 			</tr>
-			<c:forEach items = "${requestScope.personList}" var = "person">
+			<c:forEach items = "${personList}" var = "person">
 				<tr>
 					<c:set var = "person" value = "${person}" scope = "request"/>
 					<c:import url = "/person/PersonTableContents.jsp"/>

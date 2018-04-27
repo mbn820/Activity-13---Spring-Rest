@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.model.*;
+import com.exist.ecc.core.model.dto.*;
 import java.sql.Date;
 import java.util.*;
 

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
 import com.exist.ecc.core.service.RoleService;
-import com.exist.ecc.core.model.*;
+import com.exist.ecc.core.model.dto.*;
 import java.sql.Date;
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class DeleteRolesServlet extends HttpServlet {
 			}
 		}
 
-		List<Role> roles = new RoleService().getAllRoles();
+		List<RoleDto> roles = new RoleService().getAllRoles();
 
 		request.setAttribute( "existingRoles", roles );
 

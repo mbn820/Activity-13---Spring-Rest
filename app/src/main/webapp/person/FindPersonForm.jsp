@@ -22,7 +22,7 @@
 				<tr bgcolor = '#77929b'>
 					<c:import url = "PersonTableHeader.jsp"/>
 				</tr>
-				<c:forEach items = "${requestScope.personList}" var = "person">
+				<c:forEach items = "${personList}" var = "person">
 					<tr>
 						<c:set var = "person" value = "${person}" scope = "request"/>
 						<c:import url = "PersonTableContents.jsp"/>

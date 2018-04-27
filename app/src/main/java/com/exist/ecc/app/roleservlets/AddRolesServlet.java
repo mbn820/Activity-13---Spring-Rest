@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
 import com.exist.ecc.core.service.RoleService;
-import com.exist.ecc.core.model.*;
+import com.exist.ecc.core.model.dto.*;
 import java.sql.Date;
 import java.util.*;
 
@@ -30,14 +30,14 @@ public class AddRolesServlet extends HttpServlet {
 
 		if (roleInput != null) {
 			try {
-				Role role = new Role( roleInput );
+				RoleDto role = new RoleDto( roleInput );
 				new RoleService().addRole( role );
 			} catch (Exception e) {
 				request.setAttribute( "roleExistsException", e );
 			}
 		}
 
-		List<Role> existingRoles = new RoleService().getAllRoles();
+		List<RoleDto> existingRoles = new RoleService().getAllRoles();
 
 		request.setAttribute( "existingRoles", existingRoles );
 
