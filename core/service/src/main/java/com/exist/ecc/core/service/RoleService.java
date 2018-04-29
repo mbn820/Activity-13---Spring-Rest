@@ -45,9 +45,4 @@ public class RoleService {
 	public boolean roleAlreadyExists(RoleDto role) {
 		return getAllRoles().contains(role);
 	}
-
-	public void viewRoles() {
-		System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-		getAllRoles().forEach(role -> System.out.printf("%-5s %-10s %s\n", role.getId(), role.getRoleName(), role.getPersons()));
-	}
 }

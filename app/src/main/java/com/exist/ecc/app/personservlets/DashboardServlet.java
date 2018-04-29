@@ -5,50 +5,42 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.model.dto.*;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.model.dto.*;
 import java.sql.Date;
 import java.util.*;
 
-public class DeletePersonServlet extends HttpServlet {
+public class DashboardServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
 		} catch ( Exception e ) {
-			response.getWriter().println(e.toString());
+			response.getWriter().println("error " + e.toString());
 		}
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			new PersonService().deletePerson( Integer.parseInt(request.getParameter("id")) );
-		} catch( Exception e ) {
-			response.getWriter().println(e.toString());
-		}
+
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] ids = request.getParameterValues("idToBeDeleted");
+        String lastNameFilter = request.getParameter("lastNameFilter");
+        String sortBy = request.getParameter("sortBy");
+        String orderBy = request.getParameter("orderBy");
 
-		if(ids != null) {
-			for(String id : ids) {
-				try {
-					new PersonService().deletePerson( Integer.parseInt(id) );
-				} catch(Exception e) {
-					response.sendRedirect("/DeletePerson");
-				}
-			}
-		}
+        if (lastNameFilter == null) { lastNameFilter = ""; }
+        if (sortBy == null) { sortBy = "id"; }
+        if (orderBy == null) { orderBy = "asc"; }
 
-		List<PersonDto> allPersons = new PersonService().getAllPerson("id");
+		List<PersonDto> personList = new PersonService().getPersonsByLastName(lastNameFilter);
 
-		request.setAttribute( "personList", allPersons );
+		request.setAttribute( "personList", personList );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/DeletePersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/Dashboard.jsp");
 
 		rd.forward( request, response );
 	}
-
 }

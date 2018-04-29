@@ -4,6 +4,14 @@
 <html>
 	<head>
 		<title>Person Details</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#add-button").click(function() {
+                    $(".contacts").append( $(".elem").html() );
+                });
+            });
+        </script>
 	</head>
 
 	<body>
@@ -13,10 +21,10 @@
 
 		<hr/>
 
-		<!-- <div style = "text-align:center">
+		<div>
 			<h4>NAME</h4>
 			First Name <br/>
-			<input type = "text" name = "firstName" value = "${person.name.firstName}" placeholder = "First Name"> <br/>
+			<input type = "text" name = "firstName" value = "${person.name.firstName}"> <br/>
 			Middle Name <br/>
 			<input type = "text" name = "middleName" value = "${person.name.middleName}"> <br/>
 			Last Name <br/>
@@ -25,16 +33,16 @@
 			<input type = "text" name = "suffix" value = "${person.name.suffix}"> <br/>
 			Title <br/>
 			<input type = "text" name = "title" value = "${person.name.title}"> <br/>
-		</div> -->
+		</div>
 
-		<div style = "text-align:center">
+		<!-- <div style = "text-align:center">
 			<h4>NAME</h4>
 			<input type = "text" name = "firstName" value = "${person.name.firstName}" placeholder = "First Name"> <br/>
 			<input type = "text" name = "middleName" value = "${person.name.middleName}" placeholder = "Middle Name"> <br/>
 			<input type = "text" name = "lastName" value = "${person.name.lastName}" placeholder = "Last Name"> <br/>
 			<input type = "text" name = "suffix" value = "${person.name.suffix}" placeholder = "Suffix"> <br/>
 			<input type = "text" name = "title" value = "${person.name.title}" placeholder = "Title"> <br/>
-		</div>
+		</div> -->
 
 		<hr/>
 
@@ -114,23 +122,21 @@
 		Email Address <br/>
 		<input type = "text" name = "contacts_email" value = "${email}"> <br/>
 
-		<!-- <form action = "/StoreContacts" method = "GET">
-			<h4>CONTACTS</h4>
-			<select name = "type">
-				<option value = "cellphone">CellPhone</option>
-				<option value = "landline">Landline</option>
-				<option value = "email">Email</option>
-			</select>
-			<input type = "text" name = "detail">
-				<div class="new-contacts">
-			<input type = "submit" value = "ADD." id="save-button">
-		</form> -->
+		<!-- <h4>CONTACTS</h4>
+        <input type = "button" value = "ADD" id="add-button">
+        <br/>
+        <div class = "contacts">
+            <div class = "elem">
+                <select name = "type">
+                    <option value = "cellphone">CellPhone</option>
+                    <option value = "landline">Landline</option>
+                    <option value = "email">Email</option>
+                </select>
+                <input type = "text" name = "detail">
+                <br/>
+            </div>
+        </div> -->
+
 
 	</body>
-
-	<!-- <script>
-		$(#save-button).click(function(){
-			$(#new-contacts).addEmle("<input type="")
-		})
-	</script> -->
 </html>

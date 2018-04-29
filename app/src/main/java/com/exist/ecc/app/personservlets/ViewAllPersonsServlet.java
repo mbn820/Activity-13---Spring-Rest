@@ -41,7 +41,7 @@ public class ViewAllPersonsServlet extends HttpServlet {
 		request.setAttribute( "personList", allPersons );
 		request.setAttribute( "orderBy", orderBy.toUpperCase() );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/ViewAllPersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/Dashboard.jsp");
 
 		rd.forward( request, response );
 	}

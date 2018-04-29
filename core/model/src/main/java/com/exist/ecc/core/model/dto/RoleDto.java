@@ -56,7 +56,7 @@ public class RoleDto {
 		if (!this.getClass().equals(obj.getClass())) return false;
 
 		RoleDto otherRole = (RoleDto)obj;
-		if( this.roleName.equals(otherRole.getRoleName()) ) {
+		if( this.roleName.toLowerCase().equals(otherRole.getRoleName().toLowerCase()) ) {
 			return true;
 		}
 		return false;

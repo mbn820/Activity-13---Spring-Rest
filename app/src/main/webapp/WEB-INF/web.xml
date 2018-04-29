@@ -4,6 +4,15 @@
 
 <web-app>
     <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>com.exist.ecc.app.personservlets.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>AddPerson</servlet-name>
         <servlet-class>com.exist.ecc.app.personservlets.AddPersonServlet</servlet-class>
     </servlet>
