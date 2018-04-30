@@ -27,6 +27,11 @@ public class PersonService {
 		return new MapperUtil().mapToPersonDtoList(persons);
 	}
 
+	public List<PersonDto> getPersonsByLastName(String lastName, String orderBy, String orderType) {
+		List<Person> persons = new PersonDao().getPersonsByLastName(lastName, orderBy, orderType);
+		return new MapperUtil().mapToPersonDtoList(persons);
+	}
+
 	public void updatePerson(PersonDto personDto) {
 		Person personToBeUpdated = new MapperUtil().mapToPerson(personDto);
 		new PersonDao().updatePerson(personToBeUpdated);

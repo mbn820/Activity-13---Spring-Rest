@@ -4,12 +4,12 @@
 
 <html>
     <head>
-        <title>Persons Dashboard</title>
+        <title>Manage Persons</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $("#delete-button").click(function() {
-                    var idNum = $(this).attr("name");
+                $("[name = delete-button]").click(function() {
+                    var idNum = $(this).attr("id");
                     $.post("/DeletePerson", {id : idNum}, function() {
                         location.reload();
                     });
@@ -20,7 +20,7 @@
     </head>
 
     <body>
-        <h3>DASHBOARD</h3>
+        <h3>Manage Persons</h3>
         <hr/>
 
         <form action = "Dashboard" method = "GET">
@@ -31,16 +31,16 @@
 
             <div>
                 Sort by:
-                <select name = "sortBy">
-                    <option value = "id" ${param.sortBy == "id" ? "selected" : ""}>ID</option>
-                    <option value = "name.lastName" ${param.sortBy == "name.lastName" ? "selected" : ""}>Last Name</option>
-                    <option value = "dateHired" ${param.sortBy == "dateHired" ? "selected" : ""}>Date Hired</option>
-                    <option value = "gwa" ${param.sortBy == "gwa" ? "selected" : ""}>GWA</option>
-                </select>
-                Order:
                 <select name = "orderBy">
-                    <option value = "asc" ${param.orderBy == "asc" ? "selected" : ""}>Ascending</option>
-                    <option value = "des" ${param.orderBy == "des" ? "selected" : ""}>Descending</option>
+                    <option value = "id" ${param.orderBy == "id" ? "selected" : ""}>ID</option>
+                    <option value = "name.lastName" ${param.orderBy == "name.lastName" ? "selected" : ""}>Last Name</option>
+                    <option value = "dateHired" ${param.orderBy == "dateHired" ? "selected" : ""}>Date Hired</option>
+                    <option value = "gwa" ${param.orderBy == "gwa" ? "selected" : ""}>GWA</option>
+                </select>
+                Order type:
+                <select name = "orderType">
+                    <option value = "asc" ${param.orderType == "asc" ? "selected" : ""}>Ascending</option>
+                    <option value = "desc" ${param.orderType == "desc" ? "selected" : ""}>Descending</option>
                 </select>
                 <input type = "submit" value = "SORT"/>
             </div>
@@ -62,21 +62,21 @@
 
                 <c:forEach items = "${personList}" var = "person">
                     <tr>
-                        <th>
-                            <a href = "/person/FullPersonDetails?id={person.id}">${person.id}</a>
-                        </th>
-                        <th>${person.name.firstName}</th>
-                        <th>${person.name.middleName}</th>
-                        <th>${person.name.lastName}</th>
-                        <th>${person.dateHired}</th>
-                        <th>${person.gwa}</th>
-                        <th>${person.roles}</th>
-                        <th>
+                        <td>
+                            <a href = "/ViewFullPersonDetails?personId=${person.id}">${person.id}</a>
+                        </td>
+                        <td>${person.name.firstName}</td>
+                        <td>${person.name.middleName}</td>
+                        <td>${person.name.lastName}</td>
+                        <td>${person.dateHired}</td>
+                        <td>${person.gwa}</td>
+                        <td>${person.roles}</td>
+                        <td>
                             <a href = "/person/UpdatePerson?id=${person.id}">Update Person</a>
-                        </th>
-                        <th>
-                            <input type = "button" value = "DELETE" id = "delete-button" name = "${person.id}">
-                        </th>
+                        </td>
+                        <td>
+                            <input type = "button" value = "DELETE" id = "${person.id}" name = "delete-button">
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

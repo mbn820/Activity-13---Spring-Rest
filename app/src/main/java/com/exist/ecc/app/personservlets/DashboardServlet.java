@@ -28,14 +28,14 @@ public class DashboardServlet extends HttpServlet {
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String lastNameFilter = request.getParameter("lastNameFilter");
-        String sortBy = request.getParameter("sortBy");
         String orderBy = request.getParameter("orderBy");
+        String orderType = request.getParameter("orderType");
 
         if (lastNameFilter == null) { lastNameFilter = ""; }
-        if (sortBy == null) { sortBy = "id"; }
-        if (orderBy == null) { orderBy = "asc"; }
+        if (orderBy == null) { orderBy = "id"; }
+        if (orderType == null) { orderType = "asc"; }
 
-		List<PersonDto> personList = new PersonService().getPersonsByLastName(lastNameFilter);
+		List<PersonDto> personList = new PersonService().getPersonsByLastName(lastNameFilter, orderBy, orderType);
 
 		request.setAttribute( "personList", personList );
 
