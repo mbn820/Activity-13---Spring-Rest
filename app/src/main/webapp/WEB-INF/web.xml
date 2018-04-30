@@ -4,12 +4,12 @@
 
 <web-app>
     <servlet>
-        <servlet-name>Dashboard</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.DashboardServlet</servlet-class>
+        <servlet-name>ManagePersons</servlet-name>
+        <servlet-class>com.exist.ecc.app.personservlets.ManagePersonsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Dashboard</servlet-name>
-        <url-pattern>/Dashboard</url-pattern>
+        <servlet-name>ManagePersons</servlet-name>
+        <url-pattern>/ManagePersons</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -19,24 +19,6 @@
     <servlet-mapping>
         <servlet-name>AddPerson</servlet-name>
         <url-pattern>/AddPerson</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ViewAllPersons</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.ViewAllPersonsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewAllPersons</servlet-name>
-        <url-pattern>/ViewAllPersons</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>FindPerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.FindPersonServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FindPerson</servlet-name>
-        <url-pattern>/FindPerson</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -58,23 +40,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ViewFullPersonDetails</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.ViewFullPersonDetailsServlet</servlet-class>
+        <servlet-name>FullPersonDetails</servlet-name>
+        <servlet-class>com.exist.ecc.app.personservlets.FullPersonDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ViewFullPersonDetails</servlet-name>
-        <url-pattern>/ViewFullPersonDetails</url-pattern>
+        <servlet-name>FullPersonDetails</servlet-name>
+        <url-pattern>/FullPersonDetails</url-pattern>
     </servlet-mapping>
 
     <!-- ROLE -->
 
     <servlet>
-        <servlet-name>ViewRoles</servlet-name>
-        <servlet-class>com.exist.ecc.app.roleservlets.ViewRolesServlet</servlet-class>
+        <servlet-name>ManageRoles</servlet-name>
+        <servlet-class>com.exist.ecc.app.roleservlets.ManageRolesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ViewRoles</servlet-name>
-        <url-pattern>/ViewRoles</url-pattern>
+        <servlet-name>ManageRoles</servlet-name>
+        <url-pattern>/ManageRoles</url-pattern>
     </servlet-mapping>
 
     <servlet>

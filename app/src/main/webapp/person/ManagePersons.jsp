@@ -10,9 +10,12 @@
             $(document).ready(function() {
                 $("[name = delete-button]").click(function() {
                     var idNum = $(this).attr("id");
-                    $.post("/DeletePerson", {id : idNum}, function() {
-                        location.reload();
-                    });
+                    var decision = confirm("Are you sure?");
+                    if (decision) {
+                        $.post("/DeletePerson", {id : idNum}, function() {
+                            location.reload();
+                        });
+                    }
 
                 });
             });
@@ -23,7 +26,7 @@
         <h3>Manage Persons</h3>
         <hr/>
 
-        <form action = "Dashboard" method = "GET">
+        <form action = "ManagePersons" method = "GET">
             <div>
                 <input type = "text" name = "lastNameFilter" placeholder = "Filter by last name" value = "${param.lastNameFilter}"/>
                 <input type = "submit" value = "FILTER">
@@ -47,7 +50,7 @@
         </form>
 
         <div>
-            <table border = "1">
+            <table border = "1" width = "100%">
                 <tr bgcolor = "#77929b">
                     <th>ID</th>
                     <th>First Name</th>
@@ -63,7 +66,7 @@
                 <c:forEach items = "${personList}" var = "person">
                     <tr>
                         <td>
-                            <a href = "/ViewFullPersonDetails?personId=${person.id}">${person.id}</a>
+                            <a href = "/FullPersonDetails?personId=${person.id}">${person.id}</a>
                         </td>
                         <td>${person.name.firstName}</td>
                         <td>${person.name.middleName}</td>
@@ -72,7 +75,7 @@
                         <td>${person.gwa}</td>
                         <td>${person.roles}</td>
                         <td>
-                            <a href = "/person/UpdatePerson?id=${person.id}">Update Person</a>
+                            <a href = "/UpdatePerson?personId=${person.id}">Update Person</a>
                         </td>
                         <td>
                             <input type = "button" value = "DELETE" id = "${person.id}" name = "delete-button">

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.*;
 
-public class DashboardServlet extends HttpServlet {
+public class ManagePersonsServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
@@ -39,7 +39,7 @@ public class DashboardServlet extends HttpServlet {
 
 		request.setAttribute( "personList", personList );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/Dashboard.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/ManagePersons.jsp");
 
 		rd.forward( request, response );
 	}

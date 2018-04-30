@@ -33,10 +33,8 @@ public class UpdateRolesServlet extends HttpServlet {
 		try {
 			new RoleService().updateRole( updatedRole );
 		} catch( Exception e ) {
-			response.sendRedirect("/UpdateRoles");
+			response.sendRedirect("/ViewRoles");
 		}
-
-		response.sendRedirect("/UpdateRoles");
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

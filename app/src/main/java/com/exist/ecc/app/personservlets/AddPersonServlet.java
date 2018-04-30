@@ -34,7 +34,7 @@ public class AddPersonServlet extends HttpServlet {
 
 		new PersonService().addPerson(personToBeAdded);
 
-		response.getWriter().println("<html><body><h3>Person Has Been Added to the Database!!<h3></body></html>");
+		response.sendRedirect("/ManagePersons");
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

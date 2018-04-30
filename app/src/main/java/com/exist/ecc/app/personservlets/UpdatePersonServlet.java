@@ -16,11 +16,17 @@ import java.util.*;
 
 public class UpdatePersonServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			processRequest(request, response);
-		} catch ( Exception e ) {
-			response.getWriter().println(e.toString());
-		}
+		String id = request.getParameter("personId");
+
+		PersonDto personToBeUpdated = new PersonService().getPerson( Integer.parseInt(id) );
+		List<RoleDto> existingRoles = new RoleService().getAllRoles();
+
+		request.setAttribute( "person", personToBeUpdated );
+		request.setAttribute( "existingRoles", existingRoles );
+
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/UpdatePersonForm.jsp");
+
+		rd.forward( request, response );
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,21 +44,6 @@ public class UpdatePersonServlet extends HttpServlet {
 
 		new PersonService().updatePerson(personToBeUpdated);
 
-		response.getWriter().println("<html><body><h3>Person Has Been Updated!<h3></body></html>");
+		response.sendRedirect("/ManagePersons");
 	}
-
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("personId");
-
-		PersonDto personToBeUpdated = new PersonService().getPerson( Integer.parseInt(id) );
-		List<RoleDto> existingRoles = new RoleService().getAllRoles();
-
-		request.setAttribute( "person", personToBeUpdated );
-		request.setAttribute( "existingRoles", existingRoles );
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/UpdatePersonForm.jsp");
-
-		rd.forward( request, response );
-	}
-
 }

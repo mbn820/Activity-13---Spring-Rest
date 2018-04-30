@@ -7,32 +7,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
+import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.model.dto.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.List;
+import java.util.Arrays;
 
-public class FindPersonServlet extends HttpServlet {
+public class FullPersonDetailsServlet extends HttpServlet {
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
-		} catch ( Exception e ) {
+		} catch (Exception e) {
+			response.getWriter().println( e.toString() );
+		}
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			processRequest(request, response);
+		} catch (Exception e) {
 
 		}
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String lastName = request.getParameter("lastName");
+		String idParam = request.getParameter( "personId" );
 
-		List<PersonDto> persons = new PersonService().getPersonsByLastName(lastName);
+		PersonDto person = new PersonService().getPerson( Integer.parseInt(idParam) );
 
-		request.setAttribute( "personList", persons );
+		request.setAttribute( "person", person );
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/FindPersonForm.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/person/FullPersonDetailsForm.jsp");
 
 		rd.forward( request, response );
 	}
