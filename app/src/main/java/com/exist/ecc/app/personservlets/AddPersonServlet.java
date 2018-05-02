@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.service.PersonServiceImpl;
+import com.exist.ecc.core.service.RoleServiceImpl;
 import com.exist.ecc.core.model.dto.*;
 import com.exist.ecc.app.PersonBuilder;
 import java.io.PrintWriter;
@@ -15,6 +17,9 @@ import java.sql.Date;
 import java.util.*;
 
 public class AddPersonServlet extends HttpServlet {
+	// private PersonService personService = new PersonServiceImpl();
+	// private RoleService roleService = new RoleServiceImpl();
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
@@ -32,13 +37,13 @@ public class AddPersonServlet extends HttpServlet {
 			return;
 		}
 
-		new PersonService().addPerson(personToBeAdded);
+		new PersonServiceImpl().addPerson(personToBeAdded);
 
 		response.sendRedirect("/ManagePersons");
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<RoleDto> existingRoles = new RoleService().getAllRoles();
+		List<RoleDto> existingRoles = new RoleServiceImpl().getAllRoles();
 
 		request.setAttribute( "existingRoles", existingRoles );
 

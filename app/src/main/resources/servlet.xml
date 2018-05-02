@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- <bean id = "managePersonsServlet" class = "com.exist.ecc.app.personservlets.ManagePersonsServlet">
+		<property name = "personService">
+			<ref bean = "personService"/>
+		</property>
+	</bean> -->
+
+	<bean id = "fullPersonDetailsServlet" class = "com.exist.ecc.app.personservlets.FullPersonDetailsServlet">
+		<property name = "personService">
+			<ref bean = "personService"/>
+		</property>
+	</bean>
+
+</beans>

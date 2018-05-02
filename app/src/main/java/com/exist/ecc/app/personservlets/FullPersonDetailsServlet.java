@@ -9,10 +9,16 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonServiceImpl;
 import java.util.List;
 import java.util.Arrays;
 
 public class FullPersonDetailsServlet extends HttpServlet {
+	private PersonService personService;
+
+	public void setPersonService(PersonService personService) {
+		this.personService = personService;
+	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -33,7 +39,7 @@ public class FullPersonDetailsServlet extends HttpServlet {
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idParam = request.getParameter( "personId" );
 
-		PersonDto person = new PersonService().getPerson( Integer.parseInt(idParam) );
+		PersonDto person = personService.getPerson( Integer.parseInt(idParam) );
 
 		request.setAttribute( "person", person );
 

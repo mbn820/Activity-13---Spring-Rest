@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.service.PersonServiceImpl;
+import com.exist.ecc.core.service.RoleServiceImpl;
 import com.exist.ecc.core.model.dto.*;
 import com.exist.ecc.app.PersonBuilder;
 import java.sql.Date;
@@ -18,8 +18,8 @@ public class UpdatePersonServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("personId");
 
-		PersonDto personToBeUpdated = new PersonService().getPerson( Integer.parseInt(id) );
-		List<RoleDto> existingRoles = new RoleService().getAllRoles();
+		PersonDto personToBeUpdated = new PersonServiceImpl().getPerson( Integer.parseInt(id) );
+		List<RoleDto> existingRoles = new RoleServiceImpl().getAllRoles();
 
 		request.setAttribute( "person", personToBeUpdated );
 		request.setAttribute( "existingRoles", existingRoles );
@@ -42,7 +42,7 @@ public class UpdatePersonServlet extends HttpServlet {
 
 		personToBeUpdated.setId(idOfPerson);
 
-		new PersonService().updatePerson(personToBeUpdated);
+		new PersonServiceImpl().updatePerson(personToBeUpdated);
 
 		response.sendRedirect("/ManagePersons");
 	}

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.IOException;
-import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.service.RoleServiceImpl;
 import com.exist.ecc.core.model.dto.*;
 import java.sql.Date;
 import java.util.*;
@@ -21,7 +21,7 @@ public class AddRolesServlet extends HttpServlet {
 		String roleToBeAdded = request.getParameter("roleToBeAdded");
 
 		try {
-			new RoleService().addRole( new RoleDto(roleToBeAdded) );
+			new RoleServiceImpl().addRole( new RoleDto(roleToBeAdded) );
 		} catch(Exception e) {
 
 		}

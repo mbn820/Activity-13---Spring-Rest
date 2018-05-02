@@ -7,7 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonServiceImpl;
 
 public class DeletePersonServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,7 +16,7 @@ public class DeletePersonServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			new PersonService().deletePerson( Integer.parseInt(request.getParameter("id")) );
+			new PersonServiceImpl().deletePerson( Integer.parseInt(request.getParameter("id")) );
 		} catch( Exception e ) {
 			response.getWriter().println(e.toString());
 		}

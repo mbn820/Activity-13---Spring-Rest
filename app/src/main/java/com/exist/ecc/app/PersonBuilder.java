@@ -86,7 +86,7 @@ public class PersonBuilder {
 		if ( roleIds != null ) {
 			for(String roleId : roleIds) {
 				int id = Integer.parseInt(roleId);
-				roles.add( new RoleService().getRole(id) );
+				roles.add( new RoleServiceImpl().getRole(id) );
 			}
 		}
 		return roles;
