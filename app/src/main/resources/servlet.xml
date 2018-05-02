@@ -9,10 +9,8 @@
 		</property>
 	</bean> -->
 
-	<bean id = "fullPersonDetailsServlet" class = "com.exist.ecc.app.personservlets.FullPersonDetailsServlet">
-		<property name = "personService">
-			<ref bean = "personService"/>
-		</property>
-	</bean>
+	<bean id = "fullPersonDetailsServlet" class = "com.exist.ecc.app.personservlets.FullPersonDetailsServlet" autowire = "byName"/>
+
+	<import resource = "classpath:service-beans.xml"/>
 
 </beans>

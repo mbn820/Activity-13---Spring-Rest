@@ -17,7 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ManagePersonsServlet extends HttpServlet {
-	private ApplicationContext context = new ClassPathXmlApplicationContext( new String[] {"service-beans.xml", "servlet.xml"} );
+	private ApplicationContext context = new ClassPathXmlApplicationContext( new String[] {"service-beans.xml", "servlet.xml", "dao-beans.xml"} );
 	private PersonService personService = (PersonService) context.getBean("personService");
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

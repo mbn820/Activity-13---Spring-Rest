@@ -7,17 +7,22 @@ import org.hibernate.criterion.Order;
 import java.util.List;
 
 public class RoleDaoImpl implements RoleDao {
+	private HibernateUtil hibernateUtil;
+
+	public void setHibernateUtil(HibernateUtil hibernateUtil) {
+		this.hibernateUtil = hibernateUtil;
+	}
 
 	public Integer addRole(Role role) {
-		return (Integer) new HibernateUtil().transact(session -> session.save(role));
+		return (Integer) hibernateUtil.transact(session -> session.save(role));
 	}
 
 	public Role getRole(int id) {
-		return (Role) new HibernateUtil().transact(session -> session.get(Role.class, id));
+		return (Role) hibernateUtil.transact(session -> session.get(Role.class, id));
 	}
 
 	public List<Role> getAllRoles() {
-		return (List<Role>) new HibernateUtil().transact(session ->
+		return (List<Role>) hibernateUtil.transact(session ->
 		 	session.createCriteria(Role.class)
 				   .addOrder( Order.asc("id") )
 				   .setCacheable(true)
@@ -27,11 +32,11 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	public void updateRole(Role role) {
-		new HibernateUtil().transact( session -> { session.update(role); return null; } );
+		hibernateUtil.transact( session -> { session.update(role); return null; } );
 	}
 
 	public void deleteRole(int id) {
-		new HibernateUtil().transact( session -> { session.delete(getRole(id)); return null; } );
+		hibernateUtil.transact( session -> { session.delete(getRole(id)); return null; } );
 	}
 
 	public void deleteAllRoles() {

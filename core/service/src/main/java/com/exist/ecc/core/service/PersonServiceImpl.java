@@ -10,38 +10,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PersonServiceImpl implements PersonService {
 	private PersonDao personDao;
-	private MapperUtil mapperUtil;
+	private DtoMapper dtoMapper;
 
 	public void setPersonDao(PersonDao personDao) {
 		this.personDao = personDao;
 	}
 
-	public void setMapperUtil(MapperUtil mapperUtil) {
-		this.mapperUtil = mapperUtil;
+	public void setdtoMapper(DtoMapper dtoMapper) {
+		this.dtoMapper = dtoMapper;
 	}
 
 	public Integer addPerson(PersonDto personDto) {
-		Person personToBeAdded = mapperUtil.mapToPerson(personDto);
+		Person personToBeAdded = dtoMapper.mapToPerson(personDto);
 		return personDao.addPerson(personToBeAdded);
 	}
 
 	public PersonDto getPerson(int id) {
 		Person person = personDao.getPerson(id);
-		return mapperUtil.mapToPersonDto(person);
+		return dtoMapper.mapToPersonDto(person);
 	}
 
 	public List<PersonDto> getAllPerson(String orderBy) {
 		List<Person> persons = personDao.getAllPerson(orderBy);
-		return mapperUtil.mapToPersonDtoList(persons);
+		return dtoMapper.mapToPersonDtoList(persons);
 	}
 
 	public List<PersonDto> getPersonsByLastName(String lastName, String orderBy, String orderType) {
 		List<Person> persons = personDao.getPersonsByLastName(lastName, orderBy, orderType);
-		return mapperUtil.mapToPersonDtoList(persons);
+		return dtoMapper.mapToPersonDtoList(persons);
 	}
 
 	public void updatePerson(PersonDto personDto) {
-		Person personToBeUpdated = mapperUtil.mapToPerson(personDto);
+		Person personToBeUpdated = dtoMapper.mapToPerson(personDto);
 		personDao.updatePerson(personToBeUpdated);
 	}
 

@@ -8,40 +8,40 @@ import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
 	private RoleDao roleDao;
-	private MapperUtil mapperUtil;
+	private DtoMapper dtoMapper;
 
 	public void setRoleDao(RoleDao roleDao) {
 		this.roleDao = roleDao;
 	}
 
-	public void setMapperUtil(MapperUtil mapperUtil) {
-		this.mapperUtil = mapperUtil;
+	public void setdtoMapper(DtoMapper dtoMapper) {
+		this.dtoMapper = dtoMapper;
 	}
 
 	public Integer addRole(RoleDto roleDto) throws Exception {
 		if ( roleAlreadyExists(roleDto) ) {
 			throw new Exception();
 		} else {
-			Role roleToBeAdded = mapperUtil.mapToRole(roleDto);
+			Role roleToBeAdded = dtoMapper.mapToRole(roleDto);
 			return roleDao.addRole(roleToBeAdded);
 		}
 	}
 
 	public RoleDto getRole(int id) {
 		Role role = roleDao.getRole(id);
-		return mapperUtil.mapToRoleDto(role);
+		return dtoMapper.mapToRoleDto(role);
 	}
 
 	public List<RoleDto> getAllRoles() {
 		List<Role> roles = roleDao.getAllRoles();
-		return mapperUtil.mapToRoleDtoList(roles);
+		return dtoMapper.mapToRoleDtoList(roles);
 	}
 
 	public void updateRole(RoleDto role) throws Exception {
 		if ( roleAlreadyExists(role) ) {
 			throw new Exception(); // create RoleAlreadyExistsException
 		} else {
-			Role roleToBeUpdated = mapperUtil.mapToRole(role);
+			Role roleToBeUpdated = dtoMapper.mapToRole(role);
 			roleDao.updateRole(roleToBeUpdated);
 		}
 	}

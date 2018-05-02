@@ -1,0 +1,10 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id = "hibernateUtil" class = "com.exist.ecc.core.dao.HibernateUtil"/>
+	<bean id = "personDao" class = "com.exist.ecc.core.dao.PersonDaoImpl" autowire = "byName"/>
+	<bean id = "roleDao" class = "com.exist.ecc.core.dao.RoleDaoImpl" autowire = "byName"/>
+
+</beans>

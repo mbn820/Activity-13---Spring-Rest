@@ -9,7 +9,7 @@ import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
 import java.util.List;
 
-public class MapperUtil {
+public class DtoMapperImpl implements DtoMapper {
 	private static MapperFactory mapperFactory;
 
 	private static void buildMapperFactory() {

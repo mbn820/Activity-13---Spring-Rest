@@ -42,4 +42,15 @@
               <artifactId>commons-lang3</artifactId>
           </dependency>
       </dependencies>
+
+      <build>
+          <resources>
+              <resource>
+                  <directory>src/main/resources</directory>
+                  <includes>
+                      <include>dao-beans.xml</include>
+                  </includes>
+              </resource>
+          </resources>
+      </build>
 </project>

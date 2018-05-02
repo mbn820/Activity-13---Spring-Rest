@@ -3,19 +3,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id = "mapperUtil" class = "com.exist.ecc.core.service.MapperUtil"></bean>
-	<bean id = "personDao" class = "com.exist.ecc.core.dao.PersonDaoImpl"></bean>
-	<bean id = "roleDao" class = "com.exist.ecc.core.dao.RoleDaoImpl"></bean>
-	<bean id = "dummyPersonDao" class = "com.exist.ecc.core.dao.DummyPersonDaoImpl"></bean>
+	<bean id = "dtoMapper" class = "com.exist.ecc.core.service.DtoMapperImpl"/>
+	<bean id = "personService" class = "com.exist.ecc.core.service.PersonServiceImpl" autowire = "byName"/>
+	<bean id = "roleService" class = "com.exist.ecc.core.service.RoleServiceImpl" autowire = "byName"/>
 
-	<bean id = "personService" class = "com.exist.ecc.core.service.PersonServiceImpl">
-		<property name = "mapperUtil" ref = "mapperUtil"/>
-		<property name = "personDao" ref = "personDao"/>
-	</bean>
-
-	<bean id = "roleService" class = "com.exist.ecc.core.service.RoleServiceImpl">
-		<property name = "mapperUtil" ref = "mapperUtil"/>
-		<property name = "roleDao" ref = "roleDao"/>
-	</bean>
+	<import resource = "classpath:dao-beans.xml"/>
 
 </beans>

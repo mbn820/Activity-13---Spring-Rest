@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ManageRolesServlet extends HttpServlet {
-	private ApplicationContext context = new ClassPathXmlApplicationContext( new String[] {"service-beans.xml", "servlet.xml"} );
+	private ApplicationContext context = new ClassPathXmlApplicationContext( new String[] {"service-beans.xml", "servlet.xml", "dao-beans.xml"} );
 	private RoleService roleService = (RoleService) context.getBean("roleService");
 
 	public void setRoleService(RoleService roleService) {
