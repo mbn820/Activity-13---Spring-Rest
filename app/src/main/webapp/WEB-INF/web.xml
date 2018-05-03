@@ -4,85 +4,16 @@
 
 <web-app>
     <servlet>
-        <servlet-name>ManagePersons</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.ManagePersonsServlet</servlet-class>
+        <servlet-name>Dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-context.xml</param-value>
+		</init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ManagePersons</servlet-name>
-        <url-pattern>/ManagePersons</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddPerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.AddPersonServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddPerson</servlet-name>
-        <url-pattern>/AddPerson</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DeletePerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.DeletePersonServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeletePerson</servlet-name>
-        <url-pattern>/DeletePerson</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UpdatePerson</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.UpdatePersonServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdatePerson</servlet-name>
-        <url-pattern>/UpdatePerson</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>FullPersonDetails</servlet-name>
-        <servlet-class>com.exist.ecc.app.personservlets.FullPersonDetailsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FullPersonDetails</servlet-name>
-        <url-pattern>/FullPersonDetails</url-pattern>
-    </servlet-mapping>
-
-    <!-- ROLE -->
-
-    <servlet>
-        <servlet-name>ManageRoles</servlet-name>
-        <servlet-class>com.exist.ecc.app.roleservlets.ManageRolesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ManageRoles</servlet-name>
-        <url-pattern>/ManageRoles</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddRoles</servlet-name>
-        <servlet-class>com.exist.ecc.app.roleservlets.AddRolesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddRoles</servlet-name>
-        <url-pattern>/AddRoles</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DeleteRoles</servlet-name>
-        <servlet-class>com.exist.ecc.app.roleservlets.DeleteRolesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteRoles</servlet-name>
-        <url-pattern>/DeleteRoles</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UpdateRoles</servlet-name>
-        <servlet-class>com.exist.ecc.app.roleservlets.UpdateRolesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdateRoles</servlet-name>
-        <url-pattern>/UpdateRoles</url-pattern>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

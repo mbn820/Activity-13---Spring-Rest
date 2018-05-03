@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean name = "/sample" class="com.exist.ecc.app.SampleController"/>
+	<bean name = "/managePersons" class="com.exist.ecc.app.PersonController" autowire = "byName"/>
+	<bean name = "/manageRoles" class="com.exist.ecc.app.ManageRolesController" autowire = "byName"/>
+	<bean name = "/deleteRole" class="com.exist.ecc.app.DeleteRoleController" autowire = "byName"/>
+	<bean name = "/addRole" class="com.exist.ecc.app.AddRoleController" autowire = "byName"/>
+
+    <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name = "prefix">
+            <value>WEB-INF/views/</value>
+        </property>
+        <property name = "suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+	<import resource = "classpath:service-beans.xml"/>
+
+</beans>
