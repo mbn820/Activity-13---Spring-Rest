@@ -3,11 +3,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean name = "/sample" class="com.exist.ecc.app.SampleController"/>
-	<bean name = "/managePersons" class="com.exist.ecc.app.PersonController" autowire = "byName"/>
-	<bean name = "/manageRoles" class="com.exist.ecc.app.ManageRolesController" autowire = "byName"/>
-	<bean name = "/deleteRole" class="com.exist.ecc.app.DeleteRoleController" autowire = "byName"/>
-	<bean name = "/addRole" class="com.exist.ecc.app.AddRoleController" autowire = "byName"/>
+	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.ManagePersonsController" autowire = "byName"/>
+	<bean name = "/addPerson.htm" class = "com.exist.ecc.app.AddPersonController" autowire = "byName"/>
+	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.ManageRolesController" autowire = "byName"/>
+	<bean name = "/deleteRole.htm" class = "com.exist.ecc.app.DeleteRoleController" autowire = "byName"/>
+	<bean name = "/addRole.htm" class = "com.exist.ecc.app.AddRoleController" autowire = "byName"/>
+
+	<bean name = "/springFormTest.htm" class="com.exist.ecc.app.SpringFormTestController"/>
 
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name = "prefix">

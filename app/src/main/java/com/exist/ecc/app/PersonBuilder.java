@@ -5,6 +5,8 @@ import com.exist.ecc.core.model.dto.*;
 import com.exist.ecc.core.service.*;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.sql.Date;
 
@@ -59,7 +61,7 @@ public class PersonBuilder {
 		return gwa;
 	}
 
-	public Set<ContactDto> processContactsInput() throws Exception {
+	public List<ContactDto> processContactsInput() throws Exception {
 		String phonePattern = "\\d{10,11}";
 		String landlinePattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
 		String emailPattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
@@ -77,7 +79,7 @@ public class PersonBuilder {
 		ContactDto landline = new ContactDto("landline", contactLandline);
 		ContactDto email = new ContactDto("email", contactEmail);
 
-		return new HashSet<ContactDto>( Arrays.asList(phone, landline, email) );
+		return new ArrayList<ContactDto>( Arrays.asList(phone, landline, email) );
 	}
 
 	public Set<RoleDto> processRolesInput() {
@@ -101,7 +103,7 @@ public class PersonBuilder {
 			Date dateHired = processDateHiredInput();
 			boolean currentlyEmployed = processCurrentlyEmployedInput();
 			double gwa = processGwaInput();
-			Set<ContactDto> contacts = processContactsInput();
+			List<ContactDto> contacts = processContactsInput();
 			Set<RoleDto> roles = processRolesInput();
 			person = new PersonDto(name, address, birthDate, dateHired,
 								   currentlyEmployed, gwa, roles, contacts);

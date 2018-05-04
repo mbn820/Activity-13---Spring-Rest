@@ -13,7 +13,9 @@ public class AddRoleController extends SimpleFormController {
 
 	public AddRoleController() {
 		setCommandClass(RoleDto.class);
-		setCommandName("roleSamp");
+		setCommandName("role");
+		setFormView("manageRoles");
+		setSuccessView("manageRoles");
 	}
 
 	public void setRoleService(RoleService roleService) {
@@ -23,13 +25,16 @@ public class AddRoleController extends SimpleFormController {
 	@Override
 	protected ModelAndView onSubmit(Object command) throws Exception {
 		RoleDto roleToBeAdded = (RoleDto) command;
+		String addRoleErrorMessage = "Role Already Exists!";
+
+		ModelAndView result = new ModelAndView( getSuccessView() );
 
 		try {
 			roleService.addRole(roleToBeAdded);
 		} catch( Exception e ) {
-
+			result.addObject("addRoleErrorMessage", addRoleErrorMessage);
 		}
 
-		return new ModelAndView("redirect:/manageRoles", "roleSamp", roleToBeAdded);
+		return result;
 	}
 }

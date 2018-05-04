@@ -26,7 +26,7 @@
         <h3>Manage Persons</h3>
         <hr/>
 
-        <form action = "ManagePersons" method = "GET">
+        <form action = "/managePersons" method = "GET">
             <div>
                 <input type = "text" name = "lastNameFilter" placeholder = "Filter by last name" value = "${param.lastNameFilter}"/>
                 <input type = "submit" value = "FILTER">

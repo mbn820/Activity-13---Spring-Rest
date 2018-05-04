@@ -67,6 +67,6 @@ public class RoleDto {
 	}
 
 	public String toString() {
-		return roleName;
+		return "Role: " + roleName;
 	}
 }

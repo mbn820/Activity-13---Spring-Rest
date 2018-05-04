@@ -32,16 +32,6 @@ public class PersonDaoImpl implements PersonDao {
 		);
 	}
 
-	public List<Person> getPersonsByLastName(String lastName) {
-		return (List<Person>) hibernateUtil.transact(session ->
-			session.createCriteria(Person.class)
-			       .add( Restrictions.ilike("name.lastName", lastName + "%") )
-				   .addOrder( Order.asc("name.lastName") )
-				   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-				   .list()
-	    );
-	}
-
 	public List<Person> getPersonsByLastName(String lastName, String orderBy, String orderType) {
 		Criterion filterByLastName = Restrictions.ilike("name.lastName", lastName + "%");
 		Order order = ( orderType.equals("desc") ) ? Order.desc(orderBy) : Order.asc(orderBy);

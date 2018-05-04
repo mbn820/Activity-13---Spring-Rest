@@ -1,10 +1,9 @@
 package com.exist.ecc.core.service;
 
+import java.util.List;
 import com.exist.ecc.core.dao.RoleDao;
-import com.exist.ecc.core.dao.RoleDaoImpl;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
-import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
 	private RoleDao roleDao;

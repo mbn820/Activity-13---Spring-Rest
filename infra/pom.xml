@@ -12,12 +12,19 @@
 
     <name>infra</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <resources>
             <resource>
                 <directory>persistence/</directory>
                 <includes>
-                    <include>hibernate.cfg.xml</include>
+                    <include>hibernate.xml</include>
                     <include>ehcache.xml</include>
                 </includes>
             </resource>

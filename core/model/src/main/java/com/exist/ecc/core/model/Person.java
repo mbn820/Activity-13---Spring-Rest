@@ -1,6 +1,7 @@
 package com.exist.ecc.core.model;
 
 import java.util.Set;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Date;
 import javax.persistence.*;
@@ -41,11 +42,11 @@ public class Person {
 
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn (name = "person_id")
-    private Set<Contact> contacts;
+    private List<Contact> contacts;
 
     public Person() {}
     public Person(Name name, Address address, Date birthDate, Date dateHired,
-                  boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
+                  boolean currentlyEmployed, double gwa, Set<Role> roles, List<Contact> contacts) {
 
         this.name = name;
         this.address = address;
@@ -90,7 +91,7 @@ public class Person {
         return roles;
     }
 
-    public Set<Contact> getContacts() {
+    public List<Contact> getContacts() {
         return contacts;
     }
 
@@ -127,7 +128,7 @@ public class Person {
         this.roles = roles;
     }
 
-    public void setContacts(Set<Contact> contacts) {
+    public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
 

@@ -49,7 +49,7 @@
 		<h3>Manage Roles</h3>
 		<hr/>
 
-		<form:form method = "POST" commandName = "roleSamp">
+		<form:form method = "POST" commandName = "role" action = "addRole">
 			<form:input path = "roleName"/>
 			<input type = "submit" value = "Add"/>
 			<c:out value = "${param.addRoleErrorMessage}"/>
@@ -67,10 +67,10 @@
 					<td>${role.id}</td>
 					<td>${role.roleName}</td>
 					<td>${role.persons}</td>
-					<td>
+					<td align = "center">
 						<a href = "google.com">Update</a>
 					</td>
-					<td>
+					<td align = "center">
 						<a href = "/deleteRole?roleId=${role.id}">Delete</a>
 					</td>
 				</tr>

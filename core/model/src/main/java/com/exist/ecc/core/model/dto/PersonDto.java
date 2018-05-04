@@ -13,11 +13,11 @@ public class PersonDto {
     private boolean currentlyEmployed;
     private double gwa;
     private Set<RoleDto> roles;
-    private Set<ContactDto> contacts;
+    private List<ContactDto> contacts;
 
     public PersonDto() {}
     public PersonDto(NameDto name, AddressDto address, Date birthDate, Date dateHired,
-                     boolean currentlyEmployed, double gwa, Set<RoleDto> roles, Set<ContactDto> contacts) {
+                     boolean currentlyEmployed, double gwa, Set<RoleDto> roles, List<ContactDto> contacts) {
 
         this.name = name;
         this.address = address;
@@ -62,7 +62,7 @@ public class PersonDto {
         return roles;
     }
 
-    public Set<ContactDto> getContacts() {
+    public List<ContactDto> getContacts() {
         return contacts;
     }
 
@@ -99,7 +99,7 @@ public class PersonDto {
         this.roles = roles;
     }
 
-    public void setContacts(Set<ContactDto> contacts) {
+    public void setContacts(List<ContactDto> contacts) {
         this.contacts = contacts;
     }
 

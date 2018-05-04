@@ -1,7 +1,7 @@
 package com.exist.ecc.core.service;
 
-import com.exist.ecc.core.model.dto.RoleDto;
 import java.util.List;
+import com.exist.ecc.core.model.dto.RoleDto;
 
 public interface RoleService {
 	public Integer addRole(RoleDto roleDto) throws Exception;

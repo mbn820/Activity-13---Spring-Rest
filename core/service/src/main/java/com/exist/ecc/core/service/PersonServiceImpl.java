@@ -1,12 +1,9 @@
 package com.exist.ecc.core.service;
 
+import java.util.List;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.dao.PersonDao;
-import com.exist.ecc.core.dao.PersonDaoImpl;
-import java.util.List;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PersonServiceImpl implements PersonService {
 	private PersonDao personDao;
@@ -16,7 +13,7 @@ public class PersonServiceImpl implements PersonService {
 		this.personDao = personDao;
 	}
 
-	public void setdtoMapper(DtoMapper dtoMapper) {
+	public void setDtoMapper(DtoMapper dtoMapper) {
 		this.dtoMapper = dtoMapper;
 	}
 

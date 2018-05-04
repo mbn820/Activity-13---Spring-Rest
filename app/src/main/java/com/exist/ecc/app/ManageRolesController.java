@@ -20,6 +20,7 @@ public class ManageRolesController extends AbstractController {
 		List<RoleDto> existingRoles = roleService.getAllRoles();
 
 		ModelAndView model = new ModelAndView("ManageRoles");
+		model.addObject( "role", new RoleDto() );
 		model.addObject("existingRoles", existingRoles);
 
 		return model;
