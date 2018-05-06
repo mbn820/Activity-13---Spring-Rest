@@ -28,4 +28,7 @@
 		</property>
 	</bean>
 
+	<!-- <bean id = "transactionManager" class = "org.springframework.orm.hibernate3.HibernateTransactionManager"
+          p:sessionFactory-ref = "sessionFactory" /> -->
+
 </beans>

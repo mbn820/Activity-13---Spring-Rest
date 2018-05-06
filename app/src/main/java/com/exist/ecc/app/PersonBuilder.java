@@ -82,8 +82,8 @@ public class PersonBuilder {
 		return new ArrayList<ContactDto>( Arrays.asList(phone, landline, email) );
 	}
 
-	public Set<RoleDto> processRolesInput() {
-		Set<RoleDto> roles = new HashSet<RoleDto>();
+	public List<RoleDto> processRolesInput() {
+		List<RoleDto> roles = new ArrayList<RoleDto>();
 		String[] roleIds = request.getParameterValues("roles");
 		if ( roleIds != null ) {
 			for(String roleId : roleIds) {
@@ -104,7 +104,7 @@ public class PersonBuilder {
 			boolean currentlyEmployed = processCurrentlyEmployedInput();
 			double gwa = processGwaInput();
 			List<ContactDto> contacts = processContactsInput();
-			Set<RoleDto> roles = processRolesInput();
+			List<RoleDto> roles = processRolesInput();
 			person = new PersonDto(name, address, birthDate, dateHired,
 								   currentlyEmployed, gwa, roles, contacts);
 			// roles.forEach( role -> person.addRole(role) );

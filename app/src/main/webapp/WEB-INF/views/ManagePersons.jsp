@@ -8,7 +8,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
+                $("#test").hide();
+
                 $("[name = delete-button]").click(function() {
+                    $("#test").show();
                     var idNum = $(this).attr("id");
                     var decision = confirm("Are you sure?");
                     if (decision) {
@@ -26,7 +29,7 @@
         <h3>Manage Persons</h3>
         <hr/>
 
-        <form action = "/managePersons" method = "GET">
+        <form action = "/managePersons.htm" method = "GET">
             <div>
                 <input type = "text" name = "lastNameFilter" placeholder = "Filter by last name" value = "${param.lastNameFilter}"/>
                 <input type = "submit" value = "FILTER">
@@ -83,6 +86,10 @@
                     </tr>
                 </c:forEach>
             </table>
+        </div>
+
+        <div id = "test">
+            TESTTESTTEST
         </div>
 
 

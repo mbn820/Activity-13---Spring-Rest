@@ -13,7 +13,7 @@ public class RoleServiceImpl implements RoleService {
 		this.roleDao = roleDao;
 	}
 
-	public void setdtoMapper(DtoMapper dtoMapper) {
+	public void setDtoMapper(DtoMapper dtoMapper) {
 		this.dtoMapper = dtoMapper;
 	}
 

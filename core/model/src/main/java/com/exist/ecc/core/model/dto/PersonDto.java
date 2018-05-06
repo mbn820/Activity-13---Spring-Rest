@@ -12,12 +12,12 @@ public class PersonDto {
     private Date dateHired;
     private boolean currentlyEmployed;
     private double gwa;
-    private Set<RoleDto> roles;
+    private List<RoleDto> roles;
     private List<ContactDto> contacts;
 
     public PersonDto() {}
     public PersonDto(NameDto name, AddressDto address, Date birthDate, Date dateHired,
-                     boolean currentlyEmployed, double gwa, Set<RoleDto> roles, List<ContactDto> contacts) {
+                     boolean currentlyEmployed, double gwa, List<RoleDto> roles, List<ContactDto> contacts) {
 
         this.name = name;
         this.address = address;
@@ -58,7 +58,7 @@ public class PersonDto {
         return gwa;
     }
 
-    public Set<RoleDto> getRoles() {
+    public List<RoleDto> getRoles() {
         return roles;
     }
 
@@ -95,7 +95,7 @@ public class PersonDto {
         this.gwa = gwa;
     }
 
-    public void setRoles(Set<RoleDto> roles) {
+    public void setRoles(List<RoleDto> roles) {
         this.roles = roles;
     }
 
@@ -105,7 +105,7 @@ public class PersonDto {
 
 	public void addRole(RoleDto role) {
         if(roles == null) {
-            roles = new HashSet<RoleDto>();
+            roles = new ArrayList<RoleDto>();
         }
         roles.add(role);
         role.addPerson( this );

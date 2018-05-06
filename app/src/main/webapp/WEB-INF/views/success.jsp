@@ -12,5 +12,9 @@
 		${createdPerson.roles} <br/>
 		${createdPerson.contacts} <br/>
 
+		<c:forEach items = "${createdPerson.roles}" var = "role">
+			${role.id}
+		</c:forEach>
+
 	</body>
 </html>

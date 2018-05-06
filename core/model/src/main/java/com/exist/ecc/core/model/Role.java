@@ -81,6 +81,6 @@ public class Role {
 	}
 
 	public String toString() {
-		return roleName;
+		return "Role: " + roleName;
 	}
 }
