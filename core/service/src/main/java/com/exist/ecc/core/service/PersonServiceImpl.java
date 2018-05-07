@@ -22,6 +22,11 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.addPerson(personToBeAdded);
 	}
 
+	public void addOrUpdatePerson(PersonDto personDto) {
+		Person personToBeAddedOrUpdated = dtoMapper.mapToPerson(personDto);
+		personDao.addPerson(personToBeAddedOrUpdated);
+	}
+
 	public PersonDto getPerson(int id) {
 		Person person = personDao.getPerson(id);
 		return dtoMapper.mapToPersonDto(person);

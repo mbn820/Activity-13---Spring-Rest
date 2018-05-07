@@ -1,4 +1,4 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.controller.role;
 
 import java.util.List;
 import com.exist.ecc.core.service.RoleService;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-public class DeleteRoleController extends AbstractController {
+public class UpdateRoleController extends AbstractController {
 	private RoleService roleService;
 
 	public void setRoleService(RoleService roleService) {
@@ -17,17 +17,18 @@ public class DeleteRoleController extends AbstractController {
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int idOfRoleToBeDeleted = Integer.parseInt( request.getParameter("roleId") );
-		String errorMessage = "Cannot delete Role!";
+		int idToBeUpdated = Integer.parseInt( request.getParameter("idToBeUpdated") );
+		String newRoleName = request.getParameter( "newRoleName" );
 
-		ModelAndView result = new ModelAndView("redirect:/manageRoles");
+		RoleDto updatedRole = roleService.getRole( idToBeUpdated );
+		updatedRole.setId(idToBeUpdated);
+		updatedRole.setRoleName(newRoleName);
 
 		try {
-			roleService.deleteRole( idOfRoleToBeDeleted );
+			roleService.updateRole(updatedRole);
 		} catch( Exception e ) {
-			result.addObject("deleteRoleErrorMessage", errorMessage);
-		}
 
-		return result;
+		}
+		return null;
 	}
 }

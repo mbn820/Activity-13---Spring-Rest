@@ -19,6 +19,13 @@ public class PersonDaoImpl implements PersonDao {
 		return (Integer) hibernateUtil.transact(session -> session.save(person));
 	}
 
+	public void addOrUpdatePerson(Person person) {
+		hibernateUtil.transact(session -> {
+			session.saveOrUpdate("Person", person);
+			return null;
+		});
+	}
+
 	public Person getPerson(int id) {
 		return (Person) hibernateUtil.transact(session -> session.get(Person.class, id));
 	}
@@ -46,11 +53,17 @@ public class PersonDaoImpl implements PersonDao {
 	}
 
 	public void updatePerson(Person person) {
-		hibernateUtil.transact(session -> { session.update(person); return null; });
+		hibernateUtil.transact(session -> {
+			session.update(person);
+			return null;
+		});
 	}
 
 	public void deletePerson(int id) {
-		hibernateUtil.transact( session -> { session.delete(getPerson(id)); return null; } );
+		hibernateUtil.transact( session -> {
+			session.delete(getPerson(id));
+			return null;
+		});
 	}
 
 	public void deleteAllRecords() {

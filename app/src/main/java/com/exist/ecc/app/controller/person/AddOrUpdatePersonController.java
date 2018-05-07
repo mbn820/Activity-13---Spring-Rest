@@ -1,28 +1,32 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.controller.person;
 
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import com.exist.ecc.core.model.dto.*;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 
-public class AddPersonController extends SimpleFormController {
+public class AddOrUpdatePersonController extends SimpleFormController {
 	private PersonService personService;
 	private RoleService roleService;
 
-	public AddPersonController() {
+	public AddOrUpdatePersonController() {
 		setCommandClass(PersonDto.class);
 		setCommandName("person");
-		setFormView("AddPerson");
+		setFormView("AddOrUpdatePerson");
 		setSuccessView("redirect:/managePersons.htm");
 	}
 
@@ -35,14 +39,37 @@ public class AddPersonController extends SimpleFormController {
 	}
 
 	@Override
+	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+	@Override
 	protected Map referenceData(HttpServletRequest request) {
 		Map referenceData = new HashMap();
 		referenceData.put( "existingRoles", roleService.getAllRoles() );
+
+		if ( request.getParameter("personId") == null ) {
+			referenceData.put("requestType", "ADD PERSON");
+			referenceData.put("submitLabel", "ADD");
+		} else {
+			referenceData.put("requestType", "UPDATE PERSON");
+			referenceData.put("submitLabel", "SAVE CHANGES");
+		}
+
 		return referenceData;
 	}
 
 	@Override
 	protected Object formBackingObject(HttpServletRequest request) throws Exception {
+		String idOfPersonToBeUpdated = request.getParameter("personId");
+
+		if (idOfPersonToBeUpdated != null) {
+			PersonDto personToBeUpdated = personService.getPerson( Integer.parseInt(idOfPersonToBeUpdated) );
+			return personToBeUpdated;
+		}
+
 		PersonDto person = new PersonDto();
 		person.setName( new NameDto() );
 		person.setAddress( new AddressDto() );
@@ -54,16 +81,14 @@ public class AddPersonController extends SimpleFormController {
 
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
-		if ( errors.hasErrors() ) {
-			ModelAndView result = new ModelAndView( "redirect:/addPerson.htm" );
-			return result;
-		}
+		// if ( errors.hasErrors() ) {
+		// 	ModelAndView result = new ModelAndView( "redirect:/addPerson.htm" );
+		// 	return result;
+		// }
 
 		PersonDto createdPerson = (PersonDto) command;
 
 		// get unbinded fields using getParameter
-		String birthDateParam = request.getParameter("birthDateParam");
-		String dateHiredParam = request.getParameter("dateHiredParam");
 		String[] roleIds = request.getParameterValues("rolesParam");
 		String[] cellphones = request.getParameterValues("Cellphone");
 		String[] landlines = request.getParameterValues("Landline");
@@ -97,12 +122,16 @@ public class AddPersonController extends SimpleFormController {
 		}
 
 		// set remaining fields
-		createdPerson.setBirthDate( Date.valueOf(birthDateParam) );
-		createdPerson.setDateHired( Date.valueOf(dateHiredParam) );
 		createdPerson.setRoles(chosenRoles);
 		createdPerson.setContacts(contacts);
 
-		personService.addPerson(createdPerson);
+		// super.getValidator().validate(createdPerson, errors);
+
+		if ( createdPerson.getId() == 0 ) {
+			personService.addPerson(createdPerson);
+		} else {
+			personService.updatePerson(createdPerson);
+		}
 
 		// redirect to managePersons dashboard
 		ModelAndView result = new ModelAndView( getSuccessView() );

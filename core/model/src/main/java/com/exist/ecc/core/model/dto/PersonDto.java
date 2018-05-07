@@ -6,13 +6,21 @@ import com.exist.ecc.core.model.*;
 public class PersonDto {
 
     private int id;
+
     private NameDto name;
+
     private AddressDto address;
+
     private Date birthDate;
+
     private Date dateHired;
+
     private boolean currentlyEmployed;
+
     private double gwa;
+
     private List<RoleDto> roles;
+
     private List<ContactDto> contacts;
 
     public PersonDto() {}

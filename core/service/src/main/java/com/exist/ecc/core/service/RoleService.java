@@ -9,4 +9,5 @@ public interface RoleService {
 	public List<RoleDto> getAllRoles();
 	public void updateRole(RoleDto role) throws Exception;
 	public void deleteRole(int id) throws Exception;
+	public boolean roleAlreadyExists(RoleDto roleDto);
 }

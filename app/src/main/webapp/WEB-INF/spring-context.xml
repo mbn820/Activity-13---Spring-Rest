@@ -3,13 +3,29 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.ManagePersonsController" autowire = "byName"/>
-	<bean name = "/addPerson.htm" class = "com.exist.ecc.app.AddPersonController" autowire = "byName"/>
-	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.ManageRolesController" autowire = "byName"/>
-	<bean name = "/deleteRole.htm" class = "com.exist.ecc.app.DeleteRoleController" autowire = "byName"/>
-	<bean name = "/addRole.htm" class = "com.exist.ecc.app.AddRoleController" autowire = "byName"/>
+	<!-- PERSON COTROLLERS -->
+	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.controller.person.ManagePersonsController" autowire = "byName"/>
+	<bean name = "/addOrUpdatePerson.htm" class = "com.exist.ecc.app.controller.person.AddOrUpdatePersonController" autowire = "byName">
+		<property name = "validator" ref = "personValidator"/>
+	</bean>
+	<bean name = "/deletePerson.htm" class = "com.exist.ecc.app.controller.person.DeletePersonController" autowire = "byName"/>
+	<bean name = "/fullPersonDetails.htm" class = "com.exist.ecc.app.controller.person.FullPersonDetailsController" autowire = "byName"/>
 
-	<bean name = "/springFormTest.htm" class="com.exist.ecc.app.SpringFormTestController"/>
+	<!-- ROLE CONTROLLERS -->
+	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.controller.role.ManageRoleController" autowire = "byName">
+		<property name = "validator" ref = "roleValidator"/>
+	</bean>
+	<bean name = "/deleteRole.htm" class = "com.exist.ecc.app.controller.role.DeleteRoleController" autowire = "byName"/>
+	<bean name = "/addRole.htm" class = "com.exist.ecc.app.controller.role.AddRoleController" autowire = "byName"/>
+	<bean name = "/updateRole.htm" class = "com.exist.ecc.app.controller.role.UpdateRoleController" autowire = "byName"/>
+
+
+	<!-- VALIDATOR -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name = "basename" value = "messages"/>
+	</bean>
+	<bean id = "personValidator" class = "com.exist.ecc.app.controller.person.PersonValidator"/>
+	<bean id = "roleValidator" class = "com.exist.ecc.app.controller.role.RoleValidator" autowire = "byName"/>
 
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name = "prefix">

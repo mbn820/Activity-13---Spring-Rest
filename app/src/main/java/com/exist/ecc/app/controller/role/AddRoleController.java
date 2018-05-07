@@ -1,4 +1,4 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.controller.role;
 
 import java.util.List;
 import com.exist.ecc.core.service.RoleService;

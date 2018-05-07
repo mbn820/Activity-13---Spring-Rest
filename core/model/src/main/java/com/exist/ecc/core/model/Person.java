@@ -42,11 +42,11 @@ public class Person {
 
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn (name = "person_id")
-    private List<Contact> contacts;
+    private Set<Contact> contacts;
 
     public Person() {}
     public Person(Name name, Address address, Date birthDate, Date dateHired,
-                  boolean currentlyEmployed, double gwa, Set<Role> roles, List<Contact> contacts) {
+                  boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
 
         this.name = name;
         this.address = address;
@@ -91,7 +91,7 @@ public class Person {
         return roles;
     }
 
-    public List<Contact> getContacts() {
+    public Set<Contact> getContacts() {
         return contacts;
     }
 
@@ -128,7 +128,7 @@ public class Person {
         this.roles = roles;
     }
 
-    public void setContacts(List<Contact> contacts) {
+    public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
     }
 

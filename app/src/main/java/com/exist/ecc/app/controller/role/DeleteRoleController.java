@@ -1,4 +1,4 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.controller.role;
 
 import java.util.List;
 import com.exist.ecc.core.service.RoleService;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-public class ManageRolesController extends AbstractController {
+public class DeleteRoleController extends AbstractController {
 	private RoleService roleService;
 
 	public void setRoleService(RoleService roleService) {
@@ -17,12 +17,10 @@ public class ManageRolesController extends AbstractController {
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<RoleDto> existingRoles = roleService.getAllRoles();
+		int idOfRoleToBeDeleted = Integer.parseInt( request.getParameter("idToBeDeleted") );
 
-		ModelAndView model = new ModelAndView("ManageRoles");
-		model.addObject( "role", new RoleDto() );
-		model.addObject("existingRoles", existingRoles);
+		roleService.deleteRole( idOfRoleToBeDeleted );
 
-		return model;
+		return null;
 	}
 }
