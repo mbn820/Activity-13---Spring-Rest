@@ -34,7 +34,7 @@ public class Person {
     private boolean currentlyEmployed;
 
     @Column (name = "gwa")
-    private double gwa;
+    private Double gwa;
 
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (name = "PERSON_ROLE", joinColumns = { @JoinColumn (name = "person_id" ) }, inverseJoinColumns = { @JoinColumn (name = "role_id") })
@@ -83,7 +83,7 @@ public class Person {
         return currentlyEmployed;
     }
 
-    public double getGwa() {
+    public Double getGwa() {
         return gwa;
     }
 

@@ -194,7 +194,7 @@
 							<td><form:label path = "currentlyEmployed">Employed?</form:label></td>
 							<td>
 								<form:radiobutton path = "currentlyEmployed" value = "true"/>YES
-								<form:radiobutton path = "currentlyEmployed" value = "true"/>NO
+								<form:radiobutton path = "currentlyEmployed" value = "false"/>NO
 							</td>
 						</tr>
 						<tr>

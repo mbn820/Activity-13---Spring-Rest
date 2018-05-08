@@ -2,7 +2,7 @@ package com.exist.ecc.core.model.dto;
 
 public class AddressDto {
 
-    private int streetNumber;
+    private Integer streetNumber;
     private String barangay;
     private String municipality;
     private String zipcode;
@@ -16,7 +16,7 @@ public class AddressDto {
     }
 
     // getters
-    public int getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
@@ -33,7 +33,7 @@ public class AddressDto {
     }
 
     // setters
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
 

@@ -1,12 +1,34 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<bean id = "dtoMapper" class = "com.exist.ecc.core.service.DtoMapperImpl"/>
 	<bean id = "personService" class = "com.exist.ecc.core.service.PersonServiceImpl" autowire = "byName"/>
 	<bean id = "roleService" class = "com.exist.ecc.core.service.RoleServiceImpl" autowire = "byName"/>
 
-	<import resource = "classpath:dao-beans.xml"/>
+	<!-- TRANSACTION MANAGEMENT -->
+	<bean id = "transactionManager" class = "org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name = "sessionFactory" ref = "sessionFactory"/>
+	</bean>
 
+	<tx:advice id = "txAdvice" transaction-manager = "transactionManager">
+		<tx:attributes>
+			<tx:method name = "*"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id = "personServiceMethods" expression = "execution(* com.exist.ecc.core.service.PersonService.*(..))"/>
+		<aop:advisor advice-ref = "txAdvice" pointcut-ref = "personServiceMethods"/>
+	</aop:config>
+
+	<import resource = "classpath:dao-beans.xml"/>
+	<import resource = "classpath:hibernate.xml"/>
 </beans>

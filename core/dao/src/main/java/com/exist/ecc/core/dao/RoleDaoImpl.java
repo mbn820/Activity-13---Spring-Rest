@@ -33,18 +33,24 @@ public class RoleDaoImpl implements RoleDao {
 		return (List<Role>) hibernateUtil.transact(session ->
 		 	session.createCriteria(Role.class)
 				   .addOrder( Order.asc("id") )
-				   // .setCacheable(true)
+				   .setCacheable(true)
 				   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				   .list()
 		);
 	}
 
 	public void updateRole(Role role) {
-		hibernateUtil.transact( session -> { session.update(role); return null; } );
+		hibernateUtil.transact( session -> {
+			session.update(role);
+			return null;
+		});
 	}
 
 	public void deleteRole(int id) {
-		hibernateUtil.transact( session -> { session.delete(getRole(id)); return null; } );
+		hibernateUtil.transact( session -> {
+			session.delete(getRole(id));
+			return null; 
+		});
 	}
 
 	public void deleteAllRoles() {

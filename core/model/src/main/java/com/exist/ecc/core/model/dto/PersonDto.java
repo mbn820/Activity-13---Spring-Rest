@@ -17,7 +17,7 @@ public class PersonDto {
 
     private boolean currentlyEmployed;
 
-    private double gwa;
+    private Double gwa;
 
     private List<RoleDto> roles;
 
@@ -62,7 +62,7 @@ public class PersonDto {
         return currentlyEmployed;
     }
 
-    public double getGwa() {
+    public Double getGwa() {
         return gwa;
     }
 

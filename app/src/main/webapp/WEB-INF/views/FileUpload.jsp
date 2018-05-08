@@ -33,13 +33,5 @@
 			<input type = "submit" value = "Upload"/>
 			<form:errors path = "multipartFile" cssClass = "error"/>
 		</form:form>
-
-		<c:if test = "${param.fileUploadedSuccessfully}">
-			The file has been uploaded! <br/>
-			You have uploaded the file : ${param.fileName} <br/>
-
-			Result: <br/>
-			${param.person} <br/>
-		</c:if>
 	</body>
 </html>

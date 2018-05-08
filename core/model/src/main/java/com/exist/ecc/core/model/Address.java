@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 public class Address {
 
     @Column (name = "street_number")
-    private int streetNumber;
+    private Integer streetNumber;
 
     @Column (name = "barangay")
     private String barangay;
@@ -29,7 +29,7 @@ public class Address {
     }
 
     // getters
-    public int getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
@@ -46,7 +46,7 @@ public class Address {
     }
 
     // setters
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
 
