@@ -31,5 +31,15 @@
               <groupId>org.springframework</groupId>
               <artifactId>spring</artifactId>
           </dependency>
+
+          <dependency>
+              <groupId>com.fasterxml.jackson.dataformat</groupId>
+              <artifactId>jackson-dataformat-xml</artifactId>
+          </dependency>
+
+          <dependency>
+              <groupId>commons-io</groupId>
+              <artifactId>commons-io</artifactId>
+          </dependency>
       </dependencies>
 </project>

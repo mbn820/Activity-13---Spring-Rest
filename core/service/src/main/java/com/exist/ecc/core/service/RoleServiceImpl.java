@@ -31,6 +31,11 @@ public class RoleServiceImpl implements RoleService {
 		return dtoMapper.mapToRoleDto(role);
 	}
 
+	public RoleDto getRoleByName(String roleName) {
+		Role role = roleDao.getRoleByName(roleName);
+		return dtoMapper.mapToRoleDto(role);
+	}
+
 	public List<RoleDto> getAllRoles() {
 		List<Role> roles = roleDao.getAllRoles();
 		return dtoMapper.mapToRoleDtoList(roles);
@@ -56,4 +61,5 @@ public class RoleServiceImpl implements RoleService {
 	public boolean roleAlreadyExists(RoleDto role) {
 		return getAllRoles().contains(role);
 	}
+
 }

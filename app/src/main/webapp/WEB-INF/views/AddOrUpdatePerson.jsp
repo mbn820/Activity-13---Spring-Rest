@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page isELIgnored="false" %>
 
 <html>
@@ -63,6 +65,15 @@
 				padding: 8px;
 				margin: 16px;
 			}
+
+			th {
+				align-items: center;
+			}
+
+			table, th {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
 		</style>
 	</head>
 
@@ -75,34 +86,34 @@
 				<form:hidden path = "id"/>
 				<table border = "0">
 					<tbody>
-						<th colspan = "2"><h4>NAME</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.name"/></h4></th>
 						<tr>
-							<td>First Name</td>
+							<td><form:label path = "name.firstName">First Name</form:label></td>
 							<td>
 								<form:input path = "name.firstName"/> <br/>
 								<form:errors path = "name.firstName" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Middle Name</td>
+							<td><form:label path = "name.middleName">Middle Name</form:label></td>
 							<td>
 								<form:input path = "name.middleName"/> <br/>
 								<form:errors path = "name.middleName" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Last Name</td>
+							<td><form:label path = "name.lastName">Last Name</form:label></td>
 							<td>
 								<form:input path = "name.lastName"/> <br/>
 								<form:errors path = "name.lastName" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Suffix</td>
+							<td><form:label path = "name.suffix">Suffix</form:label></td>
 							<td><form:input path = "name.suffix"/></td>
 						</tr>
 						<tr>
-							<td>Title</td>
+							<td><form:label path = "name.title">Title</form:label></td>
 							<td><form:input path = "name.title"/></td>
 						</tr>
 						<tr>
@@ -112,30 +123,30 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>ADDRESS</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.address"/></h4></th>
 						<tr>
-							<td>Street Number</td>
+							<td><form:label path = "address.streetNumber">Street Number</form:label></td>
 							<td>
 								<form:input path = "address.streetNumber"/> <br/>
 								<form:errors path = "address.streetNumber" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Barangay</td>
+							<td><form:label path = "address.barangay">Barangay</form:label></td>
 							<td>
 								<form:input path = "address.barangay"/> <br/>
 								<form:errors path = "address.barangay" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Municipality</td>
+							<td><form:label path = "address.municipality">Municipality</form:label></td>
 							<td>
 								<form:input path = "address.municipality"/> <br/>
 								<form:errors path = "address.municipality" cssClass = "error"/>
 							</td>
 						</tr>
 						<tr>
-							<td>Zipcode</td>
+							<td><form:label path = "address.zipcode">Zipcode</form:label></td>
 							<td>
 								<form:input path = "address.zipcode"/> <br/>
 								<form:errors path = "address.zipcode" cssClass = "error"/>
@@ -148,13 +159,9 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>BIRTHDATE</h4></th>
-						<%-- <tr>
-							<td>Birth Date</td>
-							<td><input type = "date" name = "birthDateParam"/></td>
-						</tr> --%>
+						<th colspan = "2"><h4><spring:message code = "header.label.birthDate"/></h4></th>
 						<tr>
-							<td>Birth Date</td>
+							<td><form:label path = "birthDate">Birth Date</form:label></td>
 							<td>
 								<form:input path = "birthDate"/> <br/>
 								<form:errors path = "birthDate" cssClass = "error"/>
@@ -167,9 +174,9 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>DATE HIRED</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.dateHired"/></h4></th>
 						<tr>
-							<td>Date Hired</td>
+							<td><form:label path = "dateHired">Date Hired</form:label></td>
 							<td>
 								<form:input path = "dateHired"/> <br/>
 								<form:errors path = "dateHired" cssClass = "error"/>
@@ -182,9 +189,9 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>EMPLOYMENT</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.employment"/></h4></th>
 						<tr>
-							<td>Employed?</td>
+							<td><form:label path = "currentlyEmployed">Employed?</form:label></td>
 							<td>
 								<form:radiobutton path = "currentlyEmployed" value = "true"/>YES
 								<form:radiobutton path = "currentlyEmployed" value = "true"/>NO
@@ -197,9 +204,9 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>GWA</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.gwa"/></h4></th>
 						<tr>
-							<td>Enter GWA</td>
+							<td><form:label path = "gwa">Enter GWA</form:label></td>
 							<td>
 								<form:input path = "gwa"/>
 							</td>
@@ -211,9 +218,9 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan = "2"><h4>ROLES</h4></th>
+						<th colspan = "2"><h4><spring:message code = "header.label.roles"/></h4></th>
 						<tr>
-							<td>Select Roles:</td>
+							<td><form:label path = "roles">Select Roles:</form:label></td>
 
 							<td>
 								<c:forEach items = "${existingRoles}" var = "role">
@@ -233,7 +240,7 @@
 
 						<tbody id = "contactsSection">
 							<th colspan = "2">
-								<h4>CONTACTS</h4>
+								<h4><spring:message code = "header.label.contacts"/></h4>
 								<input type = "button" value = "Add Cellphone" id = "add-cellphone-button"/>
 								<input type = "button" value = "Add Landline" id = "add-landline-button"/>
 								<input type = "button" value = "Add Email" id = "add-email-button"/>

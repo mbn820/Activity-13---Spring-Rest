@@ -84,6 +84,7 @@
 
 		<hr/>
 		<a href = "/managePersons.htm">Manage Persons</a> <br/>
-		<a href = "/index.jsp">HOME</a>
+		<a href = "/index.jsp">HOME</a> <br/>
+
 	</body>
 </html>

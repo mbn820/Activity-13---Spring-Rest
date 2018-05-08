@@ -10,5 +10,10 @@
 			<h2>Manage Roles</h2> <br/>
 			<a href = "/manageRoles.htm">Manage Roles</a> <br/>
 		</div>
+
+		<div style = "text-align:center">
+			<h2>File Upload</h2> <br/>
+			<a href = "/fileUpload.htm">Upload a File</a> <br/>
+		</div>
 	</body>
 </html>

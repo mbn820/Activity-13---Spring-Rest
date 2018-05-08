@@ -1,39 +1,70 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring.xsd">
 
-	<!-- PERSON COTROLLERS -->
-	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.controller.person.ManagePersonsController" autowire = "byName"/>
+	<!-- PERSON CONTROLLERS -->
 	<bean name = "/addOrUpdatePerson.htm" class = "com.exist.ecc.app.controller.person.AddOrUpdatePersonController" autowire = "byName">
 		<property name = "validator" ref = "personValidator"/>
 	</bean>
+	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.controller.person.ManagePersonsController" autowire = "byName"/>
 	<bean name = "/deletePerson.htm" class = "com.exist.ecc.app.controller.person.DeletePersonController" autowire = "byName"/>
 	<bean name = "/fullPersonDetails.htm" class = "com.exist.ecc.app.controller.person.FullPersonDetailsController" autowire = "byName"/>
+
 
 	<!-- ROLE CONTROLLERS -->
 	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.controller.role.ManageRoleController" autowire = "byName">
 		<property name = "validator" ref = "roleValidator"/>
 	</bean>
 	<bean name = "/deleteRole.htm" class = "com.exist.ecc.app.controller.role.DeleteRoleController" autowire = "byName"/>
-	<bean name = "/addRole.htm" class = "com.exist.ecc.app.controller.role.AddRoleController" autowire = "byName"/>
 	<bean name = "/updateRole.htm" class = "com.exist.ecc.app.controller.role.UpdateRoleController" autowire = "byName"/>
 
 
+	<!-- FILE UPLOAD CONTROLLER -->
+	<bean name = "/fileUpload.htm" class = "com.exist.ecc.app.controller.person.FileUploadController" autowire = "byName">
+		<property name = "validator" ref = "fileUploadValidator"/>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+
 	<!-- VALIDATOR -->
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id = "messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
 		<property name = "basename" value = "messages"/>
 	</bean>
 	<bean id = "personValidator" class = "com.exist.ecc.app.controller.person.PersonValidator"/>
 	<bean id = "roleValidator" class = "com.exist.ecc.app.controller.role.RoleValidator" autowire = "byName"/>
+	<bean id = "fileUploadValidator" class = "com.exist.ecc.app.controller.person.FileUploadValidator"/>
 
+
+	<!-- LOCALIZATION -->
+	<bean id = "localeChangeInterceptor" class = "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name = "paramName" value = "lang"/>
+	</bean>
+
+	<bean id = "localeResolver" class = "org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name = "defaultLocale" value = "en"/>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" >
+        <property name = "interceptors">
+            <list>
+                <ref bean = "localeChangeInterceptor" />
+            </list>
+        </property>
+    </bean>
+
+
+	<!-- VIEW RESOLVER -->
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name = "prefix">
-            <value>WEB-INF/views/</value>
-        </property>
-        <property name = "suffix">
-            <value>.jsp</value>
-        </property>
+        <property name = "prefix" value = "WEB-INF/views/"/>
+        <property name = "suffix" value = ".jsp"/>
     </bean>
 
 	<import resource = "classpath:service-beans.xml"/>

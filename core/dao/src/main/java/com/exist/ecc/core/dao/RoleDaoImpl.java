@@ -21,6 +21,14 @@ public class RoleDaoImpl implements RoleDao {
 		return (Role) hibernateUtil.transact(session -> session.get(Role.class, id));
 	}
 
+	public Role getRoleByName(String roleName) {
+		return (Role) hibernateUtil.transact(session ->
+			session.createCriteria(Role.class)
+				   .add( Restrictions.eq("roleName", roleName) )
+				   .uniqueResult()
+		);
+	}
+
 	public List<Role> getAllRoles() {
 		return (List<Role>) hibernateUtil.transact(session ->
 		 	session.createCriteria(Role.class)

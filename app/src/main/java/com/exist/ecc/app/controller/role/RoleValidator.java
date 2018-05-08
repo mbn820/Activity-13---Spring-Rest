@@ -28,16 +28,6 @@ public class RoleValidator implements Validator {
 			errors.rejectValue("roleName", "roleName.alreadyExist");
 		}
 
-
-		// PersonDto person = (PersonDto) target;
-		// if (person.getDateHired() == null) {
-		// 	errors.rejectValue("dateHired", "dateHired.required");
-		// }
-		//
-		// if ( !person.getAddress().getZipcode().matches("[0-9]{4}") ) {
-		// 	errors.rejectValue("address.zipcode", "address.zipcode.invalidFormat");
-		// }
-
 	}
 
 }
