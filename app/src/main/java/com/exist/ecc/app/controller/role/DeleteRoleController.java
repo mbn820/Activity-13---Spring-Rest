@@ -19,7 +19,11 @@ public class DeleteRoleController extends AbstractController {
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int idOfRoleToBeDeleted = Integer.parseInt( request.getParameter("idToBeDeleted") );
 
-		roleService.deleteRole( idOfRoleToBeDeleted );
+		try {
+			roleService.deleteRole( idOfRoleToBeDeleted );
+		} catch(Exception e) {
+			
+		}
 
 		return null;
 	}

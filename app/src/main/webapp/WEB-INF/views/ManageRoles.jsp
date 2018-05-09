@@ -87,8 +87,8 @@
 		<t4><c:out value="${param.deleteRoleErrorMessage}"/></t4>
 
 		<hr/>
-		<a href="/managePersons.htm">Manage Persons</a> <br/>
-		<a href="/index.jsp">HOME</a> <br/>
+		<a href="/managePersons.htm">Manage Persons</a> <br>
+		<a href="/index.jsp">HOME</a> <br>
 
 	</body>
 </html>

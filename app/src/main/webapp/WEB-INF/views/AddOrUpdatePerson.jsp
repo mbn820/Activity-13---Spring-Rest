@@ -105,17 +105,17 @@
 						<th colspan="2"><h4><spring:message code="header.label.name"/></h4></th>
 						<tr>
 							<td><spring:message code="label.name.firstName"/></td>
-							<td><form:input path="name.firstName"/> <br/>
+							<td><form:input path="name.firstName"/> <br>
 								<form:errors path="name.firstName" cssClass="error"/></td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.name.middleName"/></td>
-							<td><form:input path="name.middleName"/> <br/>
+							<td><form:input path="name.middleName"/> <br>
 								<form:errors path="name.middleName" cssClass="error"/></td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.name.lastName"/></td>
-							<td><form:input path="name.lastName"/> <br/>
+							<td><form:input path="name.lastName"/> <br>
 								<form:errors path="name.lastName" cssClass="error"/></td>
 						</tr>
 						<tr>
@@ -136,22 +136,22 @@
 						<th colspan="2"><h4><spring:message code="header.label.address"/></h4></th>
 						<tr>
 							<td><spring:message code="label.address.streetNumber"/></td>
-							<td><form:input path="address.streetNumber"/> <br/>
+							<td><form:input path="address.streetNumber"/> <br>
 								<form:errors path="address.streetNumber" cssClass="error"/></td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.address.barangay"/></td>
-							<td><form:input path="address.barangay"/> <br/>
+							<td><form:input path="address.barangay"/> <br>
 								<form:errors path="address.barangay" cssClass="error"/></td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.address.municipality"/></td>
-							<td><form:input path="address.municipality"/> <br/>
+							<td><form:input path="address.municipality"/> <br>
 								<form:errors path="address.municipality" cssClass="error"/></td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.address.zipcode"/></td>
-							<td><form:input path="address.zipcode"/> <br/>
+							<td><form:input path="address.zipcode"/> <br>
 								<form:errors path="address.zipcode" cssClass="error"/></td>
 						</tr>
 						<tr>
@@ -164,7 +164,7 @@
 						<th colspan="2"><h4><spring:message code="header.label.birthDate"/></h4></th>
 						<tr>
 							<td><spring:message code="label.birthDate"/></td>
-							<td><form:input path="birthDate"/> <br/>
+							<td><form:input path="birthDate"/> <br>
 								<form:errors path="birthDate" cssClass="error"/></td>
 						</tr>
 						<tr>
@@ -177,7 +177,7 @@
 						<th colspan="2"><h4><spring:message code="header.label.dateHired"/></h4></th>
 						<tr>
 							<td><spring:message code="label.dateHired"/></td>
-							<td><form:input path="dateHired"/> <br/>
+							<td><form:input path="dateHired"/> <br>
 								<form:errors path="dateHired" cssClass="error"/></td>
 						</tr>
 						<tr>
@@ -203,7 +203,7 @@
 						<th colspan="2"><h4><spring:message code="header.label.gwa"/></h4></th>
 						<tr>
 							<td><spring:message code="label.gwa"/></td>
-							<td><form:input path="gwa"/> <br/>
+							<td><form:input path="gwa"/> <br>
 								<form:errors path="gwa" cssClass="error"/></td>
 						</tr>
 						<tr>
@@ -221,7 +221,7 @@
 								<c:forEach items="${existingRoles}" var="role">
 									<c:set var="checked" value="${person.roles.contains(role) ? 'checked' : ''}"/>
 									<input type="checkbox" name="rolesParam" value="${role.id}" ${checked}/>
-									${role.roleName} <br/>
+									${role.roleName} <br>
 								</c:forEach>
 							</td>
 
@@ -238,7 +238,7 @@
 								<h4><spring:message code="header.label.contacts"/></h4>
 								<input type="button" value="Add Cellphone" id="add-cellphone-button"/>
 								<input type="button" value="Add Landline" id="add-landline-button"/>
-								<input type="button" value="Add Email" id="add-email-button"/> <br/>
+								<input type="button" value="Add Email" id="add-email-button"/> <br>
 								<form:errors path="contacts" cssClass="error"/>
 							</th>
 							<c:forEach items="${person.contacts}" var="contact">
@@ -261,8 +261,8 @@
 				</table>
 			</form:form>
 			<hr/>
-			<a href="/addOrUpdatePerson.htm">Add Person</a> <br/>
-            <a href="/manageRoles.htm">Manage Roles</a> <br/>
+			<a href = "/fileUpload.htm">Upload a File</a> <br>
+            <a href="/manageRoles.htm">Manage Roles</a> <br>
             <a href="/index.jsp">HOME</a>
 		</div>
 	</body>
