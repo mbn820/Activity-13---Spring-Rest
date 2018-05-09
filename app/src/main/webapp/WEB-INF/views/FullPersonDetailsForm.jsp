@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
+
 <html>
 	<head>
 		<title>Full Person Details</title>
@@ -10,8 +11,8 @@
 		<hr/>
 
 		<h4>Basic Info</h4>
-		<table border = "1">
-			<tr bgcolor = '#77929b'>
+		<table border="1">
+			<tr bgcolor='#77929b'>
 				<th>ID</th>
 				<th>First Name</th>
 				<th>Middle Name</th>
@@ -36,8 +37,8 @@
 		</table>
 
 		<h4>Address</h4>
-		<table border = "1">
-			<tr bgcolor = '#efd945'>
+		<table border="1">
+			<tr bgcolor='#efd945'>
 				<th>Street Number</th>
 				<th>Barangay</th>
 				<th>Municipality</th>
@@ -52,12 +53,12 @@
 		</table>
 
 		<h4>Roles</h4>
-		<table border = ".5">
-			<tr bgcolor = '#80c471'>
+		<table border=".5">
+			<tr bgcolor='#80c471'>
 				<th>ID</th>
 				<th>Role</th>
 			</tr>
-			<c:forEach items = "${person.roles}" var = "role">
+			<c:forEach items="${person.roles}" var="role">
 				<tr>
 					<td>${role.id}</td>
 					<td>${role.roleName}</td>
@@ -67,13 +68,13 @@
 
 		<h4>Contacts</h4>
 
-		<table border = "1">
-			<tr bgcolor = "#dd8d46">
+		<table border="1">
+			<tr bgcolor="#dd8d46">
 				<th>Type</th>
 				<th>Details</th>
 			</tr>
-			<c:set var = "contacts" value = "${person.contacts}"/>
-			<c:forEach items = "${contacts}" var = "contact">
+			<c:set var="contacts" value="${person.contacts}"/>
+			<c:forEach items="${contacts}" var="contact">
 				<tr>
 					<td>${contact.type}</td>
 					<td>${contact.detail}</td>
@@ -81,8 +82,8 @@
 			</c:forEach>
 		</table>
 		<hr/>
-		<a href = "addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
+		<a href="addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
 
-		<hr/><a href = "/index.jsp">HOME</a>
+		<hr/><a href="/index.jsp">HOME</a>
 	</body>
 </html>

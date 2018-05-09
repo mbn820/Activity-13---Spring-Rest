@@ -40,9 +40,8 @@ public class AddOrUpdatePersonController extends SimpleFormController {
 
 	@Override
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor( Date.class, new CustomDateEditor(dateFormat, true) );
     }
 
 	@Override
@@ -73,19 +72,14 @@ public class AddOrUpdatePersonController extends SimpleFormController {
 		PersonDto person = new PersonDto();
 		person.setName( new NameDto() );
 		person.setAddress( new AddressDto() );
-		person.setContacts( new ArrayList<ContactDto>() );
 		person.setRoles( new ArrayList<RoleDto>() );
+		person.setContacts( new ArrayList<ContactDto>() );
 
 		return person;
 	}
 
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
-		// if ( errors.hasErrors() ) {
-		// 	ModelAndView result = new ModelAndView( "redirect:/addPerson.htm" );
-		// 	return result;
-		// }
-
 		PersonDto createdPerson = (PersonDto) command;
 
 		// get unbinded fields using getParameter
@@ -125,7 +119,12 @@ public class AddOrUpdatePersonController extends SimpleFormController {
 		createdPerson.setRoles(chosenRoles);
 		createdPerson.setContacts(contacts);
 
-		// super.getValidator().validate(createdPerson, errors);
+		if ( contactsHaveErrors(contacts) ) {
+			Map modelMap = new HashMap();
+			modelMap.put("person", createdPerson);
+			errors.rejectValue("contacts", "contacts.invalidFormat");
+			showForm(request, response, errors, modelMap);
+		}
 
 		if ( createdPerson.getId() == 0 ) {
 			personService.addPerson(createdPerson);
@@ -136,5 +135,34 @@ public class AddOrUpdatePersonController extends SimpleFormController {
 		// redirect to managePersons dashboard
 		ModelAndView result = new ModelAndView( getSuccessView() );
 		return result;
+	}
+
+	private boolean contactsHaveErrors(List<ContactDto> contacts) {
+		String cellphonePattern = "\\d{10,11}";
+		String landlinePattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+		String emailPattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+		if ( contacts.size() == 0 ) {
+			return false;
+		}
+
+		for (ContactDto contact : contacts) {
+			switch ( contact.getType() ) {
+				case "Email" :
+					if ( !contact.getDetail().matches(emailPattern) ) {
+						return true;
+					}
+				case "Landline" :
+					if ( !contact.getDetail().matches(landlinePattern) ) {
+						return true;
+					}
+				case "Cellphone" :
+					if ( !contact.getDetail().matches(cellphonePattern) ) {
+						return true;
+					}
+			}
+		}
+
+		return false;
 	}
 }

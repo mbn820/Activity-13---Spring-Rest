@@ -5,7 +5,7 @@
 
 	<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name = "driverClassName" value = "org.postgresql.Driver"/>
-		<property name = "url" value = "jdbc:postgresql://localhost:5432/testpersondatabase"/>
+		<property name = "url" value = "jdbc:postgresql://localhost:5433/testpersondatabase"/>
 		<property name = "username" value = "postgres"/>
 		<property name = "password" value = "ex1stgl0bal"/>
 	</bean>
@@ -20,7 +20,6 @@
 				<prop key = "hibernate.cache.use_second_level_cache">true</prop>
 				<prop key = "hibernate.cache.use_query_cache">true</prop>
 				<prop key = "net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
-				<prop key = "hibernate.current_session_context_class">thread</prop>
 			</props>
 		</property>
 

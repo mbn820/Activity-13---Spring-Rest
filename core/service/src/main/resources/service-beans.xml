@@ -25,8 +25,8 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id = "personServiceMethods" expression = "execution(* com.exist.ecc.core.service.PersonService.*(..))"/>
-		<aop:advisor advice-ref = "txAdvice" pointcut-ref = "personServiceMethods"/>
+		<aop:pointcut id = "serviceMethods" expression = "execution(* com.exist.ecc.core.service.*.*(..))"/>
+		<aop:advisor advice-ref = "txAdvice" pointcut-ref = "serviceMethods"/>
 	</aop:config>
 
 	<import resource = "classpath:dao-beans.xml"/>

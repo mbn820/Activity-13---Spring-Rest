@@ -3,12 +3,13 @@ package com.exist.ecc.app.controller.person;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.service.XmlParser;
 import com.exist.ecc.core.model.FileUpload;
-import com.exist.ecc.core.model.dto.PersonDto;
-import com.exist.ecc.core.model.dto.RoleDto;
+import com.exist.ecc.core.model.dto.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,13 @@ public class FileUploadController extends SimpleFormController {
 
 	public void setRoleService(RoleService roleService) {
 		this.roleService = roleService;
+	}
+
+	@Override
+	protected Map referenceData(HttpServletRequest request) {
+		Map referenceData = new HashMap();
+		referenceData.put( "person", new PersonDto() );
+		return referenceData;
 	}
 
 	@Override

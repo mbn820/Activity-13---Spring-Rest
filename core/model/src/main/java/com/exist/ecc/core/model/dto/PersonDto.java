@@ -99,7 +99,7 @@ public class PersonDto {
         this.currentlyEmployed = currentlyEmployed;
     }
 
-    public void setGwa(double gwa) {
+    public void setGwa(Double gwa) {
         this.gwa = gwa;
     }
 

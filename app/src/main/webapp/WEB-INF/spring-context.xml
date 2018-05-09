@@ -40,7 +40,7 @@
 	</bean>
 	<bean id = "personValidator" class = "com.exist.ecc.app.controller.person.PersonValidator"/>
 	<bean id = "roleValidator" class = "com.exist.ecc.app.controller.role.RoleValidator" autowire = "byName"/>
-	<bean id = "fileUploadValidator" class = "com.exist.ecc.app.controller.person.FileUploadValidator"/>
+	<bean id = "fileUploadValidator" class = "com.exist.ecc.app.controller.person.FileUploadValidator" autowire = "byName"/>
 
 
 	<!-- LOCALIZATION -->

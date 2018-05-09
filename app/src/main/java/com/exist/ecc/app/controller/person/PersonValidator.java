@@ -18,22 +18,23 @@ public class PersonValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name.firstName", "name.firstName.required", "Required Field");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name.middleName", "name.middleName.required", "Required Field");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name.lastName", "name.lastName.required", "Required Field");
-
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.streetNumber", "address.streetNumber.required", "Required Field");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.barangay", "address.barangay.required", "Required Field");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.municipality", "address.municipality.required", "Required Field");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.zipcode", "address.zipcode.required", "Required Field");
-
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthDate", "birthDate.required", "Required Field");
 
-
 		PersonDto person = (PersonDto) target;
-		if (person.getDateHired() == null) {
-			errors.rejectValue("dateHired", "dateHired.required");
-		}
 
 		if ( !person.getAddress().getZipcode().matches("[0-9]{4}") ) {
 			errors.rejectValue("address.zipcode", "address.zipcode.invalidFormat");
+		}
+
+		Double gwa = person.getGwa();
+		if (gwa != null) {
+			if (gwa < 1 || gwa > 5) {
+				errors.rejectValue("gwa", "gwa.invalidValue");
+			}
 		}
 
 	}

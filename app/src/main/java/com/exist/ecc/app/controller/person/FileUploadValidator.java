@@ -10,7 +10,12 @@ import com.exist.ecc.core.model.FileUpload;
 import com.exist.ecc.core.service.XmlParser;
 
 public class FileUploadValidator implements Validator {
+	private PersonValidator personValidator;
 	private static final String destinationDir = "/home/mnunez/Desktop/Uploads/";
+
+	public void setPersonValidator(PersonValidator personValidator) {
+		this.personValidator = personValidator;
+	}
 
 	@Override
 	public boolean supports(Class cl) {
@@ -37,21 +42,22 @@ public class FileUploadValidator implements Validator {
 				return;
 			}
 		} catch(Exception e) {
-			errors.rejectValue("multipartFile", "multipartFile.invalid", "Invalid File, please upload files with .xml extension");
+			errors.rejectValue("multipartFile", "multipartFile.invalid", "Invalid File, please upload files with '.xml' extension");
 			return;
 		}
 
 		// try parsing the xml
+		PersonDto person = null;
 		try {
 			File destination = new File( destinationDir + multipartFile.getOriginalFilename() );
 			multipartFile.transferTo(destination);
-			PersonDto person = new XmlParser().convertToPersonDto(destination);
+			person = new XmlParser().convertToPersonDto(destination);
 		} catch(Exception e) {
 			errors.rejectValue("multipartFile", "multipartFile.xml.parseError", "Something wrong with file, please check contents");
 			return;
 		}
 
-
+		// ValidationUtils.invokeValidator(personValidator, person, errors);
 	}
 
 }
