@@ -8,80 +8,9 @@
 	<head>
 		<title>Add Person</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-			$(document).ready(function() {
-				var incrementor=0;
-
-				function createElement(contactType) {
-					var autoId="link" + incrementor;
-					var elemw =
-					"<tr id=" + autoId + ">" +
-						"<td>" +
-							contactType +
-						"</td>" +
-						"<td>" +
-							"<input type='text' name='" + contactType + "'/>" +
-							"<input type='button' id='remove-button' value='X' name=" + autoId + ">" +
-						"</td>" +
-					"</tr>";
-
-					incrementor++;
-
-					return elemw;
-				}
-
-				$("#add-cellphone-button").click(function() {
-					var type=createElement("Cellphone");
-					$("#contactsSection").append( type );
-				});
-
-				$("#add-landline-button").click(function() {
-					var type=createElement("Landline");
-					$("#contactsSection").append( type );
-				});
-
-				$("#add-email-button").click(function() {
-					var type=createElement("Email");
-					$("#contactsSection").append( type );
-				});
-
-				$(document).on('click', '#remove-button', function() {
-					var elemToBeRemoved=$(this).attr("name");
-					$("#" + elemToBeRemoved).remove();
-				});
-
-				$("#language").change(function () {
-			        var selectedOption=$(this).val();
-			        if (selectedOption != ''){
-			            window.location.replace('?lang=' + selectedOption);
-			        }
-    			});
-
-			});
-		</script>
-		<style>
-			.error {
-				color: #ff0000;
-				font-size: 10px;
-			}
-
-			.errorblock {
-				color: #000;
-				background-color: #ffEEEE;
-				border: 3px solid #ff0000;
-				padding: 8px;
-				margin: 16px;
-			}
-
-			th {
-				align-items: center;
-			}
-
-			table, th {
-				border: 1px solid black;
-				border-collapse: collapse;
-			}
-		</style>
+		<script src="/resources/jqueryscript.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
+		<link rel="stylesheet" type="text/css" href="/resources/addupdateperson.css"/>	
 	</head>
 
 	<body>
@@ -89,11 +18,7 @@
 		<hr/>
 
 		<div class="tableForm" align="center">
-			<spring:message code="label.language"/>
-			<select id="language">
-				<option value="en" ${param.lang == 'en' ? 'selected' : ''}>English</option>
-				<option value="tg" ${param.lang == 'tg' ? 'selected' : ''}>Tagalog</option>
-			</select>
+			<c:import url="LanguageSelect.jsp"/>
 			<form:form method="POST" commandName="person">
 				<form:hidden path="id"/>
 
@@ -102,7 +27,7 @@
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.name"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.name"/></th>
 						<tr>
 							<td><spring:message code="label.name.firstName"/></td>
 							<td><form:input path="name.firstName"/> <br>
@@ -126,14 +51,10 @@
 							<td><spring:message code="label.name.title"/></td>
 							<td><form:input path="name.title"/></td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.address"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.address"/></th>
 						<tr>
 							<td><spring:message code="label.address.streetNumber"/></td>
 							<td><form:input path="address.streetNumber"/> <br>
@@ -154,66 +75,46 @@
 							<td><form:input path="address.zipcode"/> <br>
 								<form:errors path="address.zipcode" cssClass="error"/></td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.birthDate"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.birthDate"/></th>
 						<tr>
 							<td><spring:message code="label.birthDate"/></td>
 							<td><form:input path="birthDate"/> <br>
 								<form:errors path="birthDate" cssClass="error"/></td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.dateHired"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.dateHired"/></th>
 						<tr>
 							<td><spring:message code="label.dateHired"/></td>
 							<td><form:input path="dateHired"/> <br>
 								<form:errors path="dateHired" cssClass="error"/></td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.employment"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.employment"/></th>
 						<tr>
 							<td><spring:message code="label.employment"/></td>
 							<td><form:radiobutton path="currentlyEmployed" value="true"/>YES
 								<form:radiobutton path="currentlyEmployed" value="false"/>NO</td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.gwa"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.gwa"/></th>
 						<tr>
 							<td><spring:message code="label.gwa"/></td>
 							<td><form:input path="gwa"/> <br>
 								<form:errors path="gwa" cssClass="error"/></td>
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
-						<th colspan="2"><h4><spring:message code="header.label.roles"/></h4></th>
+						<th colspan="2"><spring:message code="header.label.roles"/></th>
 						<tr>
 							<td><spring:message code="label.roles"/></td>
 
@@ -226,43 +127,36 @@
 							</td>
 
 						</tr>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 
 						<%-- =============================================================================== --%>
 
 						<tbody id="contactsSection">
 							<th colspan="2">
-								<h4><spring:message code="header.label.contacts"/></h4>
+								<spring:message code="header.label.contacts"/> <br>
 								<input type="button" value="Add Cellphone" id="add-cellphone-button"/>
 								<input type="button" value="Add Landline" id="add-landline-button"/>
 								<input type="button" value="Add Email" id="add-email-button"/> <br>
 								<form:errors path="contacts" cssClass="error"/>
 							</th>
 							<c:forEach items="${person.contacts}" var="contact">
-								<tr id="link${contact.id}">
+								<tr>
 									<td>${contact.type}</td>
 									<td>
 										<input type="text" name="${contact.type}" value="${contact.detail}"/>
-										<input type="button" id="remove-button" value="X" name="link${contact.id}"/>
+										<input type="button" id="remove-button" value="X"/>
 										<form:errors path="contacts" cssClass="error"/>
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
-						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-						</tr>
 						<th colspan="2"><input type="submit" value="${submitLabel}"/></th>
 					</tbody>
 				</table>
 			</form:form>
 			<hr/>
-			<a href = "/fileUpload.htm">Upload a File</a> <br>
+            <a href="/managePersons.htm">Manage Persons</a> <br>
             <a href="/manageRoles.htm">Manage Roles</a> <br>
+            <a href = "/fileUpload.htm">Upload a File</a> <br>
             <a href="/index.jsp">HOME</a>
 		</div>
 	</body>

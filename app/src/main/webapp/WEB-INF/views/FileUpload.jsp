@@ -7,20 +7,9 @@
 <html>
 	<head>
 		<title>File Upload</title>
-		<style>
-			.error {
-				color: #ff0000;
-				font-size: 15px;
-			}
-
-			.errorblock {
-				color: #000;
-				background-color: #ffEEEE;
-				border: 3px solid #ff0000;
-				padding: 8px;
-				margin: 16px;
-			}
-		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/resources/jqueryscript.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
 	</head>
 
 	<body>
@@ -34,8 +23,10 @@
 			<form:errors path="multipartFile" cssClass="error"/> <br>
 		</form:form>
 
-		<spring:bind path="person">
-			<form:errors path="*" cssClass="error"/> <br>
-		</spring:bind>
+		<hr/>
+		<a href="/addOrUpdatePerson.htm">Add Person</a> <br>
+		<a href="/managePersons.htm">Manage Persons</a> <br>
+		<a href="/manageRoles.htm">Manage Roles</a> <br>
+		<a href="/index.jsp">HOME</a>
 	</body>
 </html>

@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page isELIgnored="false" %>
 
 <html>
 	<head>
 		<title>Full Person Details</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/resources/jqueryscript.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
 	</head>
 	<body>
 		<h3>Full Person Details</h3>
@@ -14,14 +19,14 @@
 		<table border="1">
 			<tr bgcolor='#77929b'>
 				<th>ID</th>
-				<th>First Name</th>
-				<th>Middle Name</th>
-				<th>Last Name</th>
-				<th>Suffix</th>
-				<th>Title</th>
-				<th>Date Hired</th>
-				<th>Birth Date</th>
-				<th>GWA</th>
+				<th><spring:message code="label.name.firstName"/></th>
+				<th><spring:message code="label.name.middleName"/></th>
+				<th><spring:message code="label.name.lastName"/></th>
+				<th><spring:message code="label.name.suffix"/></th>
+				<th><spring:message code="label.name.title"/></th>
+				<th><spring:message code="label.dateHired"/></th>
+				<th><spring:message code="label.birthDate"/></th>
+				<th><spring:message code="label.gwa"/></th>
 			</tr>
 			<tr>
 				<td>${person.id}</td>
@@ -39,10 +44,10 @@
 		<h4>Address</h4>
 		<table border="1">
 			<tr bgcolor='#efd945'>
-				<th>Street Number</th>
-				<th>Barangay</th>
-				<th>Municipality</th>
-				<th>Zipcode</th>
+				<th><spring:message code="label.address.streetNumber"/></th>
+				<th><spring:message code="label.address.barangay"/></th>
+				<th><spring:message code="label.address.municipality"/></th>
+				<th><spring:message code="label.address.zipcode"/></th>
 			</tr>
 			<tr>
 				<td>${person.address.streetNumber}</td>
@@ -56,7 +61,7 @@
 		<table border=".5">
 			<tr bgcolor='#80c471'>
 				<th>ID</th>
-				<th>Role</th>
+				<th><spring:message code="label.roles"/></th>
 			</tr>
 			<c:forEach items="${person.roles}" var="role">
 				<tr>
@@ -84,6 +89,11 @@
 		<hr/>
 		<a href="addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
 
-		<hr/><a href="/index.jsp">HOME</a>
+		<hr/>
+		<a href="/addOrUpdatePerson.htm">Add Person</a> <br>
+		<a href="/managePersons.htm">Manage Persons</a> <br>
+		<a href="/manageRoles.htm">Manage Roles</a> <br>
+		<a href = "/fileUpload.htm">Upload a File</a> <br>
+		<a href="/index.jsp">HOME</a>
 	</body>
 </html>

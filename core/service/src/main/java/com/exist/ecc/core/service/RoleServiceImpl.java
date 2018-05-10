@@ -50,6 +50,15 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	public void updateRoleName(int roleId, String newRoleName) {
+		if ( roleAlreadyExists(newRoleName) ) {
+			return;
+		}
+		Role roleToBeUpdated = roleDao.getRole(roleId);
+		roleToBeUpdated.setRoleName(newRoleName);
+		roleDao.updateRole(roleToBeUpdated);
+	}
+
 	public void deleteRole(int id) throws Exception {
 		if( !getRole(id).getPersons().isEmpty() ) {
 			throw new Exception();
@@ -60,6 +69,15 @@ public class RoleServiceImpl implements RoleService {
 
 	public boolean roleAlreadyExists(RoleDto role) {
 		return getAllRoles().contains(role);
+	}
+
+	public boolean roleAlreadyExists(String roleName) {
+		for ( Role role : roleDao.getAllRoles() ) {
+			if ( role.getRoleName().equals(roleName) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

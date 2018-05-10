@@ -22,7 +22,7 @@ public class DeleteRoleController extends AbstractController {
 		try {
 			roleService.deleteRole( idOfRoleToBeDeleted );
 		} catch(Exception e) {
-			
+			response.sendError(response.SC_BAD_REQUEST);
 		}
 
 		return null;

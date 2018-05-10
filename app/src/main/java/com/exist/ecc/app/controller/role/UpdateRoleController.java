@@ -21,14 +21,14 @@ public class UpdateRoleController extends AbstractController {
 		String newRoleName = request.getParameter( "newRoleName" );
 
 		RoleDto updatedRole = roleService.getRole( idToBeUpdated );
-		updatedRole.setId(idToBeUpdated);
 		updatedRole.setRoleName(newRoleName);
 
 		try {
 			roleService.updateRole(updatedRole);
 		} catch( Exception e ) {
-
+			response.sendError(response.SC_BAD_REQUEST);
 		}
+
 		return null;
 	}
 }

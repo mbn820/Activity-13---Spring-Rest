@@ -44,7 +44,7 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	public void updateRole(Role role) {
-		getCurrentSession().update(role);
+		getCurrentSession().merge(role);
 	}
 
 	public void deleteRole(int id) {
