@@ -20,11 +20,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <hibernate.version>3.6.10.Final</hibernate.version>
+        <hibernate.version>4.1.9.Final</hibernate.version>
         <postgres.version>42.2.2</postgres.version>
         <commons-lang.version>3.7</commons-lang.version>
         <servlets.version>4.0.1</servlets.version>
-        <springframework.version>2.5.6</springframework.version>
+        <springframework.version>3.2.8.RELEASE</springframework.version>
     </properties>
 
 
@@ -87,7 +87,13 @@
             <!-- SPRING -->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring</artifactId>
+                <artifactId>spring-core</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
 
@@ -99,7 +105,19 @@
 
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
 
