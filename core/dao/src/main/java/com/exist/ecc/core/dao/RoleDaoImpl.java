@@ -1,14 +1,16 @@
 package com.exist.ecc.core.dao;
 
+import java.util.List;
 import com.exist.ecc.core.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class RoleDaoImpl implements RoleDao {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {

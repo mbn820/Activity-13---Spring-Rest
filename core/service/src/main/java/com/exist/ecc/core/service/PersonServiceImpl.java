@@ -4,9 +4,13 @@ import java.util.List;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.dao.PersonDao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PersonServiceImpl implements PersonService {
+	@Autowired
 	private PersonDao personDao;
+
+	@Autowired
 	private DtoMapper dtoMapper;
 
 	public void setPersonDao(PersonDao personDao) {

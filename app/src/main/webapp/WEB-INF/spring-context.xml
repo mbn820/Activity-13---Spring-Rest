@@ -10,6 +10,8 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring.xsd">
 
+	<context:annotation-config/>
+
 	<!-- PERSON CONTROLLERS -->
 	<bean name = "/addOrUpdatePerson.htm" class = "com.exist.ecc.app.controller.person.AddOrUpdatePersonController" autowire = "byName">
 		<property name = "validator" ref = "personValidator"/>

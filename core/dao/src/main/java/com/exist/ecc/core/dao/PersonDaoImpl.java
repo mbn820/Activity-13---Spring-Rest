@@ -9,8 +9,10 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PersonDaoImpl implements PersonDao {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {

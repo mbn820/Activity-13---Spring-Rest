@@ -4,9 +4,13 @@ import java.util.List;
 import com.exist.ecc.core.dao.RoleDao;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class RoleServiceImpl implements RoleService {
+	@Autowired
 	private RoleDao roleDao;
+
+	@Autowired
 	private DtoMapper dtoMapper;
 
 	public void setRoleDao(RoleDao roleDao) {

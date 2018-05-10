@@ -1,5 +1,6 @@
 package com.exist.ecc.core.service;
 
+import java.util.List;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
@@ -7,8 +8,9 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DtoMapperImpl implements DtoMapper {
 	private static MapperFactory mapperFactory;
 

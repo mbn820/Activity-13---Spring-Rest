@@ -42,7 +42,7 @@ $(document).ready(function() {
 		var newRoleName=window.prompt("Enter new role name", origName);
 		var roleId=$(this).attr("data-roleId");
 
-		if (newRoleName != null && newRoleName != "") {
+		if (newRoleName != origName && newRoleName != null && newRoleName != "") {
 			$.post("/updateRole.htm", {newRoleName : newRoleName, idToBeUpdated : roleId}, function() {
 				location.reload();
 			}).fail(function() {
