@@ -24,7 +24,7 @@
         <postgres.version>42.2.2</postgres.version>
         <commons-lang.version>3.7</commons-lang.version>
         <servlets.version>4.0.1</servlets.version>
-        <springframework.version>3.2.8.RELEASE</springframework.version>
+        <springframework.version>3.2.9.RELEASE</springframework.version>
     </properties>
 
 
