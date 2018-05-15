@@ -16,9 +16,6 @@
 
 
 	<!-- FILE UPLOAD CONTROLLER -->
-	<bean name = "/fileUpload.htm" class = "com.exist.ecc.app.controller.person.FileUploadController" autowire = "byName">
-		<property name = "validator" ref = "fileUploadValidator"/>
-	</bean>
 	<bean id = "multipartResolver" class = "org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 
@@ -26,7 +23,6 @@
 	<bean id = "messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
 		<property name = "basename" value = "messages"/>
 	</bean>
-	<bean id = "fileUploadValidator" class = "com.exist.ecc.app.controller.person.FileUploadValidator" autowire = "byName"/>
 
 
 	<!-- LOCALIZATION -->

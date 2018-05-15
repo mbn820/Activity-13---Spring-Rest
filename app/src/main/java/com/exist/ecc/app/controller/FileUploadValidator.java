@@ -1,6 +1,7 @@
-package com.exist.ecc.app.controller.person;
+package com.exist.ecc.app.controller;
 
 import java.io.File;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -9,6 +10,7 @@ import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.FileUpload;
 import com.exist.ecc.core.service.XmlParser;
 
+@Component
 public class FileUploadValidator implements Validator {
 	// private PersonValidator personValidator;
 	private static final String destinationDir = "/home/mnunez/Desktop/Uploads/";

@@ -58,7 +58,7 @@ public class RoleController {
 	}
 
 
-	@RequestMapping(value = "/manageRoles2.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageRoles.htm", method = RequestMethod.GET)
 	public String loadManageRolesForm(ModelMap modelMap) {
 		modelMap.addAttribute( "role", new RoleDto() );
 		return "ManageRoles";
@@ -82,7 +82,7 @@ public class RoleController {
 		return "redirect:/manageRoles2.htm";
 	}
 
-	@RequestMapping(value = "/updateRole2.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateRole.htm", method = RequestMethod.POST)
 	public void updateRole(@RequestParam(value = "idToBeUpdated") Integer idToBeUpdated,
 						   @RequestParam(value = "newRoleName") String newRoleName,
 						   HttpServletResponse response) throws Exception {
@@ -97,7 +97,7 @@ public class RoleController {
 		}
 	}
 
-	@RequestMapping(value = "/deleteRole2.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteRole.htm", method = RequestMethod.POST)
 	public void deleteRole(@RequestParam(value = "idToBeDeleted") Integer idToBeDeleted,
 						   HttpServletResponse response) throws Exception {
 

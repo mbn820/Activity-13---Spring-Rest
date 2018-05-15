@@ -43,7 +43,7 @@ $(document).ready(function() {
 		var roleId=$(this).attr("data-roleId");
 
 		if (newRoleName != origName && newRoleName != null && newRoleName != "") {
-			$.post("/updateRole2.htm", {newRoleName : newRoleName, idToBeUpdated : roleId}, function() {
+			$.post("/updateRole.htm", {newRoleName : newRoleName, idToBeUpdated : roleId}, function() {
 				location.reload();
 			}).fail(function() {
 				alert("Role Already Exists!");
@@ -55,7 +55,7 @@ $(document).ready(function() {
 	$("[name=delete-role-button]").click(function() {
 		var roleId=$(this).attr("data-roleId");
 
-		$.post("/deleteRole2.htm", {idToBeDeleted : roleId}, function() {
+		$.post("/deleteRole.htm", {idToBeDeleted : roleId}, function() {
 			location.reload();
 		}).fail(function() {
 			alert("Cannot Delete Role!!");
