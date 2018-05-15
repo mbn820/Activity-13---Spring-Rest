@@ -133,8 +133,7 @@ public class AddOrUpdatePersonController extends SimpleFormController {
 		}
 
 		// redirect to managePersons dashboard
-		ModelAndView result = new ModelAndView( getSuccessView() );
-		return result;
+		return new ModelAndView( getSuccessView() );
 	}
 
 	private boolean contactsHaveErrors(List<ContactDto> contacts) {

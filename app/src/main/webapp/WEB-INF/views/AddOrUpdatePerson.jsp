@@ -10,16 +10,22 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/resources/jqueryscript.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
-		<link rel="stylesheet" type="text/css" href="/resources/addupdateperson.css"/>	
+		<link rel="stylesheet" type="text/css" href="/resources/addupdateperson.css"/>
 	</head>
 
 	<body>
+		<c:set var="requestType" value="UPDATE PERSON"/>
+		<c:set var="submitLabel" value="SAVE CHANGES"/>
+		<c:if test="${person.id == 0}">
+			<c:set var="requestType" value="ADD PERSON"/>
+			<c:set var="submitLabel" value="ADD"/>
+		</c:if>
 		<h3 align="center">${requestType}</h3>
 		<hr/>
 
 		<div class="tableForm" align="center">
 			<c:import url="LanguageSelect.jsp"/>
-			<form:form method="POST" commandName="person">
+			<form:form id="person" method="POST" modelAttribute="person">
 				<form:hidden path="id"/>
 
 				<table border="0">
@@ -122,10 +128,10 @@
 								<c:forEach items="${existingRoles}" var="role">
 									<c:set var="checked" value="${person.roles.contains(role) ? 'checked' : ''}"/>
 									<input type="checkbox" name="rolesParam" value="${role.id}" ${checked}/>
+									<input type="hidden" name="role">
 									${role.roleName} <br>
 								</c:forEach>
 							</td>
-
 						</tr>
 
 						<%-- =============================================================================== --%>

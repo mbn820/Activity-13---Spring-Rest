@@ -11,17 +11,8 @@
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:annotation-config/>
-	<context:component-scan base-package = "com.exist.ecc.app.controller"/>
+	<context:component-scan base-package = "com.exist.ecc.app.controller, com.exist.ecc.core.service"/>
 	<mvc:annotation-driven/>
-
-	<!-- PERSON CONTROLLERS -->
-	<bean name = "/addOrUpdatePerson.htm" class = "com.exist.ecc.app.controller.person.AddOrUpdatePersonController" autowire = "byName">
-		<property name = "validator" ref = "personValidator"/>
-	</bean>
-	<bean name = "/managePersons.htm" class = "com.exist.ecc.app.controller.person.ManagePersonsController" autowire = "byName"/>
-	<bean name = "/deletePerson.htm" class = "com.exist.ecc.app.controller.person.DeletePersonController" autowire = "byName"/>
-	<bean name = "/fullPersonDetails.htm" class = "com.exist.ecc.app.controller.person.FullPersonDetailsController" autowire = "byName"/>
-
 
 	<!-- ROLE CONTROLLERS -->
 	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.controller.role.ManageRoleController" autowire = "byName">
@@ -67,7 +58,7 @@
 
 	<!-- VIEW RESOLVER -->
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name = "prefix" value = "WEB-INF/views/"/>
+        <property name = "prefix" value = "/WEB-INF/views/"/>
         <property name = "suffix" value = ".jsp"/>
 		<property name = "requestContextAttribute" value = "rc"/>
     </bean>

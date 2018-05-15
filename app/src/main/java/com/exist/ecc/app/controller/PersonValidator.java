@@ -1,11 +1,12 @@
 package com.exist.ecc.app.controller.person;
 
+import com.exist.ecc.core.model.dto.PersonDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.stereotype.Component;
 
-import com.exist.ecc.core.model.dto.PersonDto;
-
+@Component
 public class PersonValidator implements Validator {
 
 	@Override

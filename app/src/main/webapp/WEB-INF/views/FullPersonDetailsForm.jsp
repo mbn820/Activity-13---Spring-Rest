@@ -87,7 +87,7 @@
 			</c:forEach>
 		</table>
 		<hr/>
-		<a href="addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
+		<a href="/addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
 
 		<hr/>
 		<a href="/addOrUpdatePerson.htm">Add Person</a> <br>

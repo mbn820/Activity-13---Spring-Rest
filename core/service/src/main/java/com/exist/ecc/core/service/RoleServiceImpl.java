@@ -4,9 +4,12 @@ import java.util.List;
 import com.exist.ecc.core.dao.RoleDao;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Service
 public class RoleServiceImpl implements RoleService {
+
 	@Autowired
 	private RoleDao roleDao;
 

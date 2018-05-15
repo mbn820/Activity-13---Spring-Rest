@@ -4,9 +4,12 @@ import java.util.List;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.dao.PersonDao;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Service
 public class PersonServiceImpl implements PersonService {
+
 	@Autowired
 	private PersonDao personDao;
 
@@ -28,7 +31,11 @@ public class PersonServiceImpl implements PersonService {
 
 	public void addOrUpdatePerson(PersonDto personDto) {
 		Person personToBeAddedOrUpdated = dtoMapper.mapToPerson(personDto);
-		personDao.addPerson(personToBeAddedOrUpdated);
+		if (personToBeAddedOrUpdated.getId() == 0) {
+			personDao.addPerson(personToBeAddedOrUpdated);
+		} else {
+			personDao.updatePerson(personToBeAddedOrUpdated);
+		}
 	}
 
 	public PersonDto getPerson(int id) {

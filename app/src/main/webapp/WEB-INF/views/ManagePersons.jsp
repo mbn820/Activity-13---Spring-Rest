@@ -38,7 +38,7 @@
                     <c:forEach items="${personList}" var="person">
                         <tr>
                             <td>
-                                <a href="/fullPersonDetails.htm?personId=${person.id}">${person.id}</a>
+                                <a href="/fullPersonDetails/${person.id}.htm">${person.id}</a>
                             </td>
                             <td>${person.name.firstName}</td>
                             <td>${person.name.middleName}</td>
@@ -50,7 +50,7 @@
                                 <a href="/addOrUpdatePerson.htm?personId=${person.id}"><spring:message code="label.update"/></a>
                             </td>
                             <td align="center">
-                                <a href="/deletePerson.htm?personId=${person.id}"><spring:message code="label.delete"/></a>
+                                <a href="/deletePerson/${person.id}.htm"><spring:message code="label.delete"/></a>
                             </td>
                         </tr>
                     </c:forEach>
