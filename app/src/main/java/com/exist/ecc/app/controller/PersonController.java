@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.BindingResult;
 
-import com.exist.ecc.app.controller.person.PersonValidator;
 
 @Controller
 public class PersonController {
@@ -133,7 +132,7 @@ public class PersonController {
         // personValidator.validate(person, result);
 
         personService.addOrUpdatePerson(person);
-        return "redirect:/managePersons2.htm";
+        return "redirect:/managePersons.htm";
     }
 
 }

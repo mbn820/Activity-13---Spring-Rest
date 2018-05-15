@@ -14,13 +14,6 @@
 	<context:component-scan base-package = "com.exist.ecc.app.controller, com.exist.ecc.core.service"/>
 	<mvc:annotation-driven/>
 
-	<!-- ROLE CONTROLLERS -->
-	<bean name = "/manageRoles.htm" class = "com.exist.ecc.app.controller.role.ManageRoleController" autowire = "byName">
-		<property name = "validator" ref = "roleValidator"/>
-	</bean>
-	<bean name = "/deleteRole.htm" class = "com.exist.ecc.app.controller.role.DeleteRoleController" autowire = "byName"/>
-	<bean name = "/updateRole.htm" class = "com.exist.ecc.app.controller.role.UpdateRoleController" autowire = "byName"/>
-
 
 	<!-- FILE UPLOAD CONTROLLER -->
 	<bean name = "/fileUpload.htm" class = "com.exist.ecc.app.controller.person.FileUploadController" autowire = "byName">
@@ -33,8 +26,6 @@
 	<bean id = "messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
 		<property name = "basename" value = "messages"/>
 	</bean>
-	<bean id = "personValidator" class = "com.exist.ecc.app.controller.person.PersonValidator"/>
-	<bean id = "roleValidator" class = "com.exist.ecc.app.controller.role.RoleValidator" autowire = "byName"/>
 	<bean id = "fileUploadValidator" class = "com.exist.ecc.app.controller.person.FileUploadValidator" autowire = "byName"/>
 
 

@@ -10,12 +10,12 @@ import com.exist.ecc.core.model.FileUpload;
 import com.exist.ecc.core.service.XmlParser;
 
 public class FileUploadValidator implements Validator {
-	private PersonValidator personValidator;
+	// private PersonValidator personValidator;
 	private static final String destinationDir = "/home/mnunez/Desktop/Uploads/";
 
-	public void setPersonValidator(PersonValidator personValidator) {
-		this.personValidator = personValidator;
-	}
+	// public void setPersonValidator(PersonValidator personValidator) {
+	// 	this.personValidator = personValidator;
+	// }
 
 	@Override
 	public boolean supports(Class cl) {

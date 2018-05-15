@@ -1,12 +1,17 @@
-package com.exist.ecc.app.controller.role;
+package com.exist.ecc.app.controller;
 
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import com.exist.ecc.core.model.dto.RoleDto;
 import com.exist.ecc.core.service.RoleService;
 
+@Component
 public class RoleValidator implements Validator {
+
+	@Autowired
 	private RoleService roleService;
 
 	public void setRoleService(RoleService roleService) {

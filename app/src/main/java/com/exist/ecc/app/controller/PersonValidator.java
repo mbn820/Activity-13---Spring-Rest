@@ -1,4 +1,4 @@
-package com.exist.ecc.app.controller.person;
+package com.exist.ecc.app.controller;
 
 import com.exist.ecc.core.model.dto.PersonDto;
 import org.springframework.validation.Errors;
