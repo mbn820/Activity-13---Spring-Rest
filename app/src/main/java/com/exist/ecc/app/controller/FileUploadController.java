@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class FileUploadController {
-	private static final String destinationDir = "/home/mnunez/Desktop/Uploads/";
+	private static final String DESTINATION_DIR = "/home/mnunez/Desktop/Uploads/";
 
     @Autowired
     private PersonService personService;
@@ -71,7 +71,7 @@ public class FileUploadController {
 		}
 
 		MultipartFile multipartFile = fileUpload.getMultipartFile();
-		File destination = new File( destinationDir + multipartFile.getOriginalFilename() );
+		File destination = new File( DESTINATION_DIR + multipartFile.getOriginalFilename() );
 		multipartFile.transferTo(destination);
 
 		PersonDto person = new XmlParser().convertToPersonDto(destination);

@@ -5,8 +5,14 @@
 <%@ page isELIgnored="false" %>
 
 <html>
+	<c:set var="requestType" value="UPDATE PERSON"/>
+	<c:set var="submitLabel" value="SAVE CHANGES"/>
+	<c:if test="${person.id == 0}">
+		<c:set var="requestType" value="ADD PERSON"/>
+		<c:set var="submitLabel" value="ADD"/>
+	</c:if>
 	<head>
-		<title>Add Person</title>
+		<title>${requestType}</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/resources/jqueryscript.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
@@ -14,12 +20,6 @@
 	</head>
 
 	<body>
-		<c:set var="requestType" value="UPDATE PERSON"/>
-		<c:set var="submitLabel" value="SAVE CHANGES"/>
-		<c:if test="${person.id == 0}">
-			<c:set var="requestType" value="ADD PERSON"/>
-			<c:set var="submitLabel" value="ADD"/>
-		</c:if>
 		<h3 align="center">${requestType}</h3>
 		<hr/>
 
@@ -87,7 +87,7 @@
 						<th colspan="2"><spring:message code="header.label.birthDate"/></th>
 						<tr>
 							<td><spring:message code="label.birthDate"/></td>
-							<td><form:input path="birthDate"/> <br>
+							<td><form:input path="birthDate" placeholder="dd/MM/yyyy"/> <br>
 								<form:errors path="birthDate" cssClass="error"/></td>
 						</tr>
 
@@ -96,7 +96,7 @@
 						<th colspan="2"><spring:message code="header.label.dateHired"/></th>
 						<tr>
 							<td><spring:message code="label.dateHired"/></td>
-							<td><form:input path="dateHired"/> <br>
+							<td><form:input path="dateHired" placeholder="dd/MM/yyyy"/> <br>
 								<form:errors path="dateHired" cssClass="error"/></td>
 						</tr>
 
