@@ -6,7 +6,7 @@
 
 <html>
 	<head>
-		<title>File Upload</title>
+		<title>Manage Users</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/resources/jqueryscript.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
@@ -14,16 +14,39 @@
 
 	<body>
 		<c:import url="NavigationBar.jsp"/>
-		<h3>FILE UPLOAD</h3>
+		<h3>Manage Users</h3>
 		<hr/>
 
-		<form:form method="POST" commandName="fileUpload" action="/fileUpload.htm" enctype="multipart/form-data">
-			Select file to upload:
-			<input type="file" name="multipartFile" id="multipartFile"/> <br>
-			<input type="submit" value="Upload"/>
-			<form:errors path="multipartFile" cssClass="error"/> <br>
-		</form:form>
+		<div align="center">
+		<table border="1">
+			<tr bgcolor="#ea8369">
+				<th>ID</th>
+				<th>USERNAME</th>
+				<th>ROLE</th>
+				<th>UPDATE</th>
+				<th>DELETE</th>
+			</tr>
+
+			<c:forEach items="${allUsers}" var="user">
+				<tr>
+					<td align="center">
+						${user.id}
+					</td>
+					<td>${user.userName}</td>
+					<td>${user.userRole}</td>
+					<td align="center">
+						<a href="/deleteUser/${user.id}.htm">Delete</a>
+					</td>
+					<td align="center">
+						<a href="/updateUser/${user.id}.htm">Update</a>
+					</td>
+				</tr>
+			</c:forEach>
+
+		</table>
+		</div>
 
 		<hr/>
+
 	</body>
 </html>

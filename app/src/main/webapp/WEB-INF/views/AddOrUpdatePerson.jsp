@@ -20,6 +20,7 @@
 	</head>
 
 	<body>
+		<c:import url="NavigationBar.jsp"/>
 		<h3 align="center">${requestType}</h3>
 		<hr/>
 
@@ -160,10 +161,6 @@
 				</table>
 			</form:form>
 			<hr/>
-            <a href="/managePersons.htm">Manage Persons</a> <br>
-            <a href="/manageRoles.htm">Manage Roles</a> <br>
-            <a href = "/fileUploadForm.htm">Upload a File</a> <br>
-            <a href="/index.jsp">HOME</a>
 		</div>
 	</body>
 

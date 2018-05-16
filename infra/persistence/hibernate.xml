@@ -28,6 +28,7 @@
 				<value>com.exist.ecc.core.model.Person</value>
 				<value>com.exist.ecc.core.model.Role</value>
 				<value>com.exist.ecc.core.model.Contact</value>
+				<value>com.exist.ecc.core.model.Users</value>
 			</list>
 		</property>
 	</bean>

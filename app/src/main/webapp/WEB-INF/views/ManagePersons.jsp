@@ -13,6 +13,7 @@
     </head>
 
     <body>
+        <c:import url="NavigationBar.jsp"/>
         <h3>Manage Persons</h3>
         <hr/>
         <c:import url="LanguageSelect.jsp"/>
@@ -72,9 +73,5 @@
                 <input type="submit" value="SORT"/>
             </form>
             <hr/>
-            <a href="/addOrUpdatePerson.htm">Add Person</a> <br>
-            <a href="/manageRoles.htm">Manage Roles</a> <br>
-            <a href = "/fileUploadForm.htm">Upload a File</a> <br>
-            <a href="/index.jsp">HOME</a>
         </body>
     </html>

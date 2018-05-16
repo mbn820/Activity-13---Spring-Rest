@@ -7,8 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
+import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	@Autowired

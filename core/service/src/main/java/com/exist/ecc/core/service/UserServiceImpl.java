@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -55,5 +56,15 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UsersDto userDto) {
 		Users userToBeUpdated = dtoMapper.mapToUser(userDto);
 		userDao.updateUser(userToBeUpdated);
+	}
+
+	public boolean userNameAlreadyExists(String userName) {
+		getAllUsers().forEach(user -> {
+			if( user.getUserName().equals(userName) ) {
+				return true;
+			}
+		});
+
+		return false;
 	}
 }

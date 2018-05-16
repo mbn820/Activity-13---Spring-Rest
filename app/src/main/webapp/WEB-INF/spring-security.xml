@@ -9,11 +9,11 @@
 	<http auto-config="true">
 		<intercept-url pattern="/manage*" access="ROLE_ADMIN" />
 	</http>
+
+
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="1234" authorities="ROLE_ADMIN" />
-			</user-service>
+		<authentication-provider user-service-ref="userDetailsServiceImpl">
+			<!-- <password-encoder hash="bcrypt" /> -->
 		</authentication-provider>
 	</authentication-manager>
 

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
 	</head>
 	<body>
+		<c:import url="NavigationBar.jsp"/>
 		<h3>Full Person Details</h3>
 		<hr/>
 
@@ -90,10 +91,5 @@
 		<a href="/addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
 
 		<hr/>
-		<a href="/addOrUpdatePerson.htm">Add Person</a> <br>
-		<a href="/managePersons.htm">Manage Persons</a> <br>
-		<a href="/manageRoles.htm">Manage Roles</a> <br>
-		<a href = "/fileUploadForm.htm">Upload a File</a> <br>
-		<a href="/index.jsp">HOME</a>
 	</body>
 </html>

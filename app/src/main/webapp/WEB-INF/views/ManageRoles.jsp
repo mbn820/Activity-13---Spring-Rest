@@ -13,6 +13,7 @@
 	</head>
 
 	<body>
+		<c:import url="NavigationBar.jsp"/>
 		<h3>Manage Roles</h3>
 		<hr/>
 		<c:import url="LanguageSelect.jsp"/>
@@ -46,10 +47,6 @@
 		</table>
 
 		<hr/>
-		<a href="/addOrUpdatePerson.htm">Add Person</a> <br>
-		<a href="/managePersons.htm">Manage Persons</a> <br>
-		<a href = "/fileUploadForm.htm">Upload a File</a> <br>
-		<a href="/index.jsp">HOME</a>
 
 	</body>
 </html>

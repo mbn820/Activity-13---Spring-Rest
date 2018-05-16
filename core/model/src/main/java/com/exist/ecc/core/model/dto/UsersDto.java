@@ -18,7 +18,7 @@ public class UsersDto {
 		this.id = id;
 	}
 
-	public void setUsersName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
@@ -26,11 +26,15 @@ public class UsersDto {
 		this.password = password;
 	}
 
-	public void setUsersRole(String userRole) {
+	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
 
-	public String getUsersName() {
+	public int getId() {
+		return id;
+	}
+
+	public String getUserName() {
 		return userName;
 	}
 
@@ -38,7 +42,7 @@ public class UsersDto {
 		return password;
 	}
 
-	public String getUsersRole() {
+	public String getUserRole() {
 		return userRole;
 	}
 }
