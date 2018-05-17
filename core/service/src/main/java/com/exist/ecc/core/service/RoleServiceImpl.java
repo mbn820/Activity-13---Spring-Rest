@@ -6,8 +6,10 @@ import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
@@ -33,16 +35,19 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public RoleDto getRole(int id) {
 		Role role = roleDao.getRole(id);
 		return dtoMapper.mapToRoleDto(role);
 	}
 
+	@Transactional(readOnly = true)
 	public RoleDto getRoleByName(String roleName) {
 		Role role = roleDao.getRoleByName(roleName);
 		return dtoMapper.mapToRoleDto(role);
 	}
 
+	@Transactional(readOnly = true)
 	public List<RoleDto> getAllRoles() {
 		List<Role> roles = roleDao.getAllRoles();
 		return dtoMapper.mapToRoleDtoList(roles);

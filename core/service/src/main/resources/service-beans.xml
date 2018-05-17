@@ -13,27 +13,13 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<context:annotation-config/>
-	<!-- <context:component-scan base-package = "com.exist.ecc.core.service" /> -->
-
-	<bean id = "dtoMapper" class = "com.exist.ecc.core.service.DtoMapperImpl"/>
-	<bean id = "personService" class = "com.exist.ecc.core.service.PersonServiceImpl"/>
-	<bean id = "roleService" class = "com.exist.ecc.core.service.RoleServiceImpl"/>
 
 	<!-- TRANSACTION MANAGEMENT -->
 	<bean id = "transactionManager" class = "org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name = "sessionFactory" ref = "sessionFactory"/>
 	</bean>
 
-	<tx:advice id = "txAdvice" transaction-manager = "transactionManager">
-		<tx:attributes>
-			<tx:method name = "*"/>
-		</tx:attributes>
-	</tx:advice>
-
-	<aop:config>
-		<aop:pointcut id = "serviceMethods" expression = "execution(* com.exist.ecc.core.service.*.*(..))"/>
-		<aop:advisor advice-ref = "txAdvice" pointcut-ref = "serviceMethods"/>
-	</aop:config>
+	<tx:annotation-driven transaction-manager = "transactionManager"/>
 
 	<import resource = "classpath:dao-beans.xml"/>
 	<import resource = "classpath:hibernate.xml"/>

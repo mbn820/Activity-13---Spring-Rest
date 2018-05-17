@@ -13,6 +13,7 @@
 	</head>
 
 	<body>
+		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
 		<h3>Manage Roles</h3>
 		<hr/>
@@ -33,7 +34,8 @@
 			</tr>
 			<c:forEach items="${existingRoles}" var="role">
 				<tr>
-					<td>${role.id}</td>
+					<td align="center">
+						${role.id}</td>
 					<td>${role.roleName}</td>
 					<td>${role.persons}</td>
 					<td align="center">

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
@@ -40,6 +42,8 @@ public class RoleController {
 	@Autowired
 	private RoleValidator roleValidator;
 
+    public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
@@ -60,6 +64,7 @@ public class RoleController {
 
 	@RequestMapping(value = "/manageRoles.htm", method = RequestMethod.GET)
 	public String loadManageRolesForm(ModelMap modelMap) {
+        LOGGER.info("Loading Manage Roles Form...");
 		modelMap.addAttribute( "role", new RoleDto() );
 		return "ManageRoles";
 	}
@@ -68,6 +73,7 @@ public class RoleController {
 	public String processFormSubmit(@ModelAttribute("role") @Validated RoleDto roleToBeAdded,
 									BindingResult result) {
 
+        LOGGER.info("Processing role form submit...");
 		roleValidator.validate(roleToBeAdded, result);
 		if ( result.hasErrors() ) {
 			return "ManageRoles";
@@ -79,7 +85,7 @@ public class RoleController {
 
 		}
 
-		return "redirect:/manageRoles2.htm";
+		return "redirect:/manageRoles.htm";
 	}
 
 	@RequestMapping(value = "/updateRole.htm", method = RequestMethod.POST)
@@ -87,6 +93,7 @@ public class RoleController {
 						   @RequestParam(value = "newRoleName") String newRoleName,
 						   HttpServletResponse response) throws Exception {
 
+        LOGGER.info("Updating role...");
 		RoleDto updatedRole = roleService.getRole(idToBeUpdated);
 		updatedRole.setRoleName(newRoleName);
 
@@ -100,6 +107,8 @@ public class RoleController {
 	@RequestMapping(value = "/deleteRole.htm", method = RequestMethod.POST)
 	public void deleteRole(@RequestParam(value = "idToBeDeleted") Integer idToBeDeleted,
 						   HttpServletResponse response) throws Exception {
+
+        LOGGER.info("Deleting role...");
 
 		try {
 			roleService.deleteRole(idToBeDeleted);

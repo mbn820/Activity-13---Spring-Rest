@@ -20,6 +20,7 @@
 	</head>
 
 	<body>
+		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
 		<h3 align="center">${requestType}</h3>
 		<hr/>

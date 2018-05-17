@@ -10,9 +10,6 @@
 
 	<context:annotation-config/>
 
-	<bean id = "personDao" class = "com.exist.ecc.core.dao.PersonDaoImpl"/>
-	<bean id = "roleDao" class = "com.exist.ecc.core.dao.RoleDaoImpl"/>
-
 	<import resource = "classpath:hibernate.xml"/>
 
 </beans>

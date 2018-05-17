@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
 import com.exist.ecc.core.model.dto.ContactDto;
@@ -39,6 +41,8 @@ public class PersonController {
     @Autowired
     private PersonValidator personValidator;
 
+    public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
@@ -51,10 +55,17 @@ public class PersonController {
         this.personValidator = personValidator;
     }
 
+    @RequestMapping(value = "/home.htm")
+    public String loadHomePage() {
+        return "Home";
+    }
+
     @RequestMapping(value = "/managePersons.htm", method = RequestMethod.GET)
     public ModelAndView loadManagePersonsForm(@RequestParam(defaultValue = "") String lastNameFilter,
                                               @RequestParam(defaultValue = "id") String orderBy,
                                               @RequestParam(defaultValue = "asc") String orderType) {
+
+        LOGGER.info("Loading Manage Persons Form...");
 
         List<PersonDto> personList = personService.getPersonsByLastName(lastNameFilter, orderBy, orderType);
         ModelAndView mav = new ModelAndView("ManagePersons");
@@ -65,12 +76,14 @@ public class PersonController {
 
     @RequestMapping(value = "/deletePerson/{id}.htm", method = RequestMethod.GET)
     public String deletePerson(@PathVariable int id) {
+        LOGGER.info("Deleting...");
         personService.deletePerson(id);
         return "redirect:/managePersons.htm";
     }
 
     @RequestMapping(value = "fullPersonDetails/{id}.htm")
     public String fullPersonDetails(@PathVariable int id, ModelMap modelMap) {
+        LOGGER.info("Full Person Details...");
         modelMap.addAttribute( "person", personService.getPerson(id) );
         return "FullPersonDetailsForm";
     }
@@ -83,6 +96,7 @@ public class PersonController {
 
     @RequestMapping(value = "/addOrUpdatePerson.htm", method = RequestMethod.GET)
     public ModelAndView loadAddOrUpdatePersonForm(@RequestParam(value = "personId", required = false) Integer idOfPersonToBeUpdated) {
+        LOGGER.info("Loading Add or Update Form...");
         ModelAndView mav = new ModelAndView("AddOrUpdatePerson");
         if (idOfPersonToBeUpdated != null) {
             mav.addObject( "person", personService.getPerson(idOfPersonToBeUpdated) );
@@ -105,11 +119,7 @@ public class PersonController {
                                     @RequestParam(value = "Cellphone",  required = false) List<String> cellphones,
                                     @RequestParam(value = "Landline",   required = false) List<String> landlines) {
 
-        personValidator.validate(person, result);
-        if ( result.hasErrors() ) {
-            return "AddOrUpdatePerson";
-        }
-
+        LOGGER.info("Saving...");
         List<RoleDto> chosenRoles = new ArrayList<RoleDto>();
         List<ContactDto> contacts = new ArrayList<ContactDto>();
 
@@ -129,7 +139,10 @@ public class PersonController {
         person.setRoles(chosenRoles);
         person.setContacts(contacts);
 
-        // personValidator.validate(person, result);
+        personValidator.validate(person, result);
+        if ( result.hasErrors() ) {
+            return "AddOrUpdatePerson";
+        }
 
         personService.addOrUpdatePerson(person);
         return "redirect:/managePersons.htm";

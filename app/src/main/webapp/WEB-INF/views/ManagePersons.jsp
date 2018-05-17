@@ -13,10 +13,14 @@
     </head>
 
     <body>
+        <c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
         <c:import url="NavigationBar.jsp"/>
+        <div>
         <h3>Manage Persons</h3>
+        ${pageContext.request.locale}
         <hr/>
         <c:import url="LanguageSelect.jsp"/>
+        <c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
         <form action="/managePersons.htm" method="GET">
             <input type="text" name="lastNameFilter" placeholder="Filter by last name" value="${param.lastNameFilter}"/>
@@ -38,7 +42,7 @@
 
                     <c:forEach items="${personList}" var="person">
                         <tr>
-                            <td>
+                            <td align="center">
                                 <a href="/fullPersonDetails/${person.id}.htm">${person.id}</a>
                             </td>
                             <td>${person.name.firstName}</td>
@@ -72,6 +76,7 @@
                 </select>
                 <input type="submit" value="SORT"/>
             </form>
+            </div>
             <hr/>
         </body>
     </html>

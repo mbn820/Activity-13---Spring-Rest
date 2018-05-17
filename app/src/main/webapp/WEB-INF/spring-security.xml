@@ -1,19 +1,33 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans:beans xmlns = "http://www.springframework.org/schema/security"
+	xmlns:beans = "http://www.springframework.org/schema/beans"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation = "http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config="true">
-		<intercept-url pattern="/manage*" access="ROLE_ADMIN" />
+	<http auto-config = "true">
+		<intercept-url pattern = "/home*" access = "ROLE_ADMIN, ROLE_USER"/>
+		<intercept-url pattern = "/manage*" access = "ROLE_ADMIN, ROLE_USER"/>
+		<intercept-url pattern = "/add*" access = "ROLE_ADMIN, ROLE_USER"/>
+		<intercept-url pattern = "/delete*" access = "ROLE_ADMIN"/>
+		<intercept-url pattern = "/delete*/*" access = "ROLE_ADMIN"/>
+		<intercept-url pattern = "/update*" access = "ROLE_ADMIN"/>
+		<intercept-url pattern = "/update*/*" access = "ROLE_ADMIN"/>
+		<logout logout-success-url = "/login.htm"/>
+		<!-- <csrf/> -->
+		<form-login
+		    login-page="/login.htm"
+		    default-target-url="/home.htm"
+			authentication-failure-url="/login.htm?error"
+			username-parameter="username"
+			password-parameter="password" />
 	</http>
 
 
 	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailsServiceImpl">
-			<!-- <password-encoder hash="bcrypt" /> -->
+		<authentication-provider user-service-ref = "userDetailsServiceImpl">
+			<password-encoder hash = "bcrypt" />
 		</authentication-provider>
 	</authentication-manager>
 

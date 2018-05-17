@@ -6,8 +6,10 @@ import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.dao.PersonDao;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PersonServiceImpl implements PersonService {
 
 	@Autowired
@@ -38,16 +40,19 @@ public class PersonServiceImpl implements PersonService {
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public PersonDto getPerson(int id) {
 		Person person = personDao.getPerson(id);
 		return dtoMapper.mapToPersonDto(person);
 	}
 
+	@Transactional(readOnly = true)
 	public List<PersonDto> getAllPerson(String orderBy) {
 		List<Person> persons = personDao.getAllPerson(orderBy);
 		return dtoMapper.mapToPersonDtoList(persons);
 	}
 
+	@Transactional(readOnly = true)
 	public List<PersonDto> getPersonsByLastName(String lastName, String orderBy, String orderType) {
 		List<Person> persons = personDao.getPersonsByLastName(lastName, orderBy, orderType);
 		return dtoMapper.mapToPersonDtoList(persons);

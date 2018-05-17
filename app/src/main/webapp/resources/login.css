@@ -1,26 +1,37 @@
 .error {
 	color: #ff0000;
-	font-size: 10px;
+	font-size: 15px;
 }
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
+.welcome {
+	margin: 0 auto;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	color: white;
+	position: fixed;
+	align-items: center;
 }
 
 th {
 	align-items: center;
-	height: 40px;
+	height: 60px;
+	background-color: gray;
+	color: white;
 }
 
-table {
-	border: 1px solid black;
-	border-collapse: collapse;
+td {
+	height: 60px;
 }
 
 html * {
    font-family: Arial;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
 }

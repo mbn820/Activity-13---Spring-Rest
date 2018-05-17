@@ -11,4 +11,5 @@ public interface UserService {
 	public List<UsersDto> getAllUsers();
 	public void deleteUser(int id);
 	public void updateUser(UsersDto user);
+	public boolean userNameAlreadyExists(String userName);
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
 		this.dtoMapper = dtoMapper;
 	}
 
+	@Transactional(readOnly = true)
 	public UsersDto getUserByName(String userName) {
 		Users user = userDao.getUserByName(userName);
 		return dtoMapper.mapToUserDto(user);
@@ -39,11 +41,13 @@ public class UserServiceImpl implements UserService {
 		return userDao.addUser(userToBeAdded);
 	}
 
+	@Transactional(readOnly = true)
 	public UsersDto getUser(int id) {
 		Users user = userDao.getUser(id);
 		return dtoMapper.mapToUserDto(user);
 	}
 
+	@Transactional(readOnly = true)
 	public List<UsersDto> getAllUsers() {
 		List<Users> allUsers = userDao.getAllUsers();
 		return dtoMapper.mapToUserDtoList(allUsers);
@@ -59,11 +63,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean userNameAlreadyExists(String userName) {
-		getAllUsers().forEach(user -> {
+		for( UsersDto user : getAllUsers() ) {
 			if( user.getUserName().equals(userName) ) {
 				return true;
 			}
-		});
+		}
 
 		return false;
 	}

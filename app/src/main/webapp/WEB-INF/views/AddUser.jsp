@@ -15,10 +15,11 @@
 		<title>${requestType}</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/resources/jqueryscript.js"></script>
-		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
+		<link rel="stylesheet" type="text/css" href="/resources/login.css"/>
 	</head>
 
 	<body>
+		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
 		<div align="center">
 		<h3>${requestType}</h3>
@@ -29,11 +30,13 @@
 				<form:hidden path="id"/>
 				<tr>
 					<td>Username</td>
-					<td><form:input path="userName"/></td>
+					<td><form:input path="userName"/> <br>
+						<form:errors path="userName" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><form:input type="password" path="password"/></td>
+					<td><form:input type="password" path="password"/> <br>
+						<form:errors path="password" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>User Role</td>

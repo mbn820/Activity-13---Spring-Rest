@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
 	</head>
 	<body>
+		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
 		<h3>Full Person Details</h3>
 		<hr/>

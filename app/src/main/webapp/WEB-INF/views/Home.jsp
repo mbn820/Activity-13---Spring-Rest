@@ -6,26 +6,17 @@
 
 <html>
 	<head>
-		<title>Login</title>
+		<title>Manage Roles</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/resources/jqueryscript.js"></script>
-		<link rel="stylesheet" type="text/css" href="/resources/login.css"/>
+		<link rel="stylesheet" type="text/css" href="/resources/style.css"/>
 	</head>
 
 	<body>
-		<div align="center">
-			<table>
-				<th>Enter Username and Password</th>
-				<tr>
-					<td>USERNAME <br>
-					    <input type="text"/></td>
-				</tr>
-				<tr>
-					<td>PASSWORD <br>
-					    <input type="password"/></td>
-				</tr>
-				<th><input type="submit" value="LOGIN"/></th>
-			</table>
-		</div>
+		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
+		<c:import url="NavigationBar.jsp"/>
+		<h3>WELCOME ${pageContext.request.userPrincipal.name}!</h3>
+
+
 	</body>
 </html>

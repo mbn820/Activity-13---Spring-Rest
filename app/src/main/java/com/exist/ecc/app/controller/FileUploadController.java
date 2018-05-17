@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Date;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
 import com.exist.ecc.core.model.FileUpload;
 import com.exist.ecc.core.model.dto.PersonDto;
@@ -33,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class FileUploadController {
+	public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
 	private static final String DESTINATION_DIR = "/home/mnunez/Desktop/Uploads/";
 
     @Autowired
@@ -58,6 +61,7 @@ public class FileUploadController {
 
 	@RequestMapping(value = "/fileUploadForm.htm", method = RequestMethod.GET)
 	public String loadFileUploadForm() {
+		LOGGER.info("Loading file upload form...");
 		return "FileUpload";
 	}
 
@@ -65,6 +69,7 @@ public class FileUploadController {
 	public String processUpload(@ModelAttribute("fileUpload") @Validated FileUpload fileUpload,
 							    BindingResult result) throws Exception {
 
+		LOGGER.info("Processing upload...");
 		fileUploadValidator.validate(fileUpload, result);
 		if ( result.hasErrors() ) {
 			return "FileUpload";
