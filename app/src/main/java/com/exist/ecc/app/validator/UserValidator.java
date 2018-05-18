@@ -1,4 +1,4 @@
-package com.exist.ecc.app.controller;
+package com.exist.ecc.app.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;

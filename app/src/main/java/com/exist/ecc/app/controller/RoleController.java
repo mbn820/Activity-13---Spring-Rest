@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
+import com.exist.ecc.app.validator.RoleValidator;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
 import com.exist.ecc.core.model.dto.ContactDto;

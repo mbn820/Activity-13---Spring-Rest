@@ -1,4 +1,4 @@
-package com.exist.ecc.app.controller;
+package com.exist.ecc.app.validator;
 
 import java.io.File;
 import org.springframework.stereotype.Component;

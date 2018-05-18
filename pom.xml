@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.exist.ecc</groupId>
-    <artifactId>Activity-7</artifactId>
+    <artifactId>Activity-12-Spring-Security</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Activity-7</name>
+    <name>Activity-12-Spring-Security</name>
 
     <modules>
         <module>core</module>

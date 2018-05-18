@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
+import com.exist.ecc.app.validator.UserValidator;
 import com.exist.ecc.core.model.dto.UsersDto;
 import com.exist.ecc.core.service.UserService;
 import org.springframework.ui.ModelMap;

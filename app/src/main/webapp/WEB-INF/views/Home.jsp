@@ -18,7 +18,5 @@
 		<div class="mainWrapper">
 		<h3>WELCOME ${pageContext.request.userPrincipal.name}!</h3>
 		</div>
-
-
 	</body>
 </html>
