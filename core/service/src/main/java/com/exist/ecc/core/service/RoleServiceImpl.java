@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
-
-	@Autowired
 	private RoleDao roleDao;
-
-	@Autowired
 	private DtoMapper dtoMapper;
 
+	@Autowired
 	public void setRoleDao(RoleDao roleDao) {
 		this.roleDao = roleDao;
 	}
 
+	@Autowired
 	public void setDtoMapper(DtoMapper dtoMapper) {
 		this.dtoMapper = dtoMapper;
 	}

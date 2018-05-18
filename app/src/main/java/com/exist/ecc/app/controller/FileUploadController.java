@@ -35,33 +35,30 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class FileUploadController {
-	public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
-	private static final String DESTINATION_DIR = "/home/mnunez/Desktop/Uploads/";
-
-    @Autowired
-    private PersonService personService;
-
-    @Autowired
+	private PersonService personService;
     private RoleService roleService;
+	private FileUploadValidator fileUploadValidator;
+	private static final String DESTINATION_DIR = "/home/mnunez/Desktop/Uploads/";
+	public static final Logger LOGGER = LoggerFactory.getLogger(FileUploadController.class);
 
 	@Autowired
-	private FileUploadValidator fileUploadValidator;
-
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
 
+	@Autowired
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
 
+	@Autowired
 	public void setFileUploadValidator(FileUploadValidator fileUploadValidator) {
 		this.fileUploadValidator = fileUploadValidator;
 	}
 
 	@RequestMapping(value = "/fileUploadForm.htm", method = RequestMethod.GET)
 	public String loadFileUploadForm() {
-		LOGGER.info("Loading file upload form...");
+		LOGGER.debug("Loading file upload form...");
 		return "FileUpload";
 	}
 
@@ -69,7 +66,7 @@ public class FileUploadController {
 	public String processUpload(@ModelAttribute("fileUpload") @Validated FileUpload fileUpload,
 							    BindingResult result) throws Exception {
 
-		LOGGER.info("Processing upload...");
+		LOGGER.debug("Processing upload...");
 		fileUploadValidator.validate(fileUpload, result);
 		if ( result.hasErrors() ) {
 			return "FileUpload";

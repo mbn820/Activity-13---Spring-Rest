@@ -31,26 +31,23 @@ import org.springframework.validation.BindingResult;
 
 @Controller
 public class PersonController {
-
-    @Autowired
     private PersonService personService;
-
-    @Autowired
     private RoleService roleService;
-
-    @Autowired
     private PersonValidator personValidator;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
 
+    @Autowired
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
 
+    @Autowired
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
 
+    @Autowired
     public void setPersonValidator(PersonValidator personValidator) {
         this.personValidator = personValidator;
     }
@@ -61,11 +58,11 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/managePersons.htm", method = RequestMethod.GET)
-    public ModelAndView loadManagePersonsForm(@RequestParam(defaultValue = "") String lastNameFilter,
+    public ModelAndView loadManagePersonsPage(@RequestParam(defaultValue = "") String lastNameFilter,
                                               @RequestParam(defaultValue = "id") String orderBy,
                                               @RequestParam(defaultValue = "asc") String orderType) {
 
-        LOGGER.info("Loading Manage Persons Form...");
+        LOGGER.debug("Loading Manage Persons Form...");
 
         List<PersonDto> personList = personService.getPersonsByLastName(lastNameFilter, orderBy, orderType);
         ModelAndView mav = new ModelAndView("ManagePersons");
@@ -76,14 +73,14 @@ public class PersonController {
 
     @RequestMapping(value = "/deletePerson/{id}.htm", method = RequestMethod.GET)
     public String deletePerson(@PathVariable int id) {
-        LOGGER.info("Deleting...");
+        LOGGER.debug("Deleting...");
         personService.deletePerson(id);
         return "redirect:/managePersons.htm";
     }
 
     @RequestMapping(value = "fullPersonDetails/{id}.htm")
-    public String fullPersonDetails(@PathVariable int id, ModelMap modelMap) {
-        LOGGER.info("Full Person Details...");
+    public String loadFullPersonDetailsPage(@PathVariable int id, ModelMap modelMap) {
+        LOGGER.debug("Full Person Details...");
         modelMap.addAttribute( "person", personService.getPerson(id) );
         return "FullPersonDetailsForm";
     }
@@ -95,8 +92,8 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/addOrUpdatePerson.htm", method = RequestMethod.GET)
-    public ModelAndView loadAddOrUpdatePersonForm(@RequestParam(value = "personId", required = false) Integer idOfPersonToBeUpdated) {
-        LOGGER.info("Loading Add or Update Form...");
+    public ModelAndView loadAddOrUpdatePersonPage(@RequestParam(value = "personId", required = false) Integer idOfPersonToBeUpdated) {
+        LOGGER.debug("Loading Add or Update Form...");
         ModelAndView mav = new ModelAndView("AddOrUpdatePerson");
         if (idOfPersonToBeUpdated != null) {
             mav.addObject( "person", personService.getPerson(idOfPersonToBeUpdated) );
@@ -112,14 +109,14 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/addOrUpdatePerson.htm", method = RequestMethod.POST)
-    public String processFormSubmit(@ModelAttribute("person") @Validated PersonDto person,
+    public String processAddOrUpdateFormSubmit(@ModelAttribute("person") @Validated PersonDto person,
                                     BindingResult result,
                                     @RequestParam(value = "rolesParam", required = false) List<Integer> idsOfChosenRoles,
                                     @RequestParam(value = "Email",      required = false) List<String> emails,
                                     @RequestParam(value = "Cellphone",  required = false) List<String> cellphones,
                                     @RequestParam(value = "Landline",   required = false) List<String> landlines) {
 
-        LOGGER.info("Saving...");
+        LOGGER.debug("Saving...");
         List<RoleDto> chosenRoles = new ArrayList<RoleDto>();
         List<ContactDto> contacts = new ArrayList<ContactDto>();
 
@@ -144,8 +141,8 @@ public class PersonController {
             return "AddOrUpdatePerson";
         }
 
-        personService.addOrUpdatePerson(person);
-        return "redirect:/managePersons.htm";
+        Integer generatedId = personService.addOrUpdatePerson(person);
+        return "redirect:/fullPersonDetails/" + generatedId + ".htm";
     }
 
 }

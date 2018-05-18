@@ -27,31 +27,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
 public class UserController {
-	public static final String DEFAULT_ROLE = "ROLE_USER";
-
-	@Autowired
 	private UserService userService;
+	private UserValidator userValidator;
+	public static final String DEFAULT_ROLE = "ROLE_USER";
+	public static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private UserValidator userValidator;
-
-	public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
-
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
+	@Autowired
 	public void setUserValidator(UserValidator userValidator) {
 		this.userValidator = userValidator;
 	}
 
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
-	public String loadLoginForm(@RequestParam(value = "error", required = false) String error,
+	public String loadLoginPage(@RequestParam(value = "error", required = false) String error,
 	                            ModelMap modelMap) {
 		if (error != null) {
 			modelMap.addAttribute("errorMsg", "Incorrect username or password");
 		}
 		return "Login";
+	}
+
+	@RequestMapping(value = "/403.htm", method = RequestMethod.GET)
+	public String loadAccessDeniedPage() {
+		return "403";
 	}
 
 	@ModelAttribute("userRoles")
@@ -63,8 +65,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/addUser.htm", method = RequestMethod.GET)
-	public String loadAddUserForm(ModelMap modelMap) {
-		LOGGER.info("Loading Add User Form...");
+	public String loadAddUserPage(ModelMap modelMap) {
+		LOGGER.debug("Loading Add User Form...");
 		UsersDto user = new UsersDto();
 		user.setUserRole(DEFAULT_ROLE);
 		modelMap.addAttribute( "user", user );
@@ -72,10 +74,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/addUserSubmit.htm", method = RequestMethod.POST)
-	public String processFormSubmit(@ModelAttribute("user") @Validated UsersDto user,
+	public String processAddUserFormSubmit(@ModelAttribute("user") @Validated UsersDto user,
 									BindingResult result, ModelMap modelMap) {
 
-		LOGGER.info("Processing user form submit...");
+		LOGGER.debug("Processing user form submit...");
 		userValidator.validate(user, result);
 		if ( result.hasErrors() ) {
 			return "AddUser";
@@ -90,22 +92,22 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/manageUsers.htm", method = RequestMethod.GET)
-	public String loadManageUsersForm(ModelMap modelMap) {
-		LOGGER.info("Loading Manage Users Form...");
+	public String loadManageUsersPage(ModelMap modelMap) {
+		LOGGER.debug("Loading Manage Users Form...");
 		modelMap.addAttribute( "allUsers", userService.getAllUsers() );
 		return "ManageUsers";
 	}
 
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable int id) {
-		LOGGER.info("Deleting user...");
+		LOGGER.debug("Deleting user...");
 		userService.deleteUser(id);
 		return "redirect:/manageUsers.htm";
 	}
 
 	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.GET)
-	public String updateUser(@PathVariable int id, ModelMap modelMap) {
-		LOGGER.info("Loading update user form...");
+	public String loadUpdateUserPage(@PathVariable int id, ModelMap modelMap) {
+		LOGGER.debug("Loading update user form...");
 		UsersDto userToBeUpdated = userService.getUser(id);
 		userToBeUpdated.setPassword("");
 		modelMap.addAttribute("user", userToBeUpdated);
@@ -113,8 +115,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/updateUserSubmit.htm", method = RequestMethod.POST)
-	public String updateUserSubmit(@ModelAttribute("user") UsersDto user) {
-		LOGGER.info("Updating user...");
+	public String processUpdateUserFormSubmit(@ModelAttribute("user") UsersDto user,
+											  BindingResult result) {
+		LOGGER.debug("Updating user...");
+		userValidator.validate(user, result);
+		if ( result.hasErrors() ) {
+			return "AddUser";
+		}
 		String hashedPassword = new BCryptPasswordEncoder().encode( user.getPassword() );
 		user.setPassword(hashedPassword);
 		userService.updateUser(user);

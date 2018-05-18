@@ -15,12 +15,12 @@
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>100MB</maxFileSize>
+				<maxFileSize>20MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
 	</appender>
 
-	<logger name="com.exist.ecc.core.controller" level="info" additivity="false">
+	<logger name="com.exist.ecc.core.controller" level="debug" additivity="false">
 		<appender-ref ref="FILE-AUDIT" />
 	</logger>
 

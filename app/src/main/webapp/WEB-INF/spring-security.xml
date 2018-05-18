@@ -6,28 +6,30 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config = "true">
-		<intercept-url pattern = "/home*" access = "ROLE_ADMIN, ROLE_USER"/>
-		<intercept-url pattern = "/manage*" access = "ROLE_ADMIN, ROLE_USER"/>
-		<intercept-url pattern = "/add*" access = "ROLE_ADMIN, ROLE_USER"/>
-		<intercept-url pattern = "/delete*" access = "ROLE_ADMIN"/>
-		<intercept-url pattern = "/delete*/*" access = "ROLE_ADMIN"/>
-		<intercept-url pattern = "/update*" access = "ROLE_ADMIN"/>
-		<intercept-url pattern = "/update*/*" access = "ROLE_ADMIN"/>
-		<logout logout-success-url = "/login.htm"/>
-		<!-- <csrf/> -->
+	<http auto-config = "true" use-expressions = "true">
+		<intercept-url pattern = "/home*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/manage*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/add*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/delete*" access = "hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern = "/delete*/*" access = "hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern = "/update*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/update*/*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/updateUser/*" access = "hasRole('ROLE_ADMIN')"/>
+
 		<form-login
-		    login-page="/login.htm"
-		    default-target-url="/home.htm"
-			authentication-failure-url="/login.htm?error"
-			username-parameter="username"
-			password-parameter="password" />
+		    login-page = "/login.htm"
+		    default-target-url = "/home.htm"
+			authentication-failure-url = "/login.htm?error"
+			username-parameter = "username"
+			password-parameter = "password"/>
+		<logout logout-success-url = "/login.htm"/>
+		<access-denied-handler error-page = "/403.htm"/>
 	</http>
 
 
 	<authentication-manager>
 		<authentication-provider user-service-ref = "userDetailsServiceImpl">
-			<password-encoder hash = "bcrypt" />
+			<password-encoder hash = "bcrypt"/>
 		</authentication-provider>
 	</authentication-manager>
 

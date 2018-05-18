@@ -37,6 +37,7 @@
 		<c:if test="${not empty errorMsg}">
 			<div class="error">${errorMsg}</div>
 		</c:if>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	    </div>
 	</body>
 </html>

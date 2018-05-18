@@ -15,12 +15,13 @@
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
+		<div class="mainWrapper">
 		<h3>Manage Roles</h3>
 		<hr/>
 		<c:import url="LanguageSelect.jsp"/>
 
 		<form:form method="POST" modelAttribute="role" action="/addRole.htm">
-			<form:input path="roleName"/>
+			<form:input path="roleName" placeholder="Enter new Role"/>
 			<input type="submit" value="Add"/>
 			<form:errors path="roleName" cssClass="error"/>
 		</form:form>
@@ -47,8 +48,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-
-		<hr/>
+		</div>
 
 	</body>
 </html>

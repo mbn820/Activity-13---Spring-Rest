@@ -14,6 +14,7 @@
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
+		<div class="mainWrapper">
 		<h3>Full Person Details</h3>
 		<hr/>
 
@@ -90,7 +91,7 @@
 		</table>
 		<hr/>
 		<a href="/addOrUpdatePerson.htm?personId=${person.id}">UPDATE PERSON</a>
-
-		<hr/>
+		<hr>
+		</div>
 	</body>
 </html>

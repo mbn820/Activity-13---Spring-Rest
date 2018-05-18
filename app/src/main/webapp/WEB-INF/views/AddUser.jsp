@@ -21,13 +21,16 @@
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
-		<div align="center">
+		<div class="mainWrapper" align="center">
 		<h3>${requestType}</h3>
 		<hr/>
 
 		<form:form method="POST" modelAttribute="user" action="${action}">
 			<table>
 				<form:hidden path="id"/>
+				<th colspan="2">
+					Create new User Account
+				</th>
 				<tr>
 					<td>Username</td>
 					<td><form:input path="userName"/> <br>
@@ -35,7 +38,7 @@
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><form:input type="password" path="password"/> <br>
+					<td><form:input type="password" path="password" placeholder="Minimum length(6)"/> <br>
 						<form:errors path="password" cssClass="error"/></td>
 				</tr>
 				<tr>
@@ -46,7 +49,5 @@
 			</table>
 		</form:form>
 		</div>
-
-		<hr/>
 	</body>
 </html>

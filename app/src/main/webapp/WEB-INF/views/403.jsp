@@ -4,11 +4,16 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page isELIgnored="false" %>
 
-<c:set var="theLanguage">
-	<spring:message code="label.language"/>
-</c:set>
-${theLanguage}
-<select id="language">
-	<option value="en" ${theLanguage == 'Language' ? 'selected' : ''}>English</option>
-	<option value="tg" ${theLanguage == 'Wika' ? 'selected' : ''}>Tagalog</option>
-</select>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/resources/login.css"/>
+	</head>
+	<body>
+		<div align="center">
+		<h1>Access Denied!</h1>
+		<h3>Only admin is allowed</h3>
+		<a href="/home.htm">HOME</a>
+		</div>
+
+	</body>
+</html>

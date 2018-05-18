@@ -14,10 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class PersonDaoImpl implements PersonDao {
-	
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

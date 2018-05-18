@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PersonServiceImpl implements PersonService {
-
-	@Autowired
 	private PersonDao personDao;
-
-	@Autowired
 	private DtoMapper dtoMapper;
 
+	@Autowired
 	public void setPersonDao(PersonDao personDao) {
 		this.personDao = personDao;
 	}
 
+	@Autowired
 	public void setDtoMapper(DtoMapper dtoMapper) {
 		this.dtoMapper = dtoMapper;
 	}
@@ -31,12 +29,15 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.addPerson(personToBeAdded);
 	}
 
-	public void addOrUpdatePerson(PersonDto personDto) {
+	public Integer addOrUpdatePerson(PersonDto personDto) {
 		Person personToBeAddedOrUpdated = dtoMapper.mapToPerson(personDto);
-		if (personToBeAddedOrUpdated.getId() == 0) {
-			personDao.addPerson(personToBeAddedOrUpdated);
+		int personId = personToBeAddedOrUpdated.getId();
+
+		if (personId == 0) {
+			return personDao.addPerson(personToBeAddedOrUpdated);
 		} else {
 			personDao.updatePerson(personToBeAddedOrUpdated);
+			return personId;
 		}
 	}
 

@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

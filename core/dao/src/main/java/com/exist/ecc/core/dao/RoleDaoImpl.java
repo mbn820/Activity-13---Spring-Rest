@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

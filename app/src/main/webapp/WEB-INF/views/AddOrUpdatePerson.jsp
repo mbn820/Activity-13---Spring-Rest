@@ -144,15 +144,17 @@
 								<input type="button" value="Add Cellphone" id="add-cellphone-button"/>
 								<input type="button" value="Add Landline" id="add-landline-button"/>
 								<input type="button" value="Add Email" id="add-email-button"/> <br>
-								<form:errors path="contacts" cssClass="error"/>
 							</th>
+							<tr>
+								<td></td>
+								<td><form:errors path="contacts" cssClass="error"/></td>
+							</tr>
 							<c:forEach items="${person.contacts}" var="contact">
 								<tr>
 									<td>${contact.type}</td>
 									<td>
 										<input type="text" name="${contact.type}" value="${contact.detail}"/>
 										<input type="button" id="remove-button" value="X"/>
-										<form:errors path="contacts" cssClass="error"/>
 									</td>
 								</tr>
 							</c:forEach>
@@ -161,7 +163,6 @@
 					</tbody>
 				</table>
 			</form:form>
-			<hr/>
 		</div>
 	</body>
 

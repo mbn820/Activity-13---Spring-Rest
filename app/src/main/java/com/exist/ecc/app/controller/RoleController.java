@@ -32,26 +32,22 @@ import org.springframework.http.ResponseEntity;
 
 @Controller
 public class RoleController {
-
-    @Autowired
     private PersonService personService;
+    private RoleService roleService;
+	private RoleValidator roleValidator;
+    public static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
-    private RoleService roleService;
-
-	@Autowired
-	private RoleValidator roleValidator;
-
-    public static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
-
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
 
+    @Autowired
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
 
+    @Autowired
 	public void setRoleValidator(RoleValidator roleValidator) {
 		this.roleValidator = roleValidator;
 	}
@@ -63,17 +59,17 @@ public class RoleController {
 
 
 	@RequestMapping(value = "/manageRoles.htm", method = RequestMethod.GET)
-	public String loadManageRolesForm(ModelMap modelMap) {
-        LOGGER.info("Loading Manage Roles Form...");
+	public String loadManageRolesPage(ModelMap modelMap) {
+        LOGGER.debug("Loading Manage Roles Form...");
 		modelMap.addAttribute( "role", new RoleDto() );
 		return "ManageRoles";
 	}
 
 	@RequestMapping(value = "/addRole.htm", method = RequestMethod.POST)
-	public String processFormSubmit(@ModelAttribute("role") @Validated RoleDto roleToBeAdded,
-									BindingResult result) {
+	public String processAddRoleFormSubmit(@ModelAttribute("role") @Validated RoleDto roleToBeAdded,
+									       BindingResult result) {
 
-        LOGGER.info("Processing role form submit...");
+        LOGGER.debug("Processing role form submit...");
 		roleValidator.validate(roleToBeAdded, result);
 		if ( result.hasErrors() ) {
 			return "ManageRoles";
@@ -89,11 +85,11 @@ public class RoleController {
 	}
 
 	@RequestMapping(value = "/updateRole.htm", method = RequestMethod.POST)
-	public void updateRole(@RequestParam(value = "idToBeUpdated") Integer idToBeUpdated,
+	public void processUpdateRoleFormSubmit(@RequestParam(value = "idToBeUpdated") Integer idToBeUpdated,
 						   @RequestParam(value = "newRoleName") String newRoleName,
 						   HttpServletResponse response) throws Exception {
 
-        LOGGER.info("Updating role...");
+        LOGGER.debug("Updating role...");
 		RoleDto updatedRole = roleService.getRole(idToBeUpdated);
 		updatedRole.setRoleName(newRoleName);
 
@@ -108,7 +104,7 @@ public class RoleController {
 	public void deleteRole(@RequestParam(value = "idToBeDeleted") Integer idToBeDeleted,
 						   HttpServletResponse response) throws Exception {
 
-        LOGGER.info("Deleting role...");
+        LOGGER.debug("Deleting role...");
 
 		try {
 			roleService.deleteRole(idToBeDeleted);

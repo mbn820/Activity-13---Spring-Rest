@@ -15,6 +15,7 @@
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
 		<c:import url="NavigationBar.jsp"/>
+		<div class="mainWrapper">
 		<h3>FILE UPLOAD</h3>
 		<hr/>
 
@@ -24,7 +25,6 @@
 			<input type="submit" value="Upload"/>
 			<form:errors path="multipartFile" cssClass="error"/> <br>
 		</form:form>
-
-		<hr/>
+		</div>
 	</body>
 </html>

@@ -35,3 +35,8 @@ body {
 	padding: 0px;
 	margin: 0px;
 }
+
+.mainWrapper {
+	padding-left: 30px;
+	padding-right: 30px;
+}

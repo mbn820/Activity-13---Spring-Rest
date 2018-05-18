@@ -15,17 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
-	@Autowired
 	private UserDao userDao;
-
-	@Autowired
 	private DtoMapper dtoMapper;
 
+	@Autowired
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
+	@Autowired
 	public void setDtoMapper(DtoMapper dtoMapper) {
 		this.dtoMapper = dtoMapper;
 	}

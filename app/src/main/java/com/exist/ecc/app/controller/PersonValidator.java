@@ -1,5 +1,7 @@
 package com.exist.ecc.app.controller;
 
+import java.util.List;
+import com.exist.ecc.core.model.dto.ContactDto;
 import com.exist.ecc.core.model.dto.PersonDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -38,6 +40,38 @@ public class PersonValidator implements Validator {
 			}
 		}
 
+		validateContacts(person.getContacts(), errors);
+
+	}
+
+	public void validateContacts(List<ContactDto> contacts, Errors errors) {
+		String cellphonePattern = "\\d{10,11}";
+		String landlinePattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+		String emailPattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+		if ( contacts.size() == 0 ) {
+			return;
+		}
+
+		for (ContactDto contact : contacts) {
+			switch ( contact.getType() ) {
+				case "Email" :
+					if ( !contact.getDetail().matches(emailPattern) ) {
+						errors.rejectValue("contacts", "contacts.email.invalid", "Invalid Email");
+					}
+					break;
+				case "Landline" :
+					if ( !contact.getDetail().matches(landlinePattern) ) {
+						errors.rejectValue("contacts", "contacts.landline.invalid", "Invalid Landline");
+					}
+					break;
+				case "Cellphone" :
+					if ( !contact.getDetail().matches(cellphonePattern) ) {
+						errors.rejectValue("contacts", "contacts.cellphone.invalid", "Invalid Cellphone");
+					}
+					break;
+			}
+}
 	}
 
 }
