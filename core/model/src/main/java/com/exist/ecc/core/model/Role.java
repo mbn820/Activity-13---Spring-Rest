@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import com.fasterxml.jackson.annotation.*;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

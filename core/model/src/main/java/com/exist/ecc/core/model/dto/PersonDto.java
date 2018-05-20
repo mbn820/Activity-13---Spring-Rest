@@ -2,6 +2,7 @@ package com.exist.ecc.core.model.dto;
 
 import java.util.*;
 import com.exist.ecc.core.model.*;
+import com.fasterxml.jackson.annotation.*;
 
 public class PersonDto {
 

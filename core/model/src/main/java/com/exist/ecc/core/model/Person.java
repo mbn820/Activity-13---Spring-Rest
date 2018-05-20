@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Date;
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.*;
 
 
 @Entity

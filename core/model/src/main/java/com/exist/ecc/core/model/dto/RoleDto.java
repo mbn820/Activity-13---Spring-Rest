@@ -3,11 +3,15 @@ package com.exist.ecc.core.model.dto;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.*;
 
 public class RoleDto {
 
 	private int id;
+
 	private String roleName;
+
+	@JsonBackReference
 	private Set<PersonDto> persons;
 
 	public RoleDto() {}
