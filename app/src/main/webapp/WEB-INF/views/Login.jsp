@@ -4,9 +4,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page isELIgnored="false" %>
 
+<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="/resources/login.css"/>
+		<spring:url var="loginStyle" value="/resources/login.css"/>
+		<link rel="stylesheet" type="text/css" href="${loginStyle}"/>
 	</head>
 	<body>
 		<div align="center"><h1 class="welcome">WELCOME</h1></div>

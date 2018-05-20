@@ -17,19 +17,24 @@
 		<intercept-url pattern = "/updateUser/*" access = "hasRole('ROLE_ADMIN')"/>
 
 		<form-login
-		    login-page = "/login.htm"
-		    default-target-url = "/home.htm"
-			authentication-failure-url = "/login.htm?error"
+		    login-page = "/login"
+		    default-target-url = "/home"
+			authentication-failure-url = "/login?error"
 			username-parameter = "username"
 			password-parameter = "password"/>
-		<logout logout-success-url = "/login.htm"/>
-		<access-denied-handler error-page = "/403.htm"/>
+		<logout logout-success-url = "/login"/>
+		<access-denied-handler error-page = "/403"/>
 	</http>
 
 
 	<authentication-manager>
 		<authentication-provider user-service-ref = "userDetailsServiceImpl">
 			<password-encoder hash = "bcrypt"/>
+		</authentication-provider>
+		<authentication-provider>
+			<user-service>
+				<user name="default" password="123456" authorities="ROLE_ADMIN" />
+			</user-service>
 		</authentication-provider>
 	</authentication-manager>
 

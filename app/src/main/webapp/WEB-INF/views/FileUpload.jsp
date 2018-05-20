@@ -19,7 +19,7 @@
 		<h3>FILE UPLOAD</h3>
 		<hr/>
 
-		<form:form method="POST" commandName="fileUpload" action="/fileUpload.htm" enctype="multipart/form-data">
+		<form:form method="POST" commandName="fileUpload" action="/fileUpload" enctype="multipart/form-data">
 			Select file to upload:
 			<input type="file" name="multipartFile" id="multipartFile"/> <br>
 			<input type="submit" value="Upload"/>

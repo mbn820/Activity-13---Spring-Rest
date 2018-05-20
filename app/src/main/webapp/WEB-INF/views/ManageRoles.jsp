@@ -20,7 +20,7 @@
 		<hr/>
 		<c:import url="LanguageSelect.jsp"/>
 
-		<form:form method="POST" modelAttribute="role" action="/addRole.htm">
+		<form:form method="POST" modelAttribute="role" action="/addRole">
 			<form:input path="roleName" placeholder="Enter new Role"/>
 			<input type="submit" value="Add"/>
 			<form:errors path="roleName" cssClass="error"/>

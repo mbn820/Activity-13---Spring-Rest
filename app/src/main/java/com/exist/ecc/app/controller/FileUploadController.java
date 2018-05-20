@@ -57,13 +57,13 @@ public class FileUploadController {
 		this.fileUploadValidator = fileUploadValidator;
 	}
 
-	@RequestMapping(value = "/fileUploadForm.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/fileUploadForm", method = RequestMethod.GET)
 	public String loadFileUploadForm() {
 		LOGGER.debug("Loading file upload form...");
 		return "FileUpload";
 	}
 
-	@RequestMapping(value = "/fileUpload.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	public String processUpload(@ModelAttribute("fileUpload") @Validated FileUpload fileUpload,
 							    BindingResult result) throws Exception {
 

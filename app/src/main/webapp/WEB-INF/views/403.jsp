@@ -12,7 +12,7 @@
 		<div align="center">
 		<h1>Access Denied!</h1>
 		<h3>Only admin is allowed</h3>
-		<a href="/home.htm">HOME</a>
+		<a href="/home">HOME</a>
 		</div>
 
 	</body>

@@ -59,14 +59,14 @@ public class RoleController {
 	}
 
 
-	@RequestMapping(value = "/manageRoles.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageRoles", method = RequestMethod.GET)
 	public String loadManageRolesPage(ModelMap modelMap) {
         LOGGER.debug("Loading Manage Roles Form...");
 		modelMap.addAttribute( "role", new RoleDto() );
 		return "ManageRoles";
 	}
 
-	@RequestMapping(value = "/addRole.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/addRole", method = RequestMethod.POST)
 	public String processAddRoleFormSubmit(@ModelAttribute("role") @Validated RoleDto roleToBeAdded,
 									       BindingResult result) {
 
@@ -82,10 +82,10 @@ public class RoleController {
 
 		}
 
-		return "redirect:/manageRoles.htm";
+		return "redirect:/manageRoles";
 	}
 
-	@RequestMapping(value = "/updateRole.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateRole", method = RequestMethod.POST)
 	public void processUpdateRoleFormSubmit(@RequestParam(value = "idToBeUpdated") Integer idToBeUpdated,
 						   @RequestParam(value = "newRoleName") String newRoleName,
 						   HttpServletResponse response) throws Exception {
@@ -101,7 +101,7 @@ public class RoleController {
 		}
 	}
 
-	@RequestMapping(value = "/deleteRole.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteRole", method = RequestMethod.POST)
 	public void deleteRole(@RequestParam(value = "idToBeDeleted") Integer idToBeDeleted,
 						   HttpServletResponse response) throws Exception {
 

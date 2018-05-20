@@ -43,7 +43,7 @@ public class UserController {
 		this.userValidator = userValidator;
 	}
 
-	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loadLoginPage(@RequestParam(value = "error", required = false) String error,
 	                            ModelMap modelMap) {
 		if (error != null) {
@@ -52,7 +52,7 @@ public class UserController {
 		return "Login";
 	}
 
-	@RequestMapping(value = "/403.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String loadAccessDeniedPage() {
 		return "403";
 	}
@@ -65,16 +65,18 @@ public class UserController {
 		return roles;
 	}
 
-	@RequestMapping(value = "/addUser.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String loadAddUserPage(ModelMap modelMap) {
 		LOGGER.debug("Loading Add User Form...");
+
 		UsersDto user = new UsersDto();
 		user.setUserRole(DEFAULT_ROLE);
+		
 		modelMap.addAttribute( "user", user );
 		return "AddUser";
 	}
 
-	@RequestMapping(value = "/addUserSubmit.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/addUserSubmit", method = RequestMethod.POST)
 	public String processAddUserFormSubmit(@ModelAttribute("user") @Validated UsersDto user,
 									BindingResult result, ModelMap modelMap) {
 
@@ -89,10 +91,10 @@ public class UserController {
 		userService.addUser(user);
 
 		modelMap.clear();
-		return "redirect:/manageUsers.htm";
+		return "redirect:/manageUsers";
 	}
 
-	@RequestMapping(value = "/manageUsers.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
 	public String loadManageUsersPage(ModelMap modelMap) {
 		LOGGER.debug("Loading Manage Users Form...");
 		modelMap.addAttribute( "allUsers", userService.getAllUsers() );
@@ -103,7 +105,7 @@ public class UserController {
 	public String deleteUser(@PathVariable int id) {
 		LOGGER.debug("Deleting user...");
 		userService.deleteUser(id);
-		return "redirect:/manageUsers.htm";
+		return "redirect:/manageUsers";
 	}
 
 	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.GET)
@@ -115,7 +117,7 @@ public class UserController {
 		return "AddUser";
 	}
 
-	@RequestMapping(value = "/updateUserSubmit.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUserSubmit", method = RequestMethod.POST)
 	public String processUpdateUserFormSubmit(@ModelAttribute("user") UsersDto user,
 											  BindingResult result) {
 		LOGGER.debug("Updating user...");
@@ -126,7 +128,7 @@ public class UserController {
 		String hashedPassword = new BCryptPasswordEncoder().encode( user.getPassword() );
 		user.setPassword(hashedPassword);
 		userService.updateUser(user);
-		return "redirect:/manageUsers.htm";
+		return "redirect:/manageUsers";
 	}
 
 

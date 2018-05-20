@@ -53,12 +53,12 @@ public class PersonController {
         this.personValidator = personValidator;
     }
 
-    @RequestMapping(value = "/home.htm")
+    @RequestMapping(value = "/home")
     public String loadHomePage() {
         return "Home";
     }
 
-    @RequestMapping(value = "/managePersons.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "/managePersons", method = RequestMethod.GET)
     public ModelAndView loadManagePersonsPage(@RequestParam(defaultValue = "") String lastNameFilter,
                                               @RequestParam(defaultValue = "id") String orderBy,
                                               @RequestParam(defaultValue = "asc") String orderType) {
@@ -72,14 +72,14 @@ public class PersonController {
         return mav;
     }
 
-    @RequestMapping(value = "/deletePerson/{id}.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletePerson/{id}", method = RequestMethod.GET)
     public String deletePerson(@PathVariable int id) {
         LOGGER.debug("Deleting...");
         personService.deletePerson(id);
         return "redirect:/managePersons.htm";
     }
 
-    @RequestMapping(value = "fullPersonDetails/{id}.htm")
+    @RequestMapping(value = "fullPersonDetails/{id}")
     public String loadFullPersonDetailsPage(@PathVariable int id, ModelMap modelMap) {
         LOGGER.debug("Full Person Details...");
         modelMap.addAttribute( "person", personService.getPerson(id) );
@@ -92,7 +92,7 @@ public class PersonController {
 		binder.registerCustomEditor( Date.class, new CustomDateEditor(dateFormat, true) );
     }
 
-    @RequestMapping(value = "/addOrUpdatePerson.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "/addOrUpdatePerson", method = RequestMethod.GET)
     public ModelAndView loadAddOrUpdatePersonPage(@RequestParam(value = "personId", required = false) Integer idOfPersonToBeUpdated) {
         LOGGER.debug("Loading Add or Update Form...");
         ModelAndView mav = new ModelAndView("AddOrUpdatePerson");
@@ -109,7 +109,7 @@ public class PersonController {
         return roleService.getAllRoles();
     }
 
-    @RequestMapping(value = "/addOrUpdatePerson.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrUpdatePerson", method = RequestMethod.POST)
     public String processAddOrUpdateFormSubmit(@ModelAttribute("person") @Validated PersonDto person,
                                     BindingResult result,
                                     @RequestParam(value = "rolesParam", required = false) List<Integer> idsOfChosenRoles,

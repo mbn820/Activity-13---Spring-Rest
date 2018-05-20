@@ -21,7 +21,7 @@
         <c:import url="LanguageSelect.jsp"/>
         <c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
-        <form action="/managePersons.htm" method="GET">
+        <form action="/managePersons" method="GET">
             <input type="text" name="lastNameFilter" placeholder="Filter by last name" value="${param.lastNameFilter}"/>
             <input type="submit" value="FILTER">
             <br/>
@@ -42,7 +42,7 @@
                     <c:forEach items="${personList}" var="person">
                         <tr>
                             <td align="center">
-                                <a href="/fullPersonDetails/${person.id}.htm">${person.id}</a>
+                                <a href="/fullPersonDetails/${person.id}">${person.id}</a>
                             </td>
                             <td>${person.name.firstName}</td>
                             <td>${person.name.middleName}</td>
@@ -51,10 +51,10 @@
                             <td>${person.gwa}</td>
                             <td>${person.roles}</td>
                             <td align="center">
-                                <a href="/addOrUpdatePerson.htm?personId=${person.id}"><spring:message code="label.update"/></a>
+                                <a href="/addOrUpdatePerson?personId=${person.id}"><spring:message code="label.update"/></a>
                             </td>
                             <td align="center">
-                                <a href="/deletePerson/${person.id}.htm"><spring:message code="label.delete"/></a>
+                                <a href="/deletePerson/${person.id}"><spring:message code="label.delete"/></a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -6,10 +6,10 @@
 
 <html>
 	<c:set var="requestType" value="Add User"/>
-	<c:set var="action" value="/addUserSubmit.htm"/>
+	<c:set var="action" value="/addUserSubmit"/>
 	<c:if test="${user.id != 0}">
 		<c:set var="requestType" value="Update User"/>
-		<c:set var="action" value="/updateUserSubmit.htm"/>
+		<c:set var="action" value="/updateUserSubmit"/>
 	</c:if>
 	<head>
 		<title>${requestType}</title>
