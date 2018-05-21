@@ -21,12 +21,12 @@
 
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
-		<c:import url="NavigationBar.jsp"/>
+		<c:import url="../util/NavigationBar.jsp"/>
 		<h3 align="center">${requestType}</h3>
 		<hr/>
 
 		<div class="tableForm" align="center">
-			<c:import url="LanguageSelect.jsp"/>
+			<c:import url="../util/LanguageSelect.jsp"/>
 			<form:form id="person" method="POST" modelAttribute="person">
 				<form:hidden path="id"/>
 

@@ -9,6 +9,6 @@ public interface PersonDao {
 	public Person getPerson(int id);
 	public List<Person> getAllPerson(String orderBy);
 	public List<Person> getPersonsByLastName(String lastName, String orderBy, String orderType);
-	public void deletePerson(int id);
+	public boolean deletePerson(int id);
 	public void updatePerson(Person person);
 }

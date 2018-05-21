@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
-		<c:import url="NavigationBar.jsp"/>
+		<c:import url="../util/NavigationBar.jsp"/>
 		<div class="mainWrapper">
 		<h3>Full Person Details</h3>
 		<hr/>
@@ -90,7 +90,7 @@
 			</c:forEach>
 		</table>
 		<hr/>
-		<a href="/addOrUpdatePerson?personId=${person.id}">UPDATE PERSON</a>
+		<a href="/person/addOrUpdatePerson?personId=${person.id}">UPDATE PERSON</a>
 		<hr>
 		</div>
 	</body>

@@ -14,13 +14,13 @@
 
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
-		<c:import url="NavigationBar.jsp"/>
+		<c:import url="../util/NavigationBar.jsp"/>
 		<div class="mainWrapper">
 		<h3>Manage Roles</h3>
 		<hr/>
-		<c:import url="LanguageSelect.jsp"/>
+		<c:import url="../util/LanguageSelect.jsp"/>
 
-		<form:form method="POST" modelAttribute="role" action="/addRole">
+		<form:form method="POST" modelAttribute="role" action="/role/addRole">
 			<form:input path="roleName" placeholder="Enter new Role"/>
 			<input type="submit" value="Add"/>
 			<form:errors path="roleName" cssClass="error"/>

@@ -61,8 +61,13 @@ public class PersonDaoImpl implements PersonDao {
 		getCurrentSession().update(person);
 	}
 
-	public void deletePerson(int id) {
-		getCurrentSession().delete( getPerson(id) );
+	public boolean deletePerson(int id) {
+		Person personToBeDeleted = getPerson(id);
+		if (personToBeDeleted == null) {
+			return false;
+		}
+		getCurrentSession().delete(personToBeDeleted);
+		return true;
 	}
 
 	public void deleteAllRecords() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
+@RequestMapping
 public class UserController {
 	private UserService userService;
 	private UserValidator userValidator;
@@ -49,12 +51,17 @@ public class UserController {
 		if (error != null) {
 			modelMap.addAttribute("errorMsg", "Incorrect username or password");
 		}
-		return "Login";
+		return "user/Login";
 	}
+
+	@RequestMapping(value = {"/", "/home"})
+    public String loadHomePage() {
+        return "util/Home";
+    }
 
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String loadAccessDeniedPage() {
-		return "403";
+		return "util/403";
 	}
 
 	@ModelAttribute("userRoles")
@@ -65,25 +72,23 @@ public class UserController {
 		return roles;
 	}
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/addUser", method = RequestMethod.GET)
 	public String loadAddUserPage(ModelMap modelMap) {
 		LOGGER.debug("Loading Add User Form...");
-
 		UsersDto user = new UsersDto();
 		user.setUserRole(DEFAULT_ROLE);
-		
 		modelMap.addAttribute( "user", user );
-		return "AddUser";
+		return "user/AddUser";
 	}
 
-	@RequestMapping(value = "/addUserSubmit", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/addUserSubmit", method = RequestMethod.POST)
 	public String processAddUserFormSubmit(@ModelAttribute("user") @Validated UsersDto user,
 									BindingResult result, ModelMap modelMap) {
 
 		LOGGER.debug("Processing user form submit...");
 		userValidator.validate(user, result);
 		if ( result.hasErrors() ) {
-			return "AddUser";
+			return "user/AddUser";
 		}
 
 		String hashedPassword = new BCryptPasswordEncoder().encode( user.getPassword() );
@@ -91,44 +96,57 @@ public class UserController {
 		userService.addUser(user);
 
 		modelMap.clear();
-		return "redirect:/manageUsers";
+		return "redirect:/user/manageUsers";
 	}
 
-	@RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/manageUsers", method = RequestMethod.GET)
 	public String loadManageUsersPage(ModelMap modelMap) {
 		LOGGER.debug("Loading Manage Users Form...");
 		modelMap.addAttribute( "allUsers", userService.getAllUsers() );
-		return "ManageUsers";
+		return "user/ManageUsers";
 	}
 
-	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/deleteUser/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable int id) {
 		LOGGER.debug("Deleting user...");
 		userService.deleteUser(id);
-		return "redirect:/manageUsers";
+		return "redirect:/user/manageUsers";
 	}
 
-	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/updateUser/{id}", method = RequestMethod.GET)
 	public String loadUpdateUserPage(@PathVariable int id, ModelMap modelMap) {
 		LOGGER.debug("Loading update user form...");
 		UsersDto userToBeUpdated = userService.getUser(id);
-		userToBeUpdated.setPassword("");
 		modelMap.addAttribute("user", userToBeUpdated);
-		return "AddUser";
+		return "user/AddUser";
 	}
 
-	@RequestMapping(value = "/updateUserSubmit", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/updateUserSubmit", method = RequestMethod.POST)
 	public String processUpdateUserFormSubmit(@ModelAttribute("user") UsersDto user,
 											  BindingResult result) {
 		LOGGER.debug("Updating user...");
-		userValidator.validate(user, result);
-		if ( result.hasErrors() ) {
-			return "AddUser";
+
+		UsersDto origUser = userService.getUser( user.getId() );
+
+		if ( !origUser.getUserName().equals(user.getUserName()) ) {
+			userValidator.validate(user, result);
+			if ( result.hasErrors() ) {
+				return "user/AddUser";
+			}
 		}
-		String hashedPassword = new BCryptPasswordEncoder().encode( user.getPassword() );
+		
+		userService.updateUser(user);
+		return "redirect:/user/manageUsers";
+	}
+
+	@RequestMapping(value = "/user/updatePassword", method = RequestMethod.POST)
+	public void processUpdatePasswordSubmit(@RequestParam("newPassword") String newPassword,
+										    Principal principal, HttpServletResponse response) {
+
+		String hashedPassword = new BCryptPasswordEncoder().encode(newPassword);
+		UsersDto user = userService.getUserByName( principal.getName() );
 		user.setPassword(hashedPassword);
 		userService.updateUser(user);
-		return "redirect:/manageUsers";
 	}
 
 

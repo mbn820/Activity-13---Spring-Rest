@@ -15,7 +15,7 @@
 
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
-		<c:import url="NavigationBar.jsp"/>
+		<c:import url="../util/NavigationBar.jsp"/>
 
 		<div class="mainWrapper" align="center">
 			<h3>Manage Users</h3>
@@ -26,8 +26,8 @@
 					<th>USERNAME</th>
 					<th>ROLE</th>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<th>UPDATE</th>
 					<th>DELETE</th>
+					<th>UPDATE</th>
 					</sec:authorize>
 				</tr>
 
@@ -40,10 +40,10 @@
 						<td>${user.userRole}</td>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<td align="center">
-								<a href="/deleteUser/${user.id}">Delete</a>
+								<a href="/user/deleteUser/${user.id}"><spring:message code="label.delete"/></a>
 							</td>
 							<td align="center">
-								<a href="/updateUser/${user.id}">Update</a>
+								<a href="/user/updateUser/${user.id}"><spring:message code="label.update"/></a>
 							</td>
 						</sec:authorize>
 					</tr>

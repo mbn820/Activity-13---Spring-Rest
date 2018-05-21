@@ -64,8 +64,8 @@ public class PersonServiceImpl implements PersonService {
 		personDao.updatePerson(personToBeUpdated);
 	}
 
-	public void deletePerson(int id) {
-		personDao.deletePerson(id);
+	public boolean deletePerson(int id) {
+		return personDao.deletePerson(id);
 	}
 
 	public boolean databaseIsEmpty() {

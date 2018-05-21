@@ -59,21 +59,21 @@ public class RoleController {
 	}
 
 
-	@RequestMapping(value = "/manageRoles", method = RequestMethod.GET)
+	@RequestMapping(value = "/role/manageRoles", method = RequestMethod.GET)
 	public String loadManageRolesPage(ModelMap modelMap) {
         LOGGER.debug("Loading Manage Roles Form...");
 		modelMap.addAttribute( "role", new RoleDto() );
-		return "ManageRoles";
+		return "role/ManageRoles";
 	}
 
-	@RequestMapping(value = "/addRole", method = RequestMethod.POST)
+	@RequestMapping(value = "/role/addRole", method = RequestMethod.POST)
 	public String processAddRoleFormSubmit(@ModelAttribute("role") @Validated RoleDto roleToBeAdded,
 									       BindingResult result) {
 
         LOGGER.debug("Processing role form submit...");
 		roleValidator.validate(roleToBeAdded, result);
 		if ( result.hasErrors() ) {
-			return "ManageRoles";
+			return "role/ManageRoles";
 		}
 
 		try {
@@ -82,10 +82,10 @@ public class RoleController {
 
 		}
 
-		return "redirect:/manageRoles";
+		return "redirect:/role/manageRoles";
 	}
 
-	@RequestMapping(value = "/updateRole", method = RequestMethod.POST)
+	@RequestMapping(value = "/role/updateRole", method = RequestMethod.POST)
 	public void processUpdateRoleFormSubmit(@RequestParam(value = "idToBeUpdated") Integer idToBeUpdated,
 						   @RequestParam(value = "newRoleName") String newRoleName,
 						   HttpServletResponse response) throws Exception {
@@ -101,7 +101,7 @@ public class RoleController {
 		}
 	}
 
-	@RequestMapping(value = "/deleteRole", method = RequestMethod.POST)
+	@RequestMapping(value = "/role/deleteRole", method = RequestMethod.POST)
 	public void deleteRole(@RequestParam(value = "idToBeDeleted") Integer idToBeDeleted,
 						   HttpServletResponse response) throws Exception {
 

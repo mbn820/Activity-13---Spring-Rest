@@ -15,11 +15,10 @@
 		"com.exist.ecc.app.controller,
 		 com.exist.ecc.app.restcontroller,
 		 com.exist.ecc.app.validator,
+		 com.exist.ecc.app.config,
 		 com.exist.ecc.core.dao,
 		 com.exist.ecc.core.service"/>
 	<mvc:annotation-driven/>
-	<mvc:default-servlet-handler/>
-	<mvc:resources mapping = "resources/**" location = "/resources"/>
 
 
 	<!-- FILE UPLOAD CONTROLLER -->
@@ -43,6 +42,7 @@
 	<bean id = "localeResolver" class = "org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name = "defaultLocale" value = "en"/>
 	</bean>
+
 
 	<!-- VIEW RESOLVER -->
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver" >

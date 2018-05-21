@@ -10,5 +10,5 @@ public interface PersonService {
 	public List<PersonDto> getAllPerson(String orderBy);
 	public List<PersonDto> getPersonsByLastName(String lastName, String orderBy, String orderType);
 	public void updatePerson(PersonDto personDto);
-	public void deletePerson(int id);
+	public boolean deletePerson(int id);
 }

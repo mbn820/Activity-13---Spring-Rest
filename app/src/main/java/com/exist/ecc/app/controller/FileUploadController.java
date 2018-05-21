@@ -57,20 +57,20 @@ public class FileUploadController {
 		this.fileUploadValidator = fileUploadValidator;
 	}
 
-	@RequestMapping(value = "/fileUploadForm", method = RequestMethod.GET)
+	@RequestMapping(value = "person/fileUploadForm", method = RequestMethod.GET)
 	public String loadFileUploadForm() {
 		LOGGER.debug("Loading file upload form...");
-		return "FileUpload";
+		return "person/FileUpload";
 	}
 
-	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+	@RequestMapping(value = "person/fileUpload", method = RequestMethod.POST)
 	public String processUpload(@ModelAttribute("fileUpload") @Validated FileUpload fileUpload,
 							    BindingResult result) throws Exception {
 
 		LOGGER.debug("Processing upload...");
 		fileUploadValidator.validate(fileUpload, result);
 		if ( result.hasErrors() ) {
-			return "FileUpload";
+			return "person/FileUpload";
 		}
 
 		MultipartFile multipartFile = fileUpload.getMultipartFile();
@@ -81,9 +81,9 @@ public class FileUploadController {
 
 		fixRoles(person);
 
-		personService.addPerson(person);
+		Integer generatedId = personService.addPerson(person);
 
-		return "redirect:/managePersons.htm";
+		return "redirect:/person/fullPersonDetails/" + generatedId;
 	}
 
 	private void fixRoles(PersonDto person) {

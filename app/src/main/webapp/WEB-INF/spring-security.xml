@@ -7,14 +7,15 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config = "true" use-expressions = "true">
-		<intercept-url pattern = "/home*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-		<intercept-url pattern = "/manage*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-		<intercept-url pattern = "/add*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-		<intercept-url pattern = "/delete*" access = "hasRole('ROLE_ADMIN')"/>
-		<intercept-url pattern = "/delete*/*" access = "hasRole('ROLE_ADMIN')"/>
-		<intercept-url pattern = "/update*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-		<intercept-url pattern = "/update*/*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-		<intercept-url pattern = "/updateUser/*" access = "hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern = "/" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<!-- <intercept-url pattern = "/home*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/> -->
+		<intercept-url pattern = "/*/manage*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/*/add*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/*/delete*" access = "hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern = "/*/delete*/*" access = "hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern = "/*/update*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/*/update*/*" access = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<intercept-url pattern = "/*/updateUser/*" access = "hasRole('ROLE_ADMIN')"/>
 
 		<form-login
 		    login-page = "/login"
@@ -30,11 +31,6 @@
 	<authentication-manager>
 		<authentication-provider user-service-ref = "userDetailsServiceImpl">
 			<password-encoder hash = "bcrypt"/>
-		</authentication-provider>
-		<authentication-provider>
-			<user-service>
-				<user name="default" password="123456" authorities="ROLE_ADMIN" />
-			</user-service>
 		</authentication-provider>
 	</authentication-manager>
 

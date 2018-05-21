@@ -14,12 +14,12 @@
 
 	<body>
 		<c:set var="currentPage" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request"/>
-		<c:import url="NavigationBar.jsp"/>
+		<c:import url="../util/NavigationBar.jsp"/>
 		<div class="mainWrapper">
 		<h3>FILE UPLOAD</h3>
 		<hr/>
 
-		<form:form method="POST" commandName="fileUpload" action="/fileUpload" enctype="multipart/form-data">
+		<form:form method="POST" commandName="fileUpload" action="/person/fileUpload" enctype="multipart/form-data">
 			Select file to upload:
 			<input type="file" name="multipartFile" id="multipartFile"/> <br>
 			<input type="submit" value="Upload"/>

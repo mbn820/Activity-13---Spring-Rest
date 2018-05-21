@@ -43,7 +43,7 @@ $(document).ready(function() {
 		var roleId=$(this).attr("data-roleId");
 
 		if (newRoleName != origName && newRoleName != null && newRoleName != "") {
-			$.post("/updateRole.htm", {newRoleName : newRoleName, idToBeUpdated : roleId}, function() {
+			$.post("/role/updateRole", {newRoleName : newRoleName, idToBeUpdated : roleId}, function() {
 				location.reload();
 			}).fail(function() {
 				alert("Role Already Exists!");
@@ -55,12 +55,30 @@ $(document).ready(function() {
 	$("[name=delete-role-button]").click(function() {
 		var roleId=$(this).attr("data-roleId");
 
-		$.post("/deleteRole.htm", {idToBeDeleted : roleId}, function() {
+		$.post("/role/deleteRole", {idToBeDeleted : roleId}, function() {
 			location.reload();
 		}).fail(function() {
 			alert("Cannot Delete Role!!");
 		});
 
+	});
+
+	$(".userTab").click(function() {
+		var proceed = confirm("Update Password?");
+		if (proceed) {
+			var newPassword = window.prompt("Enter new Password:");
+
+			if (newPassword.length < 6) {
+				alert("Password too short!");
+				return;
+			}
+			
+			if (newPassword != null && newPassword != "") {
+				$.post("/user/updatePassword", {newPassword : newPassword}, function() {
+					alert("Password Updated!");
+				});
+			}
+		}
 	});
 
 });

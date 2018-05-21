@@ -13,7 +13,7 @@
 
 		<br><br><br><br><br><br><br><br>
 		<div align="center">
-		<form action="j_spring_security_check" method="POST">
+		<form action="/signin" method="POST">
 			<table>
 				<tr>
 					<th colspan="2">LOGIN WITH USERNAME AND PASSWORD</th>
@@ -32,12 +32,13 @@
 					</th>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 
 		<c:if test="${not empty errorMsg}">
 			<div class="error">${errorMsg}</div>
 		</c:if>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
 	    </div>
 	</body>
 </html>

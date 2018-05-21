@@ -7,7 +7,7 @@
 <c:set var="theLanguage">
 	<spring:message code="label.language"/>
 </c:set>
-${theLanguage}
+${theLanguage}:
 <select id="language">
 	<option value="en" ${theLanguage == 'Language' ? 'selected' : ''}>English</option>
 	<option value="tg" ${theLanguage == 'Wika' ? 'selected' : ''}>Tagalog</option>
