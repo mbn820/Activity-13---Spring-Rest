@@ -7,6 +7,7 @@ import com.exist.ecc.core.dao.PersonDao;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service
 @Transactional
@@ -24,11 +25,13 @@ public class PersonServiceImpl implements PersonService {
 		this.dtoMapper = dtoMapper;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addPerson(PersonDto personDto) {
 		Person personToBeAdded = dtoMapper.mapToPerson(personDto);
 		return personDao.addPerson(personToBeAdded);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addOrUpdatePerson(PersonDto personDto) {
 		Person personToBeAddedOrUpdated = dtoMapper.mapToPerson(personDto);
 		int personId = personToBeAddedOrUpdated.getId();
@@ -59,11 +62,13 @@ public class PersonServiceImpl implements PersonService {
 		return dtoMapper.mapToPersonDtoList(persons);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void updatePerson(PersonDto personDto) {
 		Person personToBeUpdated = dtoMapper.mapToPerson(personDto);
 		personDao.updatePerson(personToBeUpdated);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public boolean deletePerson(int id) {
 		return personDao.deletePerson(id);
 	}

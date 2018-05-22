@@ -10,8 +10,12 @@
 		<li><a class="${currentPage.equals('/user/manageUsers') ? 'active' : ''}"         href="/user/manageUsers">Manage Users</a></li>
 		<li><a class="${currentPage.equals('/person/fileUploadForm') ? 'active' : ''}"    href="/person/fileUploadForm">Upload a File</a></li>
 		<div style="float:right">
-		<li><a class="userTab" href="javascript:popUp();">CURRENT USER: ${pageContext.request.userPrincipal.name}</a></li>
-		<li><a class="logout" href="/signout"> Logout</a></li>
+		<li><a class="userTab" href="javascript:void(0);">CURRENT USER: ${pageContext.request.userPrincipal.name}</a></li>
+		<li><a class="logout" href="javascript:void(0);"> Logout</a></li>
 		</div>
 	<ul>
 </div>
+
+<form action="/signout" method="post" id="logoutForm">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>

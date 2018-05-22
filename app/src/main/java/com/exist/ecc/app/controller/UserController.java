@@ -59,7 +59,7 @@ public class UserController {
         return "util/Home";
     }
 
-	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	@RequestMapping(value = "/403", method = {RequestMethod.GET, RequestMethod.POST})
 	public String loadAccessDeniedPage() {
 		return "util/403";
 	}
@@ -134,7 +134,7 @@ public class UserController {
 				return "user/AddUser";
 			}
 		}
-		
+
 		userService.updateUser(user);
 		return "redirect:/user/manageUsers";
 	}

@@ -7,6 +7,7 @@ import com.exist.ecc.core.model.dto.RoleDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service
 @Transactional
@@ -24,6 +25,7 @@ public class RoleServiceImpl implements RoleService {
 		this.dtoMapper = dtoMapper;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addRole(RoleDto roleDto) throws Exception {
 		if ( roleAlreadyExists(roleDto) ) {
 			throw new Exception();
@@ -51,6 +53,7 @@ public class RoleServiceImpl implements RoleService {
 		return dtoMapper.mapToRoleDtoList(roles);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void updateRole(RoleDto role) throws Exception {
 		if ( roleAlreadyExists(role) ) {
 			throw new Exception(); // create RoleAlreadyExistsException
@@ -60,6 +63,7 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void updateRoleName(int roleId, String newRoleName) {
 		if ( roleAlreadyExists(newRoleName) ) {
 			return;
@@ -69,6 +73,7 @@ public class RoleServiceImpl implements RoleService {
 		roleDao.updateRole(roleToBeUpdated);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteRole(int id) throws Exception {
 		if( !getRole(id).getPersons().isEmpty() ) {
 			throw new Exception();

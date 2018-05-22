@@ -1,0 +1,5 @@
+roles vs privilege
+authentication providers
+bcrypt SHA1
+java based
+multipartfile 

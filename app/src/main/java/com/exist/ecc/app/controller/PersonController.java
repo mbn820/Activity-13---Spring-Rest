@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.BindingResult;
 
-
 @Controller
 public class PersonController {
     private PersonService personService;

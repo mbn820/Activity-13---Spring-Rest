@@ -72,13 +72,17 @@ $(document).ready(function() {
 				alert("Password too short!");
 				return;
 			}
-			
+
 			if (newPassword != null && newPassword != "") {
 				$.post("/user/updatePassword", {newPassword : newPassword}, function() {
 					alert("Password Updated!");
 				});
 			}
 		}
+	});
+
+	$(".logout").click(function() {
+		$("#logoutForm").submit();
 	});
 
 });

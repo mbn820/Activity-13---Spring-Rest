@@ -11,6 +11,7 @@ import com.exist.ecc.core.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service
 @Transactional
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
 		return dtoMapper.mapToUserDto(user);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addUser(UsersDto userDto) {
 		Users userToBeAdded = dtoMapper.mapToUser(userDto);
 		return userDao.addUser(userToBeAdded);
@@ -51,10 +53,12 @@ public class UserServiceImpl implements UserService {
 		return dtoMapper.mapToUserDtoList(allUsers);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteUser(int id) {
 		userDao.deleteUser(id);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void updateUser(UsersDto userDto) {
 		Users userToBeUpdated = dtoMapper.mapToUser(userDto);
 		userDao.updateUser(userToBeUpdated);
