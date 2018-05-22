@@ -1,13 +1,17 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.service.impl;
 
 import java.util.List;
 import com.exist.ecc.core.dao.RoleDao;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
+import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.service.DtoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.exist.ecc.core.service.exceptions.RoleAlreadyExistsException;
+import com.exist.ecc.core.service.exceptions.RoleNotFoundException;
 
 @Service
 @Transactional
@@ -26,9 +30,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public Integer addRole(RoleDto roleDto) throws Exception {
+	public Integer addRole(RoleDto roleDto) {
 		if ( roleAlreadyExists(roleDto) ) {
-			throw new Exception();
+			throw new RoleAlreadyExistsException();
 		} else {
 			Role roleToBeAdded = dtoMapper.mapToRole(roleDto);
 			return roleDao.addRole(roleToBeAdded);
@@ -38,6 +42,7 @@ public class RoleServiceImpl implements RoleService {
 	@Transactional(readOnly = true)
 	public RoleDto getRole(int id) {
 		Role role = roleDao.getRole(id);
+		if (role == null) { throw new RoleNotFoundException(); }
 		return dtoMapper.mapToRoleDto(role);
 	}
 
@@ -54,9 +59,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public void updateRole(RoleDto role) throws Exception {
+	public void updateRole(RoleDto role) {
 		if ( roleAlreadyExists(role) ) {
-			throw new Exception(); // create RoleAlreadyExistsException
+			throw new RoleAlreadyExistsException(); // create RoleAlreadyExistsException
 		} else {
 			Role roleToBeUpdated = dtoMapper.mapToRole(role);
 			roleDao.updateRole(roleToBeUpdated);
@@ -74,9 +79,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public void deleteRole(int id) throws Exception {
+	public void deleteRole(int id) {
 		if( !getRole(id).getPersons().isEmpty() ) {
-			throw new Exception();
+			throw new RuntimeException();
 		} else {
 			roleDao.deleteRole(id);
 		}

@@ -1,4 +1,4 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.service.impl;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.Set;
 import com.exist.ecc.core.model.Users;
 import com.exist.ecc.core.model.dto.UsersDto;
 import com.exist.ecc.core.dao.UserDao;
+import com.exist.ecc.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

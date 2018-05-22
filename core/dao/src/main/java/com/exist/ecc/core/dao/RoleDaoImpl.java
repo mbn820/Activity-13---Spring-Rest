@@ -28,7 +28,8 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	public Role getRole(int id) {
-		return (Role) getCurrentSession().get(Role.class, id);
+		Role role = (Role) getCurrentSession().get(Role.class, id);
+		return role;
 	}
 
 	public Role getRoleByName(String roleName) {

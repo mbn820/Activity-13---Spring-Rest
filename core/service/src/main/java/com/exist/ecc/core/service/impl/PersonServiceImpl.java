@@ -1,13 +1,16 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.service.impl;
 
 import java.util.List;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.dao.PersonDao;
+import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.DtoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.exist.ecc.core.service.exceptions.PersonNotFoundException;
 
 @Service
 @Transactional
@@ -47,6 +50,7 @@ public class PersonServiceImpl implements PersonService {
 	@Transactional(readOnly = true)
 	public PersonDto getPerson(int id) {
 		Person person = personDao.getPerson(id);
+		if (person == null) { throw new PersonNotFoundException(id); }
 		return dtoMapper.mapToPersonDto(person);
 	}
 
