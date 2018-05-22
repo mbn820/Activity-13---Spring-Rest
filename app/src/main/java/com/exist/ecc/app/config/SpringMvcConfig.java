@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -16,10 +17,11 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.handler.MappedInterceptor;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @EnableWebMvc
-// @ComponentScan(basePackages = "com.exist.ecc")
+@ComponentScan({"com.exist.ecc"})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -58,9 +60,9 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         return new MappedInterceptor( null, localeChangeInterceptor() );
     }
 
-    // @Override
-    // public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-    //     configurer.enable();
-    // }
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        return new CommonsMultipartResolver();
+    }
 
 }

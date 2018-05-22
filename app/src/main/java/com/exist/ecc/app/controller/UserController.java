@@ -123,7 +123,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/updateUserSubmit", method = RequestMethod.POST)
 	public String processUpdateUserFormSubmit(@ModelAttribute("user") UsersDto user,
-											  BindingResult result) {
+											  BindingResult result, ModelMap modelMap) {
 		LOGGER.debug("Updating user...");
 
 		UsersDto origUser = userService.getUser( user.getId() );
@@ -136,6 +136,7 @@ public class UserController {
 		}
 
 		userService.updateUser(user);
+		modelMap.clear();
 		return "redirect:/user/manageUsers";
 	}
 
