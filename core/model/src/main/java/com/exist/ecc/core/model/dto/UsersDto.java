@@ -1,10 +1,16 @@
 package com.exist.ecc.core.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UsersDto {
 
 	private int id;
+
 	private String userName;
+
+	@JsonIgnore
 	private String password;
+
 	private String userRole;
 
 	public UsersDto() {}

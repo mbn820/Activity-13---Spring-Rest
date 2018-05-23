@@ -1,10 +1,10 @@
 package com.exist.ecc.core.service.exceptions;
 
-public class RoleNotFoundException extends RuntimeException {
+public class RoleIsAssignedException extends RuntimeException {
 	private int roleId;
 
-	public RoleNotFoundException() {}
-	public RoleNotFoundException(int roleId) {
+	public RoleIsAssignedException() {}
+	public RoleIsAssignedException(int roleId) {
 		this.roleId = roleId;
 	}
 

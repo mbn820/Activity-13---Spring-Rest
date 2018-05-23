@@ -35,6 +35,11 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public PersonDto addAndReturnPerson(PersonDto personDto) {
+		return getPerson( addPerson(personDto) );
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addOrUpdatePerson(PersonDto personDto) {
 		Person personToBeAddedOrUpdated = dtoMapper.mapToPerson(personDto);
 		int personId = personToBeAddedOrUpdated.getId();
@@ -74,6 +79,7 @@ public class PersonServiceImpl implements PersonService {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public boolean deletePerson(int id) {
+		getPerson(id); // trigger notFoundException
 		return personDao.deletePerson(id);
 	}
 

@@ -5,6 +5,7 @@ import com.exist.ecc.core.model.dto.RoleDto;
 
 public interface RoleService {
 	public Integer addRole(RoleDto roleDto);
+	public RoleDto addAndReturnRole(RoleDto roleDto);
 	public RoleDto getRole(int id);
 	public RoleDto getRoleByName(String roleName);
 	public List<RoleDto> getAllRoles();

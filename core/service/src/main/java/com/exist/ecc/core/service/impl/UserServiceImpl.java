@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.exist.ecc.core.service.exceptions.UserNotFoundException;
+import com.exist.ecc.core.service.exceptions.UserNameAlreadyTakenException;
 
 @Service
 @Transactional
@@ -30,18 +32,33 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public UsersDto getUserByName(String userName) {
 		Users user = userDao.getUserByName(userName);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
 		return dtoMapper.mapToUserDto(user);
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Integer addUser(UsersDto userDto) {
+		String userName = userDto.getUserName();
+		if ( userNameAlreadyExists(userName) ) {
+			throw new UserNameAlreadyTakenException(userName);
+		}
 		Users userToBeAdded = dtoMapper.mapToUser(userDto);
 		return userDao.addUser(userToBeAdded);
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public UsersDto addAndReturnUser(UsersDto userDto) {
+		return getUser( addUser(userDto) );
 	}
 
 	@Transactional(readOnly = true)
 	public UsersDto getUser(int id) {
 		Users user = userDao.getUser(id);
+		if (user == null) {
+			throw new UserNotFoundException(id);
+		}
 		return dtoMapper.mapToUserDto(user);
 	}
 
@@ -53,11 +70,20 @@ public class UserServiceImpl implements UserService {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteUser(int id) {
+		getUser(id); // trigger notFoundException
 		userDao.deleteUser(id);
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void updateUser(UsersDto userDto) {
+		UsersDto origUser = getUser( userDto.getId() );
+		String origName = origUser.getUserName();
+		String newName = userDto.getUserName();
+
+		if ( !origName.equals(newName) && userNameAlreadyExists(newName) ) {
+			throw new UserNameAlreadyTakenException(newName);
+		}
+
 		Users userToBeUpdated = dtoMapper.mapToUser(userDto);
 		userDao.updateUser(userToBeUpdated);
 	}

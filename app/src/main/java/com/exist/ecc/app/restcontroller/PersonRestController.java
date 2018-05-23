@@ -30,37 +30,37 @@ public class PersonRestController {
         this.personService = personService;
     }
 
-    @GetMapping("/person")
-    public ResponseEntity getAllPersons() {
+    @GetMapping(value = "/person", produces = "application/json")
+    public ResponseEntity< List<PersonDto> > getAllPersons() {
         return new ResponseEntity(personService.getAllPerson("id"), HttpStatus.OK);
     }
 
-    @GetMapping("/person/{id}")
-    public ResponseEntity getPerson(@PathVariable("id") int id) {
+    @GetMapping(value = "/person/{id}", produces = "application/json")
+    public ResponseEntity<PersonDto> getPerson(@PathVariable("id") int id) {
         PersonDto person = personService.getPerson(id);
         return new ResponseEntity(person, HttpStatus.OK);
     }
 
-    @PostMapping("/person")
-    public ResponseEntity addPerson(@RequestBody PersonDto person) {
-        personService.addPerson(person);
-        return new ResponseEntity(person, HttpStatus.CREATED);
+    @PostMapping(value = "/person", produces = "application/json")
+    public ResponseEntity<PersonDto> addPerson(@RequestBody PersonDto person) {
+        PersonDto createdPerson = personService.addAndReturnPerson(person);
+        return new ResponseEntity(createdPerson, HttpStatus.CREATED);
     }
 
-    @PutMapping("/person")
-    public ResponseEntity updatePerson(@RequestBody PersonDto person) {
+    @PutMapping(value = "/person", produces = "application/json")
+    public ResponseEntity<PersonDto> updatePerson(@RequestBody PersonDto person) {
         personService.updatePerson(person);
         return new ResponseEntity(person, HttpStatus.OK);
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping(value = "/person/{id}", produces = "application/json")
     public ResponseEntity deletePerson(@PathVariable("id") int id) {
         personService.deletePerson(id);
-        return new ResponseEntity(id, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler(PersonNotFoundException.class)
-    public ResponseEntity personNotFound(PersonNotFoundException e) {
+    public ResponseEntity<Error> personNotFound(PersonNotFoundException e) {
         int personId = e.getPersonId();
         Error error = new Error("No person found with id of " + personId);
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
