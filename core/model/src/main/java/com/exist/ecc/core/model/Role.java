@@ -1,12 +1,22 @@
 package com.exist.ecc.core.model;
 
-import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import com.fasterxml.jackson.annotation.*;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -22,7 +32,7 @@ public class Role {
 	@Column (name = "role_name")
 	private String roleName;
 
-	@ManyToMany (mappedBy = "roles", fetch = FetchType.EAGER)
+	@ManyToMany (mappedBy = "roles", fetch = FetchType.LAZY)
 	private Set<Person> persons;
 
 	public Role() {}

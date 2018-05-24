@@ -1,17 +1,20 @@
 package com.exist.ecc.core.service.impl;
 
 import java.util.List;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.MapperFacade;
-import ma.glasnost.orika.impl.DefaultMapperFactory;
+
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Users;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
 import com.exist.ecc.core.model.dto.UsersDto;
-import org.springframework.stereotype.Component;
 import com.exist.ecc.core.service.DtoMapper;
+
+import org.springframework.stereotype.Component;
+
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 @Component
 public class DtoMapperImpl implements DtoMapper {

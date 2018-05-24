@@ -1,18 +1,20 @@
 package com.exist.ecc.app.validator;
 
 import java.util.List;
+
 import com.exist.ecc.core.model.dto.ContactDto;
 import com.exist.ecc.core.model.dto.PersonDto;
+
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.springframework.stereotype.Component;
 
 @Component
 public class PersonValidator implements Validator {
 
 	@Override
-	public boolean supports(Class cl) {
+	public boolean supports(Class<?> cl) {
 		return PersonDto.class.isAssignableFrom(cl);
 	}
 

@@ -1,8 +1,8 @@
 package com.exist.ecc.core.model.dto;
 
-import java.util.*;
-import com.exist.ecc.core.model.*;
-import com.fasterxml.jackson.annotation.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class PersonDto {
 

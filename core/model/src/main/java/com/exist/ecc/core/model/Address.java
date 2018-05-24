@@ -1,9 +1,7 @@
 package com.exist.ecc.core.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {

@@ -1,17 +1,19 @@
 package com.exist.ecc.core.service.impl;
 
 import java.util.List;
+
+import com.exist.ecc.core.dao.UserDao;
 import com.exist.ecc.core.model.Users;
 import com.exist.ecc.core.model.dto.UsersDto;
-import com.exist.ecc.core.dao.UserDao;
-import com.exist.ecc.core.service.UserService;
 import com.exist.ecc.core.service.DtoMapper;
+import com.exist.ecc.core.service.UserService;
+import com.exist.ecc.core.service.exceptions.UserNameAlreadyTakenException;
+import com.exist.ecc.core.service.exceptions.UserNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.access.prepost.PreAuthorize;
-import com.exist.ecc.core.service.exceptions.UserNotFoundException;
-import com.exist.ecc.core.service.exceptions.UserNameAlreadyTakenException;
 
 @Service
 @Transactional

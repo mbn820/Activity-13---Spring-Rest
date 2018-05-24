@@ -12,11 +12,13 @@ multipartfile
 	- LDAP
 	- inMemory
 	- userDetails
+	- OAuth
+		- you can use login credentials from one provider to log onto the systems of another provider
 
 --SPRING PASSWORD ENCODERS--
 	- BCryptPasswordEncoder
 		- generate random salt each time then hashes the password
-		- much secure than SHA and recommended by the spring documentation
+		- more secure than SHA and recommended by the spring documentation
 	- NoOpPasswordEncoder
 		- does nothing, only used for testing purposes
 	- StandardPasswordEncoder
@@ -38,6 +40,7 @@ multipartfile
 	- data or information in the server are treated as resources
 	- the actual object is not transfered but a representation of it in the form of (json, xml, text, html)
 	- resources are accessed using Http methods
+	- ** REpresentation State Transfer is based on only transferring representations of objects, not performing processes on them
 
 	1) GET:- Used when the client is requesting a resource on the Web server.
 

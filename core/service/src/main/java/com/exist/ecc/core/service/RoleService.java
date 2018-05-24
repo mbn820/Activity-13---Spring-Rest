@@ -1,6 +1,7 @@
 package com.exist.ecc.core.service;
 
 import java.util.List;
+
 import com.exist.ecc.core.model.dto.RoleDto;
 
 public interface RoleService {

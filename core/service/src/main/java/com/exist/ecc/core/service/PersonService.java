@@ -1,7 +1,8 @@
 package com.exist.ecc.core.service;
 
-import com.exist.ecc.core.model.dto.PersonDto;
 import java.util.List;
+
+import com.exist.ecc.core.model.dto.PersonDto;
 
 public interface PersonService {
 	public Integer addPerson(PersonDto person);

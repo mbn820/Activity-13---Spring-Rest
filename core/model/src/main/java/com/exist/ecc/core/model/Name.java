@@ -1,7 +1,7 @@
 package com.exist.ecc.core.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Name {
@@ -75,4 +75,5 @@ public class Name {
     public String toString() {
         return String.format("%s %c. %s", firstName, middleName.charAt(0), lastName);
     }
+    
 }

@@ -1,14 +1,17 @@
-package com.exist.ecc.core.dao;
+package com.exist.ecc.core.dao.impl;
 
 import java.util.List;
+
+import com.exist.ecc.core.dao.UserDao;
 import com.exist.ecc.core.model.Users;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
-import org.springframework.stereotype.Repository;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl implements UserDao {

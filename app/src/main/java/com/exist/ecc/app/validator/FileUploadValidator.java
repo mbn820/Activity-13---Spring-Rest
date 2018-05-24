@@ -1,21 +1,22 @@
 package com.exist.ecc.app.validator;
 
 import java.io.File;
+
+import com.exist.ecc.core.model.FileUpload;
+import com.exist.ecc.core.model.dto.PersonDto;
+import com.exist.ecc.core.service.XmlParser;
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
-import com.exist.ecc.core.model.dto.PersonDto;
-import com.exist.ecc.core.model.FileUpload;
-import com.exist.ecc.core.service.XmlParser;
 
 @Component
 public class FileUploadValidator implements Validator {
 	private static final String destinationDir = "/home/mnunez/Desktop/Uploads/";
 
 	@Override
-	public boolean supports(Class cl) {
+	public boolean supports(Class<?> cl) {
 		return FileUpload.class.isAssignableFrom(cl);
 	}
 
@@ -33,7 +34,7 @@ public class FileUploadValidator implements Validator {
 
 		// check if xml
 		try {
-			String lastFourChars = fileName.substring( fileName.length() - 4 );
+			String lastFourChars = fileName.substring(fileName.length() - 4);
 			if ( !lastFourChars.equals(".xml") ) {
 				errors.rejectValue("multipartFile", "multipartFile.invalid", "Invalid File, please upload files with .xml extension");
 				return;

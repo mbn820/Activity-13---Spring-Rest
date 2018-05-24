@@ -1,14 +1,11 @@
 package com.exist.ecc.core.service.impl;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import com.exist.ecc.core.model.Users;
+
 import com.exist.ecc.core.model.dto.UsersDto;
-import com.exist.ecc.core.dao.UserDao;
 import com.exist.ecc.core.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,10 +13,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserService userService;
 

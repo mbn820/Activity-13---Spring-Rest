@@ -1,37 +1,26 @@
 package com.exist.ecc.app.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Date;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.exist.ecc.app.validator.FileUploadValidator;
 import com.exist.ecc.core.model.FileUpload;
 import com.exist.ecc.core.model.dto.PersonDto;
 import com.exist.ecc.core.model.dto.RoleDto;
-import com.exist.ecc.core.model.dto.ContactDto;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.service.XmlParser;
-import org.springframework.ui.ModelMap;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller

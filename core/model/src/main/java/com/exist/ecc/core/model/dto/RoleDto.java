@@ -1,9 +1,10 @@
 package com.exist.ecc.core.model.dto;
 
-import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.*;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class RoleDto {
 

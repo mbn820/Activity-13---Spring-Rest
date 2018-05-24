@@ -1,18 +1,20 @@
 package com.exist.ecc.core.service.impl;
 
 import java.util.List;
+
 import com.exist.ecc.core.dao.RoleDao;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.dto.RoleDto;
-import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.service.DtoMapper;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.access.prepost.PreAuthorize;
+import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.service.exceptions.RoleAlreadyExistsException;
-import com.exist.ecc.core.service.exceptions.RoleNotFoundException;
 import com.exist.ecc.core.service.exceptions.RoleIsAssignedException;
+import com.exist.ecc.core.service.exceptions.RoleNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional

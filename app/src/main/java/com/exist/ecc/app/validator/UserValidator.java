@@ -1,12 +1,13 @@
 package com.exist.ecc.app.validator;
 
-import org.springframework.stereotype.Component;
+import com.exist.ecc.core.model.dto.UsersDto;
+import com.exist.ecc.core.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import com.exist.ecc.core.model.dto.UsersDto;
-import com.exist.ecc.core.service.UserService;
 
 @Component
 public class UserValidator implements Validator {
@@ -20,7 +21,7 @@ public class UserValidator implements Validator {
 	}
 
 	@Override
-	public boolean supports(Class cl) {
+	public boolean supports(Class<?> cl) {
 		return UsersDto.class.isAssignableFrom(cl);
 	}
 
