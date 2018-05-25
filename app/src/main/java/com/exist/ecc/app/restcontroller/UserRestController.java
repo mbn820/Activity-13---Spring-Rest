@@ -76,4 +76,10 @@ public class UserRestController {
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Error> error(Exception e) {
+        Error error = new Error( e.getMessage() );
+        return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
+    }
+
 }
