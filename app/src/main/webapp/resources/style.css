@@ -25,6 +25,8 @@ table, th {
 td {
 	border-left: 1px solid #000;
     border-right: 1px solid #000;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 html * {

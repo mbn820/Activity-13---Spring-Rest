@@ -29,9 +29,9 @@ public class HibernateConfig {
 		dataSource.setUrl( environment.getProperty("jdbc.url") );
 		dataSource.setUsername( environment.getProperty("jdbc.username") );
 		dataSource.setPassword( environment.getProperty("jdbc.password") );
-		dataSource.setInitialSize(10);
-		dataSource.setMaxActive(5);
-		dataSource.setMaxWait(5000);
+		dataSource.setInitialSize( environment.getProperty("connection.initial_size", Integer.class) );
+		dataSource.setMaxActive( environment.getProperty("connection.max_active", Integer.class) );
+		dataSource.setMaxWait( environment.getProperty("connection.max_wait", Integer.class) );
 		return dataSource;
 	}
 
