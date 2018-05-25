@@ -53,15 +53,4 @@
               <version>${springframework.version}</version>
           </dependency>
       </dependencies>
-
-      <build>
-          <resources>
-              <resource>
-                  <directory>src/main/resources</directory>
-                  <includes>
-                      <include>dao-beans.xml</include>
-                  </includes>
-              </resource>
-          </resources>
-      </build>
 </project>
