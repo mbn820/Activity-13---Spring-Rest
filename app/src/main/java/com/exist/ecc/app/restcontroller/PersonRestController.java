@@ -10,6 +10,7 @@ import com.exist.ecc.core.service.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class PersonRestController {
         this.personService = personService;
     }
 
+    @CrossOrigin(origins = "http://localhost:9999/rest/persons")
     @GetMapping(value = "/persons", produces = "application/json")
     public ResponseEntity< List<PersonDto> > getAllPersons() {
         return new ResponseEntity< List<PersonDto> >(personService.getAllPerson("id"), HttpStatus.OK);

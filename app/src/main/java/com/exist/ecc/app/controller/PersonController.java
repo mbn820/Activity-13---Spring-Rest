@@ -52,6 +52,11 @@ public class PersonController {
         this.personValidator = personValidator;
     }
 
+    @RequestMapping(value = "/test/allPersons")
+    public String testAngular() {
+        return "person/TestAngular";
+    }
+
     @RequestMapping(value = "/person/managePersons", method = RequestMethod.GET)
     public ModelAndView loadManagePersonsPage(@RequestParam(defaultValue = "") String lastNameFilter,
                                               @RequestParam(defaultValue = "id") String orderBy,

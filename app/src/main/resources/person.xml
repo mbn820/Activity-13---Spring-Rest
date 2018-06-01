@@ -1,0 +1,52 @@
+
+<PersonDto>
+	<id>0</id>
+	<name>
+		<firstName>Juan</firstName>
+		<middleName>dela</middleName>
+		<lastName>Cruz</lastName>
+		<suffix></suffix>
+		<title></title>
+	</name>
+
+	<address>
+		<streetNumber>123</streetNumber>
+		<barangay>Marintoc</barangay>
+		<municipality>Mobo</municipality>
+		<zipcode>446</zipcode>
+	</address>
+
+	<birthDate>1999-11-23</birthDate>
+	<dateHired>2012-01-15</dateHired>
+	<currentlyEmployed>false</currentlyEmployed>
+	<gwa>3.0</gwa>
+
+	<roles>
+		<role>
+			<roleName>Developer</roleName>
+		</role>
+        <role>
+			<roleName>Engineer</roleName>
+		</role>
+	</roles>
+
+	<contacts>
+		<contact>
+			<type>Email</type>
+			<detail>juan@yahoo.com</detail>
+		</contact>
+		<contact>
+			<type>Email</type>
+			<detail>jcruz@gmail.com</detail>
+		</contact>
+		<contact>
+			<type>Cellphone</type>
+			<detail>09073452186</detail>
+		</contact>
+		<contact>
+			<type>Landline</type>
+			<detail>112-556-0009</detail>
+		</contact>
+	</contacts>
+
+</PersonDto>
